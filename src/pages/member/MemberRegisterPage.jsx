@@ -1,12 +1,13 @@
-import React from "react";
-import MemberRegisterContainer from "../../containers/member/MemberRegisterContainer";
+import React from 'react';
+import MemberRegisterContainer from '../../containers/member/MemberRegisterContainer';
+import MainLayout from '../../layout/MainLayout';
 
 const MemberRegisterPage = () => {
-    return (
-        <div>
-            <MemberRegisterContainer />
-        </div>
-    );
+  return (
+    <MainLayout title="스터디 회원 가입">
+      <MemberRegisterContainer />
+    </MainLayout>
+  );
 };
 
 export default MemberRegisterPage;
