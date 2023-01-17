@@ -7,3 +7,6 @@ export const createMember = (name, age) =>
 
 export const fetchScheduleMemberList = (memberId) =>
   client.get(`/api/schedule/member/${memberId}`);
+
+export const fetchTodoMemberList = (memberId) =>
+  client.get(`/api/todo/member/${memberId}`);

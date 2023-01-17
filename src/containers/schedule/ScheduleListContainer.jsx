@@ -1,8 +1,12 @@
 import React from 'react';
+import { useLocation, useParams } from 'react-router-dom';
 import ScheduleListForm from '../../components/schedule/ScheduleListForm';
 
-const ScheduleListContainer = ({ memberId }) => {
-  return <ScheduleListForm memberId={memberId} />;
+const ScheduleListContainer = () => {
+  const { memberId } = useParams();
+  const { state } = useLocation();
+
+  return <ScheduleListForm schedules={state} />;
 };
 
 export default ScheduleListContainer;

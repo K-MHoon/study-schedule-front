@@ -1,24 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import * as api from '../../lib/api';
 
-const MemberListForm = () => {
-  const [members, setMembers] = useState([]);
-
-  const getMemberList = async () => {
-    try {
-      const response = await api.fetchStudyMemberList();
-      setMembers(response.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    getMemberList();
-  }, []);
-
+const MemberListForm = ({ onClickNaviageToSchedule, members }) => {
   return (
     <div>
       <Table striped bordered hover>
@@ -33,10 +16,11 @@ const MemberListForm = () => {
         </thead>
         <tbody>
           {members.map((member) => (
-            <tr key={member.id}>
-              <td>
-                <Link to={'/schedule/' + member.id}>{member.id}</Link>
-              </td>
+            <tr
+              key={member.id}
+              onClick={(e) => onClickNaviageToSchedule(member.id)}
+            >
+              <td>{member.id}</td>
               <td>{member.name}</td>
               <td>{member.age}</td>
               <td>{member.createdAt}</td>
