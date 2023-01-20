@@ -7,14 +7,8 @@ const MemberListContainer = () => {
   const navigate = useNavigate();
   const [members, setMembers] = useState([]);
 
-  const onClickNaviageToSchedule = async (memberId) => {
-    try {
-      const response = await api.fetchScheduleMemberList(memberId);
-      console.log({ state: { ...response.data } });
-      navigate('/schedule/' + memberId, { state: response.data });
-    } catch (e) {
-      console.log(e);
-    }
+  const onClickNavigateToSchedule = (memberId) => {
+    navigate('/schedule/' + memberId);
   };
 
   const getMemberList = async () => {
@@ -32,7 +26,7 @@ const MemberListContainer = () => {
 
   return (
     <MemberListForm
-      onClickNaviageToSchedule={onClickNaviageToSchedule}
+      onClickNavigateToSchedule={onClickNavigateToSchedule}
       members={members}
     />
   );

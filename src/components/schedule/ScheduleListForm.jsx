@@ -1,33 +1,53 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Accordion, Col, Container, Row, Table } from 'react-bootstrap';
+import '../../css/Schedule.scss';
 
 const ScheduleListForm = ({ schedules }) => {
   return (
     <div>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>스케줄 ID</th>
-            <th>시작일</th>
-            <th>종료일</th>
-            <th>진행여부</th>
-            <th>생성일</th>
-            <th>수정일</th>
-          </tr>
-        </thead>
-        <tbody>
-          {schedules.map((schedule) => (
-            <tr key={schedule.id} onClick={(e) => console.log('click!')}>
-              <td>{schedule.id}</td>
-              <td>{schedule.startDate}</td>
-              <td>{schedule.endDate}</td>
-              <td>{schedule.isUse}</td>
-              <td>{schedule.createdAt}</td>
-              <td>{schedule.updatedAt}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <Accordion>
+        {schedules.map((schedule) => (
+          <Accordion.Item eventKey={schedule.id}>
+            <Accordion.Header>
+              <Container>
+                <Row>
+                  <Col sm={2}>{schedule.id}</Col>
+                  <Col sm={4}>{schedule.name}</Col>
+                  <Col sm={6}>
+                    {schedule.startDate} ~ {schedule.endDate}
+                  </Col>
+                </Row>
+              </Container>
+            </Accordion.Header>
+            <Accordion.Body>
+              <Table striped bordered hover>
+                <thead>
+                  <tr>
+                    <th>할일 ID</th>
+                    <th>제목</th>
+                    <th>내용</th>
+                    <th>완료 여부</th>
+                    <th>생성일</th>
+                    <th>수정일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {schedule.todoList.map((todo) => (
+                    <tr>
+                      <td>{todo.id}</td>
+                      <td>{todo.title}</td>
+                      <td>{todo.content}</td>
+                      <td>{todo.isClear}</td>
+                      <td>{todo.createdAt}</td>
+                      <td>{todo.updatedAt}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Accordion.Body>
+          </Accordion.Item>
+        ))}
+      </Accordion>
     </div>
   );
 };

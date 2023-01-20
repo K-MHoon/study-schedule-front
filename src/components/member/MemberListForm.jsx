@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 
-const MemberListForm = ({ onClickNaviageToSchedule, members }) => {
+const MemberListForm = ({ onClickNavigateToSchedule, members }) => {
   return (
     <div>
       <Table striped bordered hover>
@@ -18,7 +18,7 @@ const MemberListForm = ({ onClickNaviageToSchedule, members }) => {
           {members.map((member) => (
             <tr
               key={member.id}
-              onClick={(e) => onClickNaviageToSchedule(member.id)}
+              onClick={(e) => onClickNavigateToSchedule(member.id)}
             >
               <td>{member.id}</td>
               <td>{member.name}</td>
