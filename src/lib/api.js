@@ -8,5 +8,8 @@ export const createMember = (name, age) =>
 export const fetchScheduleMemberList = (memberId) =>
   client.get(`/api/schedule/member/${memberId}`);
 
-export const fetchTodoMemberList = (memberId) =>
+export const fetchTodoByMemberList = (memberId) =>
   client.get(`/api/todo/member/${memberId}`);
+
+export const fetchTodoByScheduleList = (scheduleId) =>
+  client.get(`/api/todo/schedule/${scheduleId}`);

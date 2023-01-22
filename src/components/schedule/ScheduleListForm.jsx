@@ -1,14 +1,31 @@
-import React from 'react';
-import { Accordion, Col, Container, Row, Table } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Accordion, Col, Container, Row } from 'react-bootstrap';
 import '../../css/Schedule.scss';
+import * as api from '../../lib/api';
+import TodoListForm from '../todo/TodoListForm';
 
 const ScheduleListForm = ({ schedules }) => {
+  const [todos, setTodos] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const getTodoList = async (scheduleId) => {
+    try {
+      setIsLoading(true);
+      const response = await api.fetchTodoByScheduleList(scheduleId);
+      setTodos(response.data);
+      setIsLoading(false);
+    } catch (e) {
+      console.log(e);
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div>
       <Accordion>
         {schedules.map((schedule) => (
-          <Accordion.Item eventKey={schedule.id}>
-            <Accordion.Header>
+          <Accordion.Item key={schedule.id} eventKey={schedule.id}>
+            <Accordion.Header onClick={(e) => getTodoList(schedule.id)}>
               <Container>
                 <Row>
                   <Col sm={2}>{schedule.id}</Col>
@@ -20,30 +37,8 @@ const ScheduleListForm = ({ schedules }) => {
               </Container>
             </Accordion.Header>
             <Accordion.Body>
-              <Table striped bordered hover>
-                <thead>
-                  <tr>
-                    <th>할일 ID</th>
-                    <th>제목</th>
-                    <th>내용</th>
-                    <th>완료 여부</th>
-                    <th>생성일</th>
-                    <th>수정일</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {schedule.todoList.map((todo) => (
-                    <tr>
-                      <td>{todo.id}</td>
-                      <td>{todo.title}</td>
-                      <td>{todo.content}</td>
-                      <td>{todo.isClear}</td>
-                      <td>{todo.createdAt}</td>
-                      <td>{todo.updatedAt}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
+              {isLoading && '할 일 목록 데이터를 불러오는 중입니다..'}
+              {!isLoading && <TodoListForm todos={todos} />}
             </Accordion.Body>
           </Accordion.Item>
         ))}
