@@ -1,33 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import MemberListForm from '../../components/member/MemberListForm';
-import * as api from '../../lib/api';
+import { listMembers } from '../../lib/members';
 
 const MemberListContainer = () => {
   const navigate = useNavigate();
-  const [members, setMembers] = useState([]);
+  const dispatch = useDispatch();
+  const { members, loading } = useSelector(({ members, loading }) => ({
+    members: members.members,
+    error: members.error,
+    loading: loading['members/LIST_MEMBERS'],
+  }));
 
-  const onClickNavigateToSchedule = (memberId) => {
+  const navigateToSchedule = (memberId) => {
     navigate('/schedule/' + memberId);
   };
 
-  const getMemberList = async () => {
-    try {
-      const response = await api.fetchStudyMemberList();
-      setMembers(response.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
   useEffect(() => {
-    getMemberList();
-  }, []);
+    dispatch(listMembers());
+  }, [dispatch]);
 
   return (
     <MemberListForm
-      onClickNavigateToSchedule={onClickNavigateToSchedule}
+      navigateToSchedule={navigateToSchedule}
       members={members}
+      loading={loading}
     />
   );
 };
