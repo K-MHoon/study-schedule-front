@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ScheduleListForm from '../../components/schedule/ScheduleListForm';
 import * as api from '../../lib/api';
+import { listSchedules } from '../../lib/schedules';
 
 const ScheduleListContainer = () => {
   const { memberId } = useParams();
-  const [schedules, setSchedules] = useState([]);
-
-  const getMemberList = async () => {
-    try {
-      const response = await api.fetchScheduleMemberList(memberId);
-      setSchedules(response.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  const dispatch = useDispatch();
+  const { schedules, loading } = useSelector(({ schedules, loading }) => ({
+    schedules: schedules.schedules,
+    error: schedules.error,
+    loading: loading['schedules/LIST_SCHEDULES'],
+  }));
 
   useEffect(() => {
-    getMemberList();
-  }, []);
+    dispatch(listSchedules(memberId));
+  }, [dispatch]);
 
-  return <ScheduleListForm schedules={schedules} />;
+  return <ScheduleListForm schedules={schedules} loading={loading} />;
 };
 
 export default ScheduleListContainer;

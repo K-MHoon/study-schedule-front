@@ -4,7 +4,7 @@ import '../../css/Schedule.scss';
 import * as api from '../../lib/api';
 import TodoListForm from '../todo/TodoListForm';
 
-const ScheduleListForm = ({ schedules }) => {
+const ScheduleListForm = ({ schedules, loading }) => {
   const [todos, setTodos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,25 +23,27 @@ const ScheduleListForm = ({ schedules }) => {
   return (
     <div>
       <Accordion>
-        {schedules.map((schedule) => (
-          <Accordion.Item key={schedule.id} eventKey={schedule.id}>
-            <Accordion.Header onClick={(e) => getTodoList(schedule.id)}>
-              <Container>
-                <Row>
-                  <Col sm={2}>{schedule.id}</Col>
-                  <Col sm={4}>{schedule.name}</Col>
-                  <Col sm={6}>
-                    {schedule.startDate} ~ {schedule.endDate}
-                  </Col>
-                </Row>
-              </Container>
-            </Accordion.Header>
-            <Accordion.Body>
-              {isLoading && '할 일 목록 데이터를 불러오는 중입니다..'}
-              {!isLoading && <TodoListForm todos={todos} />}
-            </Accordion.Body>
-          </Accordion.Item>
-        ))}
+        {loading && '스케줄 목록을 불러오는 중입니다.'}
+        {!loading &&
+          schedules.map((schedule) => (
+            <Accordion.Item key={schedule.id} eventKey={schedule.id}>
+              <Accordion.Header onClick={(e) => getTodoList(schedule.id)}>
+                <Container>
+                  <Row>
+                    <Col sm={2}>{schedule.id}</Col>
+                    <Col sm={4}>{schedule.name}</Col>
+                    <Col sm={6}>
+                      {schedule.startDate} ~ {schedule.endDate}
+                    </Col>
+                  </Row>
+                </Container>
+              </Accordion.Header>
+              <Accordion.Body>
+                {isLoading && '할 일 목록 데이터를 불러오는 중입니다..'}
+                {!isLoading && <TodoListForm todos={todos} />}
+              </Accordion.Body>
+            </Accordion.Item>
+          ))}
       </Accordion>
     </div>
   );
