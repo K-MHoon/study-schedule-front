@@ -11,6 +11,8 @@ export default function createRequestSaga(type, request) {
   const SUCCESS = `${type}_SUCCESS`;
   const FAILURE = `${type}_FAILURE`;
 
+  // 액션 생성 함수가 action으로 들어옴.
+  // dispatch에 파라미터를 추가하면 action.payload로 들어온다.
   return function* (action) {
     yield put(startLoading(type));
     try {
