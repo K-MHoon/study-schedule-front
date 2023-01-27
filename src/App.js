@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import MemberListPage from './pages/member/MemberListPage';
 import MemberRegisterPage from './pages/member/MemberRegisterPage';
 import ScheduleListPage from './pages/schedule/ScheduleListPage';
+import TodoListPage from './pages/todo/TodoListPage';
 
 function App() {
   return (
@@ -13,7 +14,11 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/member" element={<MemberListPage />} />
       <Route path="/member/register" element={<MemberRegisterPage />} />
-      <Route path="/schedule/:memberId" element={<ScheduleListPage />} />
+      <Route path="/member/:memberId/schedule" element={<ScheduleListPage />} />
+      <Route
+        path="/member/:memberId/schedule/:scheduleId/todos"
+        element={<TodoListPage />}
+      />
     </Routes>
   );
 }

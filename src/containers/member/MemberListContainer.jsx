@@ -14,7 +14,7 @@ const MemberListContainer = () => {
   }));
 
   const navigateToSchedule = (memberId) => {
-    navigate('/schedule/' + memberId);
+    navigate(`${memberId}/schedule`);
   };
 
   useEffect(() => {

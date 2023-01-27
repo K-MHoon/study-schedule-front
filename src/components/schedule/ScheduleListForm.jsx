@@ -1,25 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Accordion, Col, Container, Row } from 'react-bootstrap';
 import '../../css/Schedule.scss';
-import * as api from '../../lib/api';
-import TodoListForm from '../todo/TodoListForm';
 
-const ScheduleListForm = ({ schedules, loading }) => {
-  const [todos, setTodos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const getTodoList = async (scheduleId) => {
-    try {
-      setIsLoading(true);
-      const response = await api.fetchTodoByScheduleList(scheduleId);
-      setTodos(response.data);
-      setIsLoading(false);
-    } catch (e) {
-      console.log(e);
-      setIsLoading(false);
-    }
-  };
-
+const ScheduleListForm = ({ schedules, loading, navigateToTodos }) => {
   return (
     <div>
       <Accordion>
@@ -27,7 +10,7 @@ const ScheduleListForm = ({ schedules, loading }) => {
         {!loading &&
           schedules.map((schedule) => (
             <Accordion.Item key={schedule.id} eventKey={schedule.id}>
-              <Accordion.Header onClick={(e) => getTodoList(schedule.id)}>
+              <Accordion.Header onClick={() => navigateToTodos(schedule.id)}>
                 <Container>
                   <Row>
                     <Col sm={2}>{schedule.id}</Col>
@@ -38,10 +21,7 @@ const ScheduleListForm = ({ schedules, loading }) => {
                   </Row>
                 </Container>
               </Accordion.Header>
-              <Accordion.Body>
-                {isLoading && '할 일 목록 데이터를 불러오는 중입니다..'}
-                {!isLoading && <TodoListForm todos={todos} />}
-              </Accordion.Body>
+              <Accordion.Body></Accordion.Body>
             </Accordion.Item>
           ))}
       </Accordion>

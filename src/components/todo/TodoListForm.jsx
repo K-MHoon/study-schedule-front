@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
 
-const TodoListForm = ({ todos }) => {
+const TodoListForm = ({ todos, loading }) => {
   return (
     <Table striped bordered hover>
       <thead>
@@ -14,15 +14,17 @@ const TodoListForm = ({ todos }) => {
         </tr>
       </thead>
       <tbody>
-        {todos.map((todo) => (
-          <tr key={todo.id}>
-            <td>{todo.id}</td>
-            <td>{todo.title}</td>
-            <td>{todo.content}</td>
-            <td>{todo.createdAt}</td>
-            <td>{todo.updatedAt}</td>
-          </tr>
-        ))}
+        {!loading &&
+          todos &&
+          todos.map((todo) => (
+            <tr key={todo.id}>
+              <td>{todo.id}</td>
+              <td>{todo.title}</td>
+              <td>{todo.content}</td>
+              <td>{todo.createdAt}</td>
+              <td>{todo.updatedAt}</td>
+            </tr>
+          ))}
       </tbody>
     </Table>
   );
