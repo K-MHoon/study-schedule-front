@@ -13,3 +13,6 @@ export const fetchTodoByMemberList = (memberId) =>
 
 export const fetchTodoByScheduleList = (scheduleId) =>
   client.get(`/api/todo/schedule/${scheduleId}`);
+
+export const createSchedule = (memberId, { name, startDate, endDate }) =>
+  client.post(`/api/schedule/member/${memberId}`, { name, startDate, endDate });
