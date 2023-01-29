@@ -1,32 +1,39 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Spinner, Table } from 'react-bootstrap';
 
 const TodoListForm = ({ todos, loading }) => {
   return (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>할일 ID</th>
-          <th>제목</th>
-          <th>내용</th>
-          <th>생성일</th>
-          <th>수정일</th>
-        </tr>
-      </thead>
-      <tbody>
-        {!loading &&
-          todos &&
-          todos.map((todo) => (
-            <tr key={todo.id}>
-              <td>{todo.id}</td>
-              <td>{todo.title}</td>
-              <td>{todo.content}</td>
-              <td>{todo.createdAt}</td>
-              <td>{todo.updatedAt}</td>
+    <>
+      {loading && (
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      )}
+      {!loading && (
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>할일 ID</th>
+              <th>제목</th>
+              <th>내용</th>
+              <th>생성일</th>
+              <th>수정일</th>
             </tr>
-          ))}
-      </tbody>
-    </Table>
+          </thead>
+          <tbody>
+            {todos.map((todo) => (
+              <tr key={todo.id}>
+                <td>{todo.id}</td>
+                <td>{todo.title}</td>
+                <td>{todo.content}</td>
+                <td>{todo.createdAt}</td>
+                <td>{todo.updatedAt}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      )}
+    </>
   );
 };
 

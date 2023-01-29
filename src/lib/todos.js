@@ -5,34 +5,69 @@ import createRequestSaga, {
 import * as api from './api';
 import { takeLatest } from 'redux-saga/effects';
 
-const [LIST_TODOS, LIST_TODOS_SUCCESS, LIST_TODOS_FAILURE] =
-  createRequestActionTypes('todos/LIST_TODOS');
+const [
+  LIST_SCHEDULE_TODOS,
+  LIST_SCHEDULE_TODOS_SUCCESS,
+  LIST_SCHEDULE_TODOS_FAILURE,
+] = createRequestActionTypes('todos/LIST_SCHEDULE_TODOS');
+const [
+  LIST_MEMBER_TODOS,
+  LIST_MEMBER_TODOS_SUCCESS,
+  LIST_MEMBER_TODOS_FAILURE,
+] = createRequestActionTypes('todos/LIST_MEMBER_TODOS');
 
-export const listTodos = createAction(LIST_TODOS, (scheduleId) => scheduleId);
+export const listScheduleTodos = createAction(
+  LIST_SCHEDULE_TODOS,
+  (scheduleId) => scheduleId,
+);
+export const listMemberTodos = createAction(
+  LIST_MEMBER_TODOS,
+  (memberId) => memberId,
+);
 
-const listTodosSaga = createRequestSaga(
-  LIST_TODOS,
+const listScheduleTodosSaga = createRequestSaga(
+  LIST_SCHEDULE_TODOS,
   api.fetchTodoByScheduleList,
 );
 
+const listMemberTodosSaga = createRequestSaga(
+  LIST_MEMBER_TODOS,
+  api.fetchTodoByMemberList,
+);
+
 export function* todosSaga() {
-  yield takeLatest(LIST_TODOS, listTodosSaga);
+  yield takeLatest(LIST_SCHEDULE_TODOS, listScheduleTodosSaga);
+  yield takeLatest(LIST_MEMBER_TODOS, listMemberTodosSaga);
 }
 
 const initialState = {
-  todos: [],
+  scheduleTodos: [],
+  memberTodos: [],
   meta: null,
   error: null,
 };
 
 const todos = handleActions(
   {
-    [LIST_TODOS_SUCCESS]: (state, { payload: todos, meta }) => ({
+    [LIST_SCHEDULE_TODOS_SUCCESS]: (
+      state,
+      { payload: scheduleTodos, meta },
+    ) => ({
       ...state,
-      todos,
+      scheduleTodos,
       meta,
     }),
-    [LIST_TODOS_FAILURE]: (state, { payload: error, meta }) => ({
+    [LIST_SCHEDULE_TODOS_FAILURE]: (state, { payload: error, meta }) => ({
+      ...state,
+      error,
+      meta,
+    }),
+    [LIST_MEMBER_TODOS_SUCCESS]: (state, { payload: memberTodos, meta }) => ({
+      ...state,
+      memberTodos,
+      meta,
+    }),
+    [LIST_MEMBER_TODOS_FAILURE]: (state, { payload: error, meta }) => ({
       ...state,
       error,
       meta,

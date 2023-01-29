@@ -1,12 +1,16 @@
 import React from 'react';
-import { Accordion, Col, Container, Row } from 'react-bootstrap';
+import { Accordion, Col, Container, Row, Spinner } from 'react-bootstrap';
 import '../../css/Schedule.scss';
 
 const ScheduleListForm = ({ schedules, loading, navigateToTodos }) => {
   return (
     <div>
       <Accordion>
-        {loading && '스케줄 목록을 불러오는 중입니다.'}
+        {loading && (
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        )}
         {!loading &&
           schedules.map((schedule) => (
             <Accordion.Item key={schedule.id} eventKey={schedule.id}>
