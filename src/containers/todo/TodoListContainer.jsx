@@ -16,7 +16,6 @@ const TodoListContainer = () => {
 
   useEffect(() => {
     dispatch(listScheduleTodos(scheduleId));
-    console.log(scheduleId);
   }, [dispatch, scheduleId]);
 
   return <TodoListForm todos={scheduleTodos} loading={loading} />;

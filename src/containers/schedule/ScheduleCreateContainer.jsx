@@ -9,17 +9,17 @@ const ScheduleCreateContainer = () => {
   const { memberId } = useParams();
   const dispatch = useDispatch();
 
-  const { todos, loading } = useSelector(({ memberTodos, loading }) => ({
-    todos: memberTodos.todos,
-    error: memberTodos.error,
+  const { memberTodos, loading } = useSelector(({ todos, loading }) => ({
+    memberTodos: todos.memberTodos,
+    error: todos.error,
     loading: loading['todos/LIST_MEMBER_TODOS'],
   }));
 
   useEffect(() => {
     dispatch(listMemberTodos(memberId));
-  });
+  }, [dispatch, memberId]);
 
-  return <ScheduleCreateForm todos={todos} loading={loading} />;
+  return <ScheduleCreateForm todos={memberTodos} loading={loading} />;
 };
 
 export default ScheduleCreateContainer;
