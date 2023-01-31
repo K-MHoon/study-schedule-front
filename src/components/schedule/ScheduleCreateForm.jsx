@@ -5,14 +5,28 @@ import { Button, Form } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import '../../css/Schedule.scss';
 
-const ScheduleCreateForm = () => {
+const ScheduleCreateForm = ({ todos, loading, handleCreateSchedule }) => {
   const [name, setName] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [isUse, setIsUse] = useState('N');
 
   const onChangeName = useCallback((e) => {
     setName(e.target.value);
   }, []);
+
+  const onClickIsUse = useCallback((e) => {
+    if (e.target.checked === true) {
+      setIsUse('Y');
+    } else {
+      setIsUse('N');
+    }
+  }, []);
+
+  const onClickSubmit = (e) => {
+    e.preventDefault();
+    handleCreateSchedule(name, startDate, endDate, isUse, []);
+  };
 
   return (
     <Form>
@@ -29,9 +43,14 @@ const ScheduleCreateForm = () => {
         <Form.Label>종료일</Form.Label>
         <DatePicker onChange={setEndDate} value={endDate} />
       </Form.Group>
-      <Form.Check type="checkbox" id="isUse" label="즉시사용여부" />
+      <Form.Check
+        type="checkbox"
+        id="isUse"
+        label="스케줄 사용 여부"
+        onChange={onClickIsUse}
+      />
       <p />
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" onClick={onClickSubmit}>
         생성하기
       </Button>
     </Form>
