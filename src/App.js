@@ -6,8 +6,9 @@ import HomePage from './pages/HomePage';
 import MemberListPage from './pages/member/MemberListPage';
 import MemberRegisterPage from './pages/member/MemberRegisterPage';
 import ScheduleListPage from './pages/schedule/ScheduleListPage';
-import TodoListPage from './pages/todo/TodoListPage';
 import ScheduleCreatePage from './pages/schedule/ScheduleCreatePage';
+import TodoByScheduleListPage from './pages/todo/TodoByScheduleListPage';
+import TodoByMemberListPage from './pages/todo/TodoByMemberListPage';
 
 function App() {
   return (
@@ -22,7 +23,11 @@ function App() {
       />
       <Route
         path="/member/:memberId/schedule/:scheduleId/todos"
-        element={<TodoListPage />}
+        element={<TodoByScheduleListPage />}
+      />
+      <Route
+        path="/member/:memberId/schedule/create/todos"
+        element={<TodoByMemberListPage />}
       />
     </Routes>
   );

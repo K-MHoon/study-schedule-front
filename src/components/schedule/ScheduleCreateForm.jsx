@@ -5,7 +5,12 @@ import { Button, Form } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import '../../css/Schedule.scss';
 
-const ScheduleCreateForm = ({ todos, loading, handleCreateSchedule }) => {
+const ScheduleCreateForm = ({
+  todos,
+  loading,
+  handleCreateSchedule,
+  nextTodoSelect,
+}) => {
   const [name, setName] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -23,10 +28,10 @@ const ScheduleCreateForm = ({ todos, loading, handleCreateSchedule }) => {
     }
   }, []);
 
-  const onClickSubmit = (e) => {
-    e.preventDefault();
-    handleCreateSchedule(name, startDate, endDate, isUse, []);
-  };
+  // const onClickSubmit = (e) => {
+  //   e.preventDefault();
+  //   handleCreateSchedule(name, startDate, endDate, isUse, []);
+  // };
 
   return (
     <Form>
@@ -50,8 +55,12 @@ const ScheduleCreateForm = ({ todos, loading, handleCreateSchedule }) => {
         onChange={onClickIsUse}
       />
       <p />
-      <Button variant="primary" type="submit" onClick={onClickSubmit}>
-        생성하기
+      <Button
+        variant="primary"
+        type="submit"
+        onClick={(e) => nextTodoSelect(name, startDate, endDate, isUse)}
+      >
+        할 일 선택하기
       </Button>
     </Form>
   );

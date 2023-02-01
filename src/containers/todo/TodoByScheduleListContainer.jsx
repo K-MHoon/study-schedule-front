@@ -2,10 +2,10 @@ import React, { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import TodoListForm from '../../components/todo/TodoListForm';
+import TodoByScheduleListForm from '../../components/todo/TodoByScheduleListForm';
 import { listScheduleTodos } from '../../lib/todos';
 
-const TodoListContainer = () => {
+const TodoByScheduleListContainer = () => {
   const { scheduleId } = useParams();
   const dispatch = useDispatch();
   const { scheduleTodos, loading } = useSelector(({ todos, loading }) => ({
@@ -18,7 +18,7 @@ const TodoListContainer = () => {
     dispatch(listScheduleTodos(scheduleId));
   }, [dispatch, scheduleId]);
 
-  return <TodoListForm todos={scheduleTodos} loading={loading} />;
+  return <TodoByScheduleListForm todos={scheduleTodos} loading={loading} />;
 };
 
-export default TodoListContainer;
+export default TodoByScheduleListContainer;

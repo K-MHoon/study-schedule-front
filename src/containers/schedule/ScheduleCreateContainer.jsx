@@ -22,6 +22,12 @@ const ScheduleCreateContainer = () => {
     dispatch(listMemberTodos(memberId));
   }, [dispatch, memberId]);
 
+  const nextTodoSelect = ({ name, startDate, endDate, isUse }) => {
+    navigate(`/member/${memberId}/schedule/create/todos`, {
+      state: { name, startDate, endDate, isUse },
+    });
+  };
+
   const createScheduleRequest = async ({
     name,
     startDate,
@@ -53,7 +59,8 @@ const ScheduleCreateContainer = () => {
     <ScheduleCreateForm
       todos={memberTodos}
       loading={loading}
-      handleCreateSchedule={handleCreateSchedule}
+      // handleCreateSchedule={handleCreateSchedule}
+      nextTodoSelect={nextTodoSelect}
     />
   );
 };

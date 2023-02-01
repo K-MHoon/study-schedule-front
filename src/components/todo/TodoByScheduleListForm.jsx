@@ -1,7 +1,7 @@
 import React from 'react';
 import { Spinner, Table } from 'react-bootstrap';
 
-const TodoListForm = ({ todos, loading }) => {
+const TodoByScheduleListForm = ({ todos, loading }) => {
   return (
     <>
       {loading && (
@@ -37,4 +37,4 @@ const TodoListForm = ({ todos, loading }) => {
   );
 };
 
-export default TodoListForm;
+export default TodoByScheduleListForm;
