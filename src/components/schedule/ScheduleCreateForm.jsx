@@ -5,12 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import '../../css/Schedule.scss';
 
-const ScheduleCreateForm = ({
-  todos,
-  loading,
-  handleCreateSchedule,
-  nextTodoSelect,
-}) => {
+const ScheduleCreateForm = ({ nextTodoSelect }) => {
   const [name, setName] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -27,11 +22,6 @@ const ScheduleCreateForm = ({
       setIsUse('N');
     }
   }, []);
-
-  // const onClickSubmit = (e) => {
-  //   e.preventDefault();
-  //   handleCreateSchedule(name, startDate, endDate, isUse, []);
-  // };
 
   return (
     <Form>
