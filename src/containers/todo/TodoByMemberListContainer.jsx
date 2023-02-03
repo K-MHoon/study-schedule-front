@@ -22,7 +22,7 @@ const TodoByMemberListContainer = () => {
 
   const createScheduleRequest = async (todoList) => {
     try {
-      createSchedule(
+      await createSchedule(
         memberId,
         name,
         format.asString(startDate),
@@ -30,14 +30,10 @@ const TodoByMemberListContainer = () => {
         isUse,
         todoList,
       );
+      navigate(`/member/${memberId}/schedule`);
     } catch (e) {
       console.log(e);
     }
-  };
-
-  const handleCreateSchedule = (todoList) => {
-    createScheduleRequest(todoList);
-    navigate(`/member/${memberId}/schedule`);
   };
 
   useEffect(() => {
@@ -48,7 +44,7 @@ const TodoByMemberListContainer = () => {
     <TodoByMemberListForm
       todos={memberTodos}
       loading={loading}
-      handleCreateSchedule={location.state ? handleCreateSchedule : undefined}
+      createScheduleRequest={location.state ? createScheduleRequest : undefined}
     />
   );
 };

@@ -1,8 +1,19 @@
 import React from 'react';
-import { Form, Spinner, Table } from 'react-bootstrap';
+import { useState } from 'react';
+import { Button, Form, Spinner, Table } from 'react-bootstrap';
 
-const TodoByMemberListForm = ({ todos, loading, handleCreateSchedule }) => {
-  const createFlag = handleCreateSchedule !== undefined;
+const TodoByMemberListForm = ({ todos, loading, createScheduleRequest }) => {
+  const [todoList, setTodoList] = useState([]);
+  const createFlag = createScheduleRequest !== undefined;
+
+  const handleTodoList = (id) => {
+    if (todoList.find((data) => data === id)) {
+      setTodoList(todoList.filter((data) => data !== id));
+    } else {
+      setTodoList([...todoList, id]);
+    }
+  };
+
   return (
     <>
       {loading && (
@@ -30,7 +41,7 @@ const TodoByMemberListForm = ({ todos, loading, handleCreateSchedule }) => {
                     <Form.Check
                       type="checkbox"
                       id={todo.id}
-                      onChange={(e) => console.log('클릭!')}
+                      onChange={(e) => handleTodoList(todo.id)}
                     />
                   </td>
                 )}
@@ -43,6 +54,14 @@ const TodoByMemberListForm = ({ todos, loading, handleCreateSchedule }) => {
             ))}
           </tbody>
         </Table>
+      )}
+      {createFlag && (
+        <Button
+          variant="success"
+          onClick={(e) => createScheduleRequest(todoList)}
+        >
+          스케줄 생성하기
+        </Button>
       )}
     </>
   );

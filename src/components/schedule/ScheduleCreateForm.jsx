@@ -48,7 +48,7 @@ const ScheduleCreateForm = ({ nextTodoSelect }) => {
       <Button
         variant="primary"
         type="submit"
-        onClick={(e) => nextTodoSelect(name, startDate, endDate, isUse)}
+        onClick={(e) => nextTodoSelect({ name, startDate, endDate, isUse })}
       >
         할 일 선택하기
       </Button>
