@@ -14,6 +14,8 @@ export const fetchTodoByMemberList = (memberId) =>
 export const fetchTodoByScheduleList = (scheduleId) =>
   client.get(`/api/todo/schedule/${scheduleId}`);
 
+export const fetchPublicStudyList = () => client.get(`/api/study`);
+
 export const createSchedule = (
   memberId,
   name,
