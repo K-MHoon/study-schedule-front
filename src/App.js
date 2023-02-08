@@ -9,6 +9,7 @@ import ScheduleListPage from './pages/schedule/ScheduleListPage';
 import ScheduleCreatePage from './pages/schedule/ScheduleCreatePage';
 import TodoByScheduleListPage from './pages/todo/TodoByScheduleListPage';
 import TodoByMemberListPage from './pages/todo/TodoByMemberListPage';
+import PublicStudyListPage from './pages/study/PublicStudyListPage';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         path="/member/:memberId/schedule/create/todos"
         element={<TodoByMemberListPage />}
       />
+      <Route path="/study/public" element={<PublicStudyListPage />} />
     </Routes>
   );
 }
