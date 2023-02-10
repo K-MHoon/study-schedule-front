@@ -1,0 +1,24 @@
+.item {
+  align-items: center;
+  color: #22b8cf;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.active {
+  border-radius: 40px;
+  color: white;
+  background-color: #22b8cf;
+}
+
+.pagination {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 40px;
+  width: 100%;
+}

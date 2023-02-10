@@ -11,7 +11,10 @@ const [
   LIST_PUBLIC_STUDY_FAILURE,
 ] = createRequestActionTypes('study/LIST_PUBLIC_STUDY');
 
-export const listStudy = createAction(LIST_PUBLIC_STUDY);
+export const listStudy = createAction(
+  LIST_PUBLIC_STUDY,
+  (page, size, sort) => ({ page, size, sort }),
+);
 
 const listStudySaga = createRequestSaga(
   LIST_PUBLIC_STUDY,
@@ -23,7 +26,8 @@ export function* studySaga() {
 }
 
 const initialState = {
-  study: [],
+  data: [],
+  page: [],
   meta: null,
   error: null,
 };
@@ -32,7 +36,8 @@ const study = handleActions(
   {
     [LIST_PUBLIC_STUDY_SUCCESS]: (state, { payload: study, meta }) => ({
       ...state,
-      study,
+      page: study.page,
+      data: study.data,
       meta,
     }),
     [LIST_PUBLIC_STUDY_FAILURE]: (state, { payload: error, meta }) => ({

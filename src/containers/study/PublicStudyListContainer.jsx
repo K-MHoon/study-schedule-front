@@ -6,17 +6,29 @@ import { listStudy } from '../../lib/study';
 const PublicStudyListContainer = () => {
   const dispatch = useDispatch();
 
-  const { study, loading } = useSelector(({ study, loading }) => ({
-    study: study.study,
+  const { page, data, loading } = useSelector(({ study, loading }) => ({
+    page: study.page,
+    data: study.data,
     error: study.error,
     loading: loading['study/LIST_PUBLIC_STUDY'],
   }));
 
   useEffect(() => {
-    dispatch(listStudy());
+    dispatch(listStudy(0, 10, ''));
   }, [dispatch]);
 
-  return <PublicStudyListForm studyList={study} loading={loading} />;
+  const gotoSelectPage = (pageNumber) => {
+    dispatch(listStudy(pageNumber, 10, ''));
+  };
+
+  return (
+    <PublicStudyListForm
+      page={page}
+      data={data}
+      loading={loading}
+      gotoSelectPage={gotoSelectPage}
+    />
+  );
 };
 
 export default PublicStudyListContainer;
