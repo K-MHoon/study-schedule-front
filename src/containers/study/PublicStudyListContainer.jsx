@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PublicStudyListForm from '../../components/study/PublicStudyListForm';
 import { listStudy } from '../../lib/study';
@@ -17,7 +17,7 @@ const PublicStudyListContainer = () => {
     dispatch(listStudy(0, 10, ''));
   }, [dispatch]);
 
-  const gotoSelectPage = (pageNumber) => {
+  const getPublicStudyList = (pageNumber) => {
     dispatch(listStudy(pageNumber, 10, ''));
   };
 
@@ -26,7 +26,7 @@ const PublicStudyListContainer = () => {
       page={page}
       data={data}
       loading={loading}
-      gotoSelectPage={gotoSelectPage}
+      getPublicStudyList={getPublicStudyList}
     />
   );
 };

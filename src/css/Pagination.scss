@@ -1,24 +1,73 @@
-.item {
-  align-items: center;
-  color: #22b8cf;
-  cursor: pointer;
+// .item {
+//   align-items: center;
+//   color: #22b8cf;
+//   cursor: pointer;
+//   display: flex;
+//   font-size: 14px;
+//   height: 40px;
+//   justify-content: center;
+//   width: 40px;
+// }
+
+// .active {
+//   border-radius: 40px;
+//   color: white;
+//   background-color: #22b8cf;
+// }
+
+// .pagination {
+//   align-items: center;
+//   justify-content: center;
+//   display: flex;
+//   height: 40px;
+//   width: 100%;
+// }
+
+.pagination {
   display: flex;
-  font-size: 14px;
-  height: 40px;
+  align-items: center;
   justify-content: center;
-  width: 40px;
 }
 
-.active {
-  border-radius: 40px;
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul.pagination li {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+
+ul.pagination li:first-child {
+}
+
+ul.pagination li:last-child {
+}
+
+ul.pagination li a {
+  text-decoration: none;
+  color: #22b8cf;
+  font-size: 1rem;
+}
+
+ul.pagination li.active a {
   color: white;
+}
+
+ul.pagination li.active {
+  border-radius: 40px;
   background-color: #22b8cf;
 }
 
-.pagination {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  height: 40px;
-  width: 100%;
+ul.pagination li a:hover,
+ul.pagination li a.active {
+}
+
+.page-selection {
 }
