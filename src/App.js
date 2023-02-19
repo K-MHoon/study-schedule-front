@@ -10,11 +10,13 @@ import ScheduleCreatePage from './pages/schedule/ScheduleCreatePage';
 import TodoByScheduleListPage from './pages/todo/TodoByScheduleListPage';
 import TodoByMemberListPage from './pages/todo/TodoByMemberListPage';
 import PublicStudyListPage from './pages/study/PublicStudyListPage';
+import LoginPage from './pages/auth/LoginPage';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/auth/login" element={<LoginPage />} />
       <Route path="/member" element={<MemberListPage />} />
       <Route path="/member/register" element={<MemberRegisterPage />} />
       <Route path="/member/:memberId/schedule" element={<ScheduleListPage />} />
