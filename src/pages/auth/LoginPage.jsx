@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import LoginContainer from '../../containers/auth/LoginContainer';
 import '../../css/Login.scss';
 
 const LoginPage = () => {
@@ -15,23 +15,7 @@ const LoginPage = () => {
             </div>
           </div>
           <div className="content">
-            <Form>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>아이디</Form.Label>
-                <Form.Control type="text" placeholder="Enter ID" />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>비밀번호</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-              </Form.Group>
-              <Button className="submit-button" variant="primary" type="submit">
-                Submit
-              </Button>
-            </Form>
+            <LoginContainer />
           </div>
         </div>
       </div>
