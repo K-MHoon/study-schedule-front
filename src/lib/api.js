@@ -35,3 +35,5 @@ export const createSchedule = (
     isUse,
     todoList,
   });
+
+export const isAuth = () => client.post('/api/token/check');
