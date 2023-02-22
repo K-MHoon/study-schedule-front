@@ -11,7 +11,7 @@ import TodoByScheduleListPage from './pages/todo/TodoByScheduleListPage';
 import TodoByMemberListPage from './pages/todo/TodoByMemberListPage';
 import PublicStudyListPage from './pages/study/PublicStudyListPage';
 import LoginPage from './pages/auth/LoginPage';
-import PrivateRoute from './modules/PrivateRoute';
+import Private from './modules/Private';
 
 const App = () => {
   return (
@@ -19,11 +19,7 @@ const App = () => {
       <Route path="/" element={<HomePage />} />
       <Route
         path="/member/test"
-        element={
-          <PrivateRoute>
-            <MemberListPage />
-          </PrivateRoute>
-        }
+        element={<Private component={<MemberListPage />} />}
       />
       <Route path="/auth/login" element={<LoginPage />} />
       <Route path="/member" element={<MemberListPage />} />
