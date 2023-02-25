@@ -21,7 +21,11 @@ const LoginContainer = () => {
     }
   };
 
-  return <LoginForm handleLogin={handleLogin} />;
+  const gotoRegister = () => {
+    navigate('/member/register');
+  };
+
+  return <LoginForm login={handleLogin} register={gotoRegister} />;
 };
 
 export default LoginContainer;

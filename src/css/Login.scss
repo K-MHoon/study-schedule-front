@@ -45,7 +45,17 @@ body {
 
 .submit-button {
   width: 100%;
-  margin: auto;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
   background: #22b8cf;
   border: none;
+}
+
+.submit-button:hover {
+  background-color: #088699;
+}
+
+.submit-button:last-child {
+  margin-top: 10px;
 }

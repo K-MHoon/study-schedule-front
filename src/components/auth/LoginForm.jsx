@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const LoginForm = ({ handleLogin }) => {
+const LoginForm = ({ login, register }) => {
   const [memberId, setMemberId] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,9 +14,14 @@ const LoginForm = ({ handleLogin }) => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    handleLogin(memberId, password);
+    login(memberId, password);
+  };
+
+  const gotoRegisterPage = (e) => {
+    e.preventDefault();
+    register();
   };
 
   return (
@@ -45,9 +50,17 @@ const LoginForm = ({ handleLogin }) => {
         className="submit-button"
         variant="primary"
         type="submit"
-        onClick={handleSubmit}
+        onClick={gotoRegisterPage}
       >
-        Submit
+        회원가입
+      </Button>
+      <Button
+        className="submit-button"
+        variant="primary"
+        type="submit"
+        onClick={handleLogin}
+      >
+        로그인
       </Button>
     </Form>
   );
