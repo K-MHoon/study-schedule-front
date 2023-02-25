@@ -2,22 +2,19 @@ import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
 
-export const setCookieToken = (
-  accessToken,
-  accessExpiredTime,
-  refreshToken,
-  refreshExpiredTime,
-) => {
+export const setCookieToken = (accessToken, refreshToken, expiredTime) => {
+  const expiredDate = new Date(new Date().setTime(expiredTime));
+
   cookies.set('access_token', accessToken, {
     sameSite: 'strict',
     path: '/',
-    expires: new Date(new Date().setTime(accessExpiredTime)),
+    expires: expiredDate,
   });
 
   cookies.set('refresh_token', refreshToken, {
     sameSite: 'strict',
     path: '/',
-    expires: new Date(new Date().setTime(refreshExpiredTime)),
+    expires: expiredDate,
   });
 };
 

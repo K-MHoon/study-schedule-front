@@ -20,7 +20,6 @@ const App = () => {
       <Route path="/member" element={<MemberListPage />} />
       <Route path="/member/register" element={<MemberRegisterPage />} />
       <Route path="/member/:memberId/schedule" element={<ScheduleListPage />} />
-
       <Route
         path="/member/:memberId/schedule/create"
         element={<ScheduleCreatePage />}

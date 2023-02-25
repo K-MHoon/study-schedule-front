@@ -10,12 +10,7 @@ const LoginContainer = () => {
   const handleLogin = async (memberId, password) => {
     try {
       const { data } = await login({ memberId, password });
-      setCookieToken(
-        data.accessToken,
-        data.accessExpiredTime,
-        data.refreshToken,
-        data.refreshExpiredTime,
-      );
+      setCookieToken(data.accessToken, data.refreshToken, data.expiredTime);
       alert('로그인에 성공했습니다!');
       navigate('/');
     } catch (e) {
