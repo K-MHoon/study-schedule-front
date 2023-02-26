@@ -1,12 +1,16 @@
 import React from 'react';
-import '../css/MainLayout.scss';
+import '../css/layout/MainLayout.scss';
+import NavBar from './NavBar';
 
 const MainLayout = ({ title, children }) => {
   return (
-    <div className="layout">
-      <div className="app-title">{title}</div>
-      <div className="content">{children}</div>
-    </div>
+    <>
+      <NavBar />
+      <div className="layout">
+        <div className="app-title">{title}</div>
+        <div className="content">{children}</div>
+      </div>
+    </>
   );
 };
 
