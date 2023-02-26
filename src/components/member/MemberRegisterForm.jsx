@@ -43,8 +43,8 @@ const MemberRegisterForm = ({ onRegister }) => {
             placeholder="나이를 입력해주세요."
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          가입
+        <Button variant="primary" type="submit" className="submit-button">
+          가입하기
         </Button>
       </Form>
     </Container>

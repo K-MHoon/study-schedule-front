@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginContainer from '../../containers/auth/LoginContainer';
 import '../../css/Login.scss';
+import '../../css/common/SubmitButton.scss';
 
 const LoginPage = () => {
   return (

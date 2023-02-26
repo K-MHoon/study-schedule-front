@@ -1,6 +1,7 @@
 import React from 'react';
 import MemberRegisterContainer from '../../containers/member/MemberRegisterContainer';
 import MainLayout from '../../layout/MainLayout';
+import '../../css/common/SubmitButton.scss';
 
 const MemberRegisterPage = () => {
   return (
