@@ -19,7 +19,7 @@ export const setCookieToken = (accessToken, refreshToken, expiredTime) => {
 };
 
 export const getAccessToken = () => {
-  return cookies.get('refresh_token');
+  return cookies.get('access_token');
 };
 
 export const getRefreshToken = () => {

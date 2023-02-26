@@ -17,7 +17,10 @@ const App = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />
-      <Route path="/member" element={<MemberListPage />} />
+      <Route
+        path="/member"
+        element={<Private component={<MemberListPage />} />}
+      />
       <Route path="/member/register" element={<MemberRegisterPage />} />
       <Route path="/member/:memberId/schedule" element={<ScheduleListPage />} />
       <Route
