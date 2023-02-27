@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { isAuth } from '../lib/api';
-import { setCookieToken } from './Cookie';
+import { removeCookieToken, setCookieToken } from './Cookie';
 
 const Private = ({ component }) => {
   const [loggedIn, setLoggedIn] = useState(undefined);
@@ -22,6 +22,7 @@ const Private = ({ component }) => {
       }
     } catch (e) {
       alert('해당 화면에 접근할 권한이 없습니다!');
+      removeCookieToken();
       setLoggedIn(false);
     }
   };
