@@ -2,8 +2,18 @@ import React, { useCallback, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 
 const MemberRegisterForm = ({ onRegister }) => {
+  const [memberId, setMemberId] = useState('');
+  const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [age, setAge] = useState(0);
+
+  const handleChangeMemberId = useCallback((e) => {
+    setMemberId(e.target.value);
+  }, []);
+
+  const handleChangePassword = useCallback((e) => {
+    setPassword(e.target.value);
+  }, []);
 
   const handleChangeUserName = useCallback((e) => {
     setName(e.target.value);
@@ -16,14 +26,34 @@ const MemberRegisterForm = ({ onRegister }) => {
   const handleSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      onRegister(name, age);
+      onRegister(memberId, password, name, age);
     },
-    [name, age, onRegister],
+    [memberId, password, name, age, onRegister],
   );
 
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3" controlId="memberId">
+          <Form.Label>ID</Form.Label>
+          <Form.Control
+            type="text"
+            value={memberId}
+            onChange={handleChangeMemberId}
+            placeholder="ID를 입력해주세요."
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            onChange={handleChangePassword}
+            placeholder="비밀번호를 입력해주세요."
+          />
+        </Form.Group>
+
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>이름</Form.Label>
           <Form.Control
