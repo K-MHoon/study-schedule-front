@@ -1,7 +1,19 @@
+import { getAccessToken } from '../modules/Cookie';
 import client from './client';
 
+const privateHeader = {
+  headers: {
+    Authorization: `Bearer ${getAccessToken()}`,
+  },
+};
+
 export const fetchStudyMember = (userId) => client.get(`/api/member/${userId}`);
-export const fetchStudyMemberList = () => client.get(`/api/member`);
+
+export const fetchStudyMemberProfile = () =>
+  client.get(`/api/member/profile`, privateHeader);
+
+export const fetchStudyMemberList = () =>
+  client.get(`/api/members`, privateHeader);
 export const createMember = (memberId, password, name, age) =>
   client.post(`/api/register`, { memberId, password, name, age });
 
