@@ -2,6 +2,7 @@ import React from 'react';
 import MemberProfileContainer from '../../containers/member/MemberProfileContainer';
 import MainLayout from '../../layout/MainLayout';
 import '../../css/common/SubmitButton.scss';
+import '../../css/common/Form.scss';
 
 const MemberProfilePage = () => {
   return (

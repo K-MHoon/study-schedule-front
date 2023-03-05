@@ -2,6 +2,7 @@ import React from 'react';
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { Button, Form, Spinner, Table } from 'react-bootstrap';
+import { Navigate } from 'react-router-dom';
 
 const MemberProfileForm = ({ member, loading }) => {
   console.log(member);
@@ -59,7 +60,11 @@ const MemberProfileForm = ({ member, loading }) => {
   const handleIsChange = useCallback(
     (e) => {
       e.preventDefault();
-      setIsChange(!isChange);
+      if (isChange === true) {
+        return <Navigate to="/" />;
+      } else {
+        setIsChange(true);
+      }
     },
     [isChange],
   );
@@ -101,96 +106,117 @@ const MemberProfileForm = ({ member, loading }) => {
               <Form.Control type="text" value={member.roles[0]} disabled />
             </Form.Group>
           )}
-          <Form.Group className="mb-3" controlId="joinedStudys">
-            <Form.Label>가입된 스터디 목록</Form.Label>
-            <Table striped bordered hover size="sm">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>스터디 명</th>
-                  <th>스터디 생성일</th>
-                  <th>스터디 가입일</th>
-                </tr>
-              </thead>
-              <tbody>
-                {member.joinedStudyList.map((study) => (
-                  <tr key={study.id}>
-                    <td>
-                      <Form.Check
-                        type="checkbox"
-                        id={study.id}
-                        onChange={(e) => handleStudyList(study.id)}
-                      />
-                    </td>
-                    <td>{study.studyName}</td>
-                    <td>{study.studyCreatedBy}</td>
-                    <td>{study.joinedBy}</td>
+          <Form.Group className="mb-3 form-border" controlId="joinedStudys">
+            <div className="form-content">
+              <Form.Label className="form-custom-label">
+                가입된 스터디 목록
+              </Form.Label>
+              <Table striped bordered hover size="sm">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>이름</th>
+                    <th>생성일</th>
+                    <th>가입일</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {member.joinedStudyList.map((study) => (
+                    <tr key={study.id}>
+                      <td>
+                        <Form.Check
+                          type="checkbox"
+                          id={study.id}
+                          onChange={(e) => handleStudyList(study.id)}
+                        />
+                      </td>
+                      <td>{study.studyName}</td>
+                      <td>{study.studyCreatedBy}</td>
+                      <td>{study.joinedBy}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+              <Button variant="danger" className="danger-button">
+                선택한 스터디 탈퇴하기
+              </Button>
+            </div>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="schedules">
-            <Form.Label>생성한 스케줄 목록</Form.Label>
-            <Table striped bordered hover size="sm">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>스케줄 명</th>
-                  <th>스케줄 시작일</th>
-                  <th>스케줄 종료일</th>
-                  <th>스케줄 사용여부</th>
-                  <th>스케줄 생성일</th>
-                </tr>
-              </thead>
-              <tbody>
-                {member.scheduleList.map((schedule) => (
-                  <tr key={schedule.id}>
-                    <td>
-                      <Form.Check
-                        type="checkbox"
-                        id={schedule.id}
-                        onChange={(e) => handleScheduleList(schedule.id)}
-                      />
-                    </td>
-                    <td>{schedule.name}</td>
-                    <td>{schedule.startDate}</td>
-                    <td>{schedule.endDate}</td>
-                    <td>{schedule.isUse}</td>
-                    <td>{schedule.createdAt}</td>
+          <Form.Group className="mb-3 form-border" controlId="schedules">
+            <div className="form-content">
+              <Form.Label className="form-custom-label">
+                생성한 스케줄 목록
+              </Form.Label>
+              <Table striped bordered hover size="sm">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>스케줄 명</th>
+                    <th>스케줄 시작일</th>
+                    <th>스케줄 종료일</th>
+                    <th>스케줄 사용여부</th>
+                    <th>스케줄 생성일</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {member.scheduleList.map((schedule) => (
+                    <tr key={schedule.id}>
+                      <td>
+                        <Form.Check
+                          type="checkbox"
+                          id={schedule.id}
+                          onChange={(e) => handleScheduleList(schedule.id)}
+                        />
+                      </td>
+                      <td>{schedule.name}</td>
+                      <td>{schedule.startDate}</td>
+                      <td>{schedule.endDate}</td>
+                      <td>{schedule.isUse}</td>
+                      <td>{schedule.createdAt}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+              <Button variant="danger" className="danger-button">
+                선택한 스케줄 삭제하기
+              </Button>
+            </div>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="todos">
-            <Form.Label>생성한 Todo 목록</Form.Label>
-            <Table striped bordered hover size="sm">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Todo 명</th>
-                  <th>Todo 내용</th>
-                  <th>생성일</th>
-                </tr>
-              </thead>
-              <tbody>
-                {member.todoList.map((todo) => (
-                  <tr key={todo.id}>
-                    <td>
-                      <Form.Check
-                        type="checkbox"
-                        id={todo.id}
-                        onChange={(e) => handleTodoList(todo.id)}
-                      />
-                    </td>
-                    <td>{todo.title}</td>
-                    <td>{todo.content}</td>
-                    <td>{todo.createdAt}</td>
+          <Form.Group className="mb-3 form-border" controlId="todos">
+            <div className="form-content">
+              <Form.Label className="form-custom-label">
+                생성한 Todo 목록
+              </Form.Label>
+              <Table striped bordered hover size="sm">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Todo 명</th>
+                    <th>Todo 내용</th>
+                    <th>생성일</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {member.todoList.map((todo) => (
+                    <tr key={todo.id}>
+                      <td>
+                        <Form.Check
+                          type="checkbox"
+                          id={todo.id}
+                          onChange={(e) => handleTodoList(todo.id)}
+                        />
+                      </td>
+                      <td>{todo.title}</td>
+                      <td>{todo.content}</td>
+                      <td>{todo.createdAt}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+              <Button variant="danger" className="danger-button">
+                선택한 Todo 삭제하기
+              </Button>
+            </div>
           </Form.Group>
           <Button
             variant="primary"
@@ -198,7 +224,7 @@ const MemberProfileForm = ({ member, loading }) => {
             className="submit-button"
             onClick={handleIsChange}
           >
-            수정하기
+            {isChange ? '수정완료' : '수정하기'}
           </Button>
         </Form>
       )}
