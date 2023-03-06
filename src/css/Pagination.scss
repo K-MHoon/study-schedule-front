@@ -52,7 +52,7 @@ ul.pagination li:last-child {
 
 ul.pagination li a {
   text-decoration: none;
-  color: #22b8cf;
+  color: $mainColor;
   font-size: 1rem;
 }
 
@@ -62,7 +62,7 @@ ul.pagination li.active a {
 
 ul.pagination li.active {
   border-radius: 40px;
-  background-color: #22b8cf;
+  background-color: $mainColor;
 }
 
 ul.pagination li a:hover,
