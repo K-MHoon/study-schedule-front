@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PublicStudyListForm from '../../components/study/PublicStudyListForm';
 import { listStudy } from '../../lib/study';

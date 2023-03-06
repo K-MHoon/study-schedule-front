@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../css/layout/NavBar.scss';
 import { getAccessToken, removeCookieToken } from '../modules/Cookie';
 
@@ -30,7 +30,7 @@ const NavBar = () => {
           </>
         ) : (
           <li>
-            <span onClick={(e) => navigate('/auth/login')}>로그인</span>
+            <span onClick={() => navigate('/auth/login')}>로그인</span>
           </li>
         )}
       </ul>
