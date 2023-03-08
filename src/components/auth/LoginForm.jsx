@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
@@ -6,23 +6,26 @@ const LoginForm = ({ login, register }) => {
   const [memberId, setMemberId] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleMemberId = (e) => {
+  const handleMemberId = useCallback((e) => {
     setMemberId(e.target.value);
-  };
+  }, []);
 
-  const handlePassword = (e) => {
+  const handlePassword = useCallback((e) => {
     setPassword(e.target.value);
-  };
+  }, []);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    login(memberId, password);
-  };
+  const handleLogin = useCallback(
+    (e) => {
+      e.preventDefault();
+      login(memberId, password);
+    },
+    [memberId, password],
+  );
 
-  const gotoRegisterPage = (e) => {
+  const gotoRegisterPage = useCallback((e) => {
     e.preventDefault();
     register();
-  };
+  }, []);
 
   return (
     <Form>
