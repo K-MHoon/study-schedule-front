@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import '../../css/Schedule.scss';
+import { SubmitButton } from '../common/CustomButton';
 
 const ScheduleCreateForm = ({ nextTodoSelect }) => {
   const [name, setName] = useState('');
@@ -45,13 +46,11 @@ const ScheduleCreateForm = ({ nextTodoSelect }) => {
         onChange={onClickIsUse}
       />
       <p />
-      <Button
-        variant="primary"
-        type="submit"
+      <SubmitButton
         onClick={(e) => nextTodoSelect({ name, startDate, endDate, isUse })}
       >
         할 일 선택하기
-      </Button>
+      </SubmitButton>
     </Form>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
+import { SubmitButton } from '../common/CustomButton';
 
 const LoginForm = ({ login, register }) => {
   const [memberId, setMemberId] = useState('');
@@ -49,22 +50,8 @@ const LoginForm = ({ login, register }) => {
       <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
-      <Button
-        className="submit-button"
-        variant="primary"
-        type="submit"
-        onClick={gotoRegisterPage}
-      >
-        회원가입
-      </Button>
-      <Button
-        className="submit-button"
-        variant="primary"
-        type="submit"
-        onClick={handleLogin}
-      >
-        로그인
-      </Button>
+      <SubmitButton onClick={gotoRegisterPage}>회원가입</SubmitButton>
+      <SubmitButton onClick={handleLogin}>로그인</SubmitButton>
     </Form>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
+import { SubmitButton } from '../common/CustomButton';
 
 const MemberRegisterForm = ({ onRegister }) => {
   const [memberId, setMemberId] = useState('');
@@ -73,9 +74,7 @@ const MemberRegisterForm = ({ onRegister }) => {
             placeholder="나이를 입력해주세요."
           />
         </Form.Group>
-        <Button variant="primary" type="submit" className="submit-button">
-          가입하기
-        </Button>
+        <SubmitButton onClick={handleSubmit}>가입하기</SubmitButton>
       </Form>
     </Container>
   );

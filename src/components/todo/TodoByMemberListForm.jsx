@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Button, Form, Spinner, Table } from 'react-bootstrap';
+import { SubmitButton } from '../common/CustomButton';
 
 const TodoByMemberListForm = ({ todos, loading, createScheduleRequest }) => {
   const [todoList, setTodoList] = useState([]);
@@ -56,12 +57,9 @@ const TodoByMemberListForm = ({ todos, loading, createScheduleRequest }) => {
         </Table>
       )}
       {createFlag && (
-        <Button
-          variant="success"
-          onClick={(e) => createScheduleRequest(todoList)}
-        >
+        <SubmitButton onClick={(e) => createScheduleRequest(todoList)}>
           스케줄 생성하기
-        </Button>
+        </SubmitButton>
       )}
     </>
   );

@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useState } from 'react';
 import { Button, Form, Spinner, Table } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
+import { SubmitButton } from '../common/CustomButton';
 
 const MemberProfileForm = ({ member, loading }) => {
   console.log(member);
@@ -218,14 +219,9 @@ const MemberProfileForm = ({ member, loading }) => {
               </Button>
             </div>
           </Form.Group>
-          <Button
-            variant="primary"
-            type="submit"
-            className="submit-button"
-            onClick={handleIsChange}
-          >
+          <SubmitButton onClick={handleIsChange}>
             {isChange ? '수정완료' : '수정하기'}
-          </Button>
+          </SubmitButton>
         </Form>
       )}
     </>
