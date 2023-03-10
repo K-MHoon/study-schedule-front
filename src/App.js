@@ -16,16 +16,13 @@ import MemberProfilePage from './pages/member/MemberProfilePage';
 const App = () => {
   return (
     <Routes>
+      <Route element={<Private />}>
+        <Route path="/member/profile" element={<MemberProfilePage />} />
+        <Route path="/members" element={<MemberListPage />} />
+      </Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />
-      <Route
-        path="/members"
-        element={<Private component={<MemberListPage />} />}
-      />
-      <Route
-        path="/member/profile"
-        element={<Private component={<MemberProfilePage />} />}
-      />
+
       <Route path="/member/register" element={<MemberRegisterPage />} />
       <Route path="/member/:memberId/schedule" element={<ScheduleListPage />} />
       <Route

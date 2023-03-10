@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import { isAuth } from '../lib/api';
 import { removeCookieToken, setCookieToken } from './Cookie';
 
-const Private = ({ component }) => {
+const Private = () => {
   const [loggedIn, setLoggedIn] = useState(undefined);
 
   const checkAuth = async () => {
@@ -34,7 +34,7 @@ const Private = ({ component }) => {
   const showComponent = () => {
     if (loggedIn !== undefined) {
       if (loggedIn) {
-        return component;
+        return <Outlet />;
       }
       return <Navigate to="/auth/login" />;
     }
