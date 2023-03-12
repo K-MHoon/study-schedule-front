@@ -12,6 +12,7 @@ import PublicStudyListPage from './pages/study/PublicStudyListPage';
 import LoginPage from './pages/auth/LoginPage';
 import Private from './modules/Private';
 import MemberProfilePage from './pages/member/MemberProfilePage';
+import StudyCreatePage from './pages/study/StudyCreatePage';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Route element={<Private />}>
         <Route path="/member/profile" element={<MemberProfilePage />} />
         <Route path="/members" element={<MemberListPage />} />
+        <Route path="/study/create" element={<StudyCreatePage />} />
       </Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />
