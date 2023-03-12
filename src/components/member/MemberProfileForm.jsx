@@ -6,12 +6,12 @@ import { Navigate } from 'react-router-dom';
 import { SubmitButton } from '../common/CustomButton';
 
 const MemberProfileForm = ({ member, loading }) => {
-  console.log(member);
-
   const [isChange, setIsChange] = useState(false);
   const [studyList, setStudyList] = useState([]);
   const [scheduleList, setScheduleList] = useState([]);
   const [todoList, setTodoList] = useState([]);
+  const [name, setName] = useState(member.name);
+  const [age, setAge] = useState(member.age);
 
   const handleStudyList = useCallback(
     (id) => {
@@ -61,13 +61,23 @@ const MemberProfileForm = ({ member, loading }) => {
   const handleIsChange = useCallback(
     (e) => {
       e.preventDefault();
-      if (isChange === true) {
-        return <Navigate to="/" />;
-      } else {
-        setIsChange(true);
-      }
+      setIsChange((value) => !value);
     },
     [isChange],
+  );
+
+  const handleName = useCallback(
+    (e) => {
+      setName(e.target.value);
+    },
+    [name],
+  );
+
+  const handleAge = useCallback(
+    (e) => {
+      setAge(e.target.value);
+    },
+    [name],
   );
 
   return (
@@ -86,20 +96,22 @@ const MemberProfileForm = ({ member, loading }) => {
 
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>이름</Form.Label>
-            {isChange ? (
-              <Form.Control type="text" value={member.name} />
-            ) : (
-              <Form.Control type="text" value={member.name} disabled />
-            )}
+            <Form.Control
+              type="text"
+              value={name}
+              disabled={isChange ? false : true}
+              onChange={handleName}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="age">
             <Form.Label>나이</Form.Label>
-            {isChange ? (
-              <Form.Control type="text" value={member.age} />
-            ) : (
-              <Form.Control type="text" value={member.age} disabled />
-            )}
+            <Form.Control
+              type="text"
+              value={age}
+              disabled={isChange ? false : true}
+              onChange={handleAge}
+            />
           </Form.Group>
           {member.roles !== undefined && (
             <Form.Group className="mb-3" controlId="role">
