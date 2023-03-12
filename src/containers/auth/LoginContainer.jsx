@@ -13,6 +13,7 @@ const LoginContainer = () => {
       setCookieToken(data.accessToken, data.refreshToken, data.expiredTime);
       alert('로그인에 성공했습니다!');
       navigate('/');
+      window.location.reload();
     } catch (e) {
       console.log(e);
       if (e.response.status === 403) {
