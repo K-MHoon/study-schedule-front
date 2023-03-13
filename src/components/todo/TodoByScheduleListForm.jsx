@@ -1,7 +1,7 @@
 import React from 'react';
 import { Spinner, Table } from 'react-bootstrap';
 
-const TodoByScheduleListForm = ({ todos, loading }) => {
+const TodoByScheduleListForm = ({ todos, loading = true }) => {
   return (
     <>
       {loading && (

@@ -9,13 +9,12 @@ import { Spinner, Table } from 'react-bootstrap';
 import Pagination from 'react-js-pagination';
 import '../../css/Pagination.scss';
 
-const PublicStudyListForm = ({ page, data, loading, getPublicStudyList }) => {
-  const [itemOffset, setItemOffset] = useState(3);
-
-  const handlePageClick = (event) => {
-    setItemOffset(event.selected);
-  };
-
+const PublicStudyListForm = ({
+  page,
+  data,
+  loading = true,
+  getPublicStudyList,
+}) => {
   return (
     <>
       {loading && (

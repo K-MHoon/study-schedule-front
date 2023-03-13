@@ -1,9 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
-import { Button, Form, Spinner, Table } from 'react-bootstrap';
+import { Form, Spinner, Table } from 'react-bootstrap';
 import { SubmitButton } from '../common/CustomButton';
 
-const TodoByMemberListForm = ({ todos, loading, createScheduleRequest }) => {
+const TodoByMemberListForm = ({
+  todos,
+  loading = true,
+  createScheduleRequest,
+}) => {
   const [todoList, setTodoList] = useState([]);
   const createFlag = createScheduleRequest !== undefined;
 
@@ -22,7 +26,7 @@ const TodoByMemberListForm = ({ todos, loading, createScheduleRequest }) => {
           <span className="visually-hidden">Loading...</span>
         </Spinner>
       )}
-      {!loading && (
+      {!loading && todos && (
         <Table striped bordered hover>
           <thead>
             <tr>

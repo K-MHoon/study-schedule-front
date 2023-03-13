@@ -2,7 +2,7 @@ import React from 'react';
 import { Accordion, Col, Container, Row, Spinner } from 'react-bootstrap';
 import '../../css/Schedule.scss';
 
-const ScheduleListForm = ({ schedules, loading, navigateToTodos }) => {
+const ScheduleListForm = ({ schedules, loading = true, navigateToTodos }) => {
   return (
     <div>
       <Accordion>
@@ -12,6 +12,7 @@ const ScheduleListForm = ({ schedules, loading, navigateToTodos }) => {
           </Spinner>
         )}
         {!loading &&
+          schedules &&
           schedules.map((schedule) => (
             <Accordion.Item key={schedule.id} eventKey={schedule.id}>
               <Accordion.Header onClick={() => navigateToTodos(schedule.id)}>

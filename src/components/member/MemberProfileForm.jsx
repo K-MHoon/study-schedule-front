@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { Button, Form, Spinner, Table } from 'react-bootstrap';
-import { Navigate } from 'react-router-dom';
 import { SubmitButton } from '../common/CustomButton';
 
-const MemberProfileForm = ({ member, loading }) => {
+const MemberProfileForm = ({ member, loading = true }) => {
   const [isChange, setIsChange] = useState(false);
   const [studyList, setStudyList] = useState([]);
   const [scheduleList, setScheduleList] = useState([]);
   const [todoList, setTodoList] = useState([]);
-  const [name, setName] = useState(member.name);
-  const [age, setAge] = useState(member.age);
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
 
   const handleStudyList = useCallback(
     (id) => {
@@ -23,6 +22,13 @@ const MemberProfileForm = ({ member, loading }) => {
     },
     [studyList],
   );
+
+  useEffect(() => {
+    if (!loading) {
+      setName(member.name);
+      setAge(member.age);
+    }
+  }, [loading]);
 
   const handleScheduleList = useCallback(
     (id) => {
@@ -46,18 +52,6 @@ const MemberProfileForm = ({ member, loading }) => {
     [todoList],
   );
 
-  const loadingCheck = () => {
-    return (
-      !loading &&
-      member !== undefined &&
-      member !== [] &&
-      member.roles !== undefined &&
-      member.joinedStudyList !== undefined &&
-      member.scheduleList !== undefined &&
-      member.todoList !== undefined
-    );
-  };
-
   const handleIsChange = useCallback(
     (e) => {
       e.preventDefault();
@@ -77,7 +71,7 @@ const MemberProfileForm = ({ member, loading }) => {
     (e) => {
       setAge(e.target.value);
     },
-    [name],
+    [age],
   );
 
   return (
@@ -87,7 +81,7 @@ const MemberProfileForm = ({ member, loading }) => {
           <span className="visually-hidden">Loading...</span>
         </Spinner>
       )}
-      {loadingCheck() && (
+      {!loading && member && (
         <Form>
           <Form.Group className="mb-3" controlId="memberId">
             <Form.Label>아이디</Form.Label>
