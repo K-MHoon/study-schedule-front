@@ -8,8 +8,8 @@ const Middle = styled.div`
   text-align: center;
 `;
 
-const StudyCreateForm = () => {
-  const [name, setName] = useState('');
+const StudyCreateForm = ({ handleCreateStudy }) => {
+  const [studyName, setStudyName] = useState('');
   const [isSecret, setIsSecret] = useState(false);
   const [password, setPassword] = useState('');
   const [fullCount, setFullCount] = useState(1);
@@ -17,9 +17,9 @@ const StudyCreateForm = () => {
 
   const handleChangeName = useCallback(
     (e) => {
-      setName(e.target.value);
+      setStudyName(e.target.value);
     },
-    [name],
+    [studyName],
   );
 
   const handleChangeIsSecret = useCallback(
@@ -53,9 +53,19 @@ const StudyCreateForm = () => {
     [isUse],
   );
 
-  const handleSubmit = useCallback((e) => {
-    console.log(e);
-  }, []);
+  const handleSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      handleCreateStudy({
+        studyName,
+        secret: isSecret,
+        password,
+        fullCount: Number.parseInt(fullCount),
+        isUse: isUse ? 'Y' : 'N',
+      });
+    },
+    [studyName, isSecret, password, fullCount, isUse, handleCreateStudy],
+  );
 
   return (
     <Container>
@@ -63,11 +73,11 @@ const StudyCreateForm = () => {
         <Image src={studyform} width="150px" height="150px" />
       </Middle>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="name">
+        <Form.Group className="mb-3" controlId="studyName">
           <Form.Label>스터디 이름</Form.Label>
           <Form.Control
             type="text"
-            value={name}
+            value={studyName}
             onChange={handleChangeName}
             placeholder="스터디 이름을 입력해주세요."
           />
