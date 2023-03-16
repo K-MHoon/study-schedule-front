@@ -15,43 +15,28 @@ const StudyCreateForm = ({ handleCreateStudy }) => {
   const [fullCount, setFullCount] = useState(1);
   const [isUse, setIsUse] = useState(true);
 
-  const handleChangeName = useCallback(
-    (e) => {
-      setStudyName(e.target.value);
-    },
-    [studyName],
-  );
+  const handleChangeName = useCallback((e) => {
+    setStudyName(e.target.value);
+  }, []);
 
-  const handleChangeIsSecret = useCallback(
-    (e) => {
-      setIsSecret(e.target.checked);
-      if (!e.target.checked) {
-        setPassword(() => '');
-      }
-    },
-    [isSecret],
-  );
+  const handleChangeIsSecret = useCallback((e) => {
+    setIsSecret(e.target.checked);
+    if (!e.target.checked) {
+      setPassword(() => '');
+    }
+  }, []);
 
-  const handleChangePassword = useCallback(
-    (e) => {
-      setPassword(e.target.value);
-    },
-    [password],
-  );
+  const handleChangePassword = useCallback((e) => {
+    setPassword(e.target.value);
+  }, []);
 
-  const handleChangeFullCount = useCallback(
-    (e) => {
-      setFullCount(e.target.value);
-    },
-    [fullCount],
-  );
+  const handleChangeFullCount = useCallback((e) => {
+    setFullCount(e.target.value);
+  }, []);
 
-  const handleChangeIsUse = useCallback(
-    (e) => {
-      setIsUse(e.target.checked);
-    },
-    [isUse],
-  );
+  const handleChangeIsUse = useCallback((e) => {
+    setIsUse(e.target.checked);
+  }, []);
 
   const handleSubmit = useCallback(
     (e) => {

@@ -6,13 +6,13 @@ import { createStudy } from '../../lib/api';
 const StudyCreateContainer = () => {
   const navigate = useNavigate();
 
-  const handleCreateStudy = async (
+  const handleCreateStudy = async ({
     studyName,
     secret,
     password,
     fullCount,
     isUse,
-  ) => {
+  }) => {
     console.log(studyName, secret, password, fullCount, isUse);
     try {
       await createStudy(studyName, secret, password, fullCount, isUse);

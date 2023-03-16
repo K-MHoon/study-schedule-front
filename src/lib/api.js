@@ -18,13 +18,17 @@ export const createMember = (memberId, password, name, age) =>
   client.post(`/api/register`, { memberId, password, name, age });
 
 export const createStudy = (studyName, secret, password, fullCount, isUse) =>
-  client.post(`/api/study`, {
-    studyName,
-    secret,
-    password,
-    fullCount,
-    isUse,
-  });
+  client.post(
+    `/api/study`,
+    {
+      studyName,
+      secret,
+      password,
+      fullCount,
+      isUse,
+    },
+    privateHeader,
+  );
 
 export const fetchScheduleMemberList = (memberId) =>
   client.get(`/api/schedule/member/${memberId}`);
