@@ -4,7 +4,11 @@ import { useState } from 'react';
 import { Button, Form, Spinner, Table } from 'react-bootstrap';
 import { SubmitButton } from '../common/CustomButton';
 
-const MemberProfileForm = ({ member, loading = true }) => {
+const MemberProfileForm = ({
+  member,
+  loading = true,
+  removeSelectedStudyMember,
+}) => {
   const [isChange, setIsChange] = useState(false);
   const [studyList, setStudyList] = useState([]);
   const [scheduleList, setScheduleList] = useState([]);
@@ -74,6 +78,14 @@ const MemberProfileForm = ({ member, loading = true }) => {
     [age],
   );
 
+  const handleRemoveSelectedStudyMember = useCallback(
+    (e) => {
+      e.preventDefault();
+      removeSelectedStudyMember({ studyList: studyList });
+    },
+    [studyList],
+  );
+
   return (
     <>
       {loading && (
@@ -129,12 +141,12 @@ const MemberProfileForm = ({ member, loading = true }) => {
                 </thead>
                 <tbody>
                   {member.joinedStudyList.map((study) => (
-                    <tr key={study.id}>
+                    <tr key={study.studyId}>
                       <td>
                         <Form.Check
                           type="checkbox"
-                          id={study.id}
-                          onChange={(e) => handleStudyList(study.id)}
+                          id={study.studyId}
+                          onChange={(e) => handleStudyList(study.studyId)}
                         />
                       </td>
                       <td>{study.studyName}</td>
@@ -144,7 +156,11 @@ const MemberProfileForm = ({ member, loading = true }) => {
                   ))}
                 </tbody>
               </Table>
-              <Button variant="danger" className="danger-button">
+              <Button
+                variant="danger"
+                className="danger-button"
+                onClick={handleRemoveSelectedStudyMember}
+              >
                 선택한 스터디 탈퇴하기
               </Button>
             </div>

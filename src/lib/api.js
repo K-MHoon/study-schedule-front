@@ -14,6 +14,10 @@ export const fetchStudyMemberProfile = () =>
 
 export const fetchStudyMemberList = () =>
   client.get(`/api/members`, privateHeader);
+
+export const studyMemberRemove = (studyList) =>
+  client.delete(`/api/study`, { data: studyList, ...privateHeader });
+
 export const createMember = (memberId, password, name, age) =>
   client.post(`/api/register`, { memberId, password, name, age });
 
