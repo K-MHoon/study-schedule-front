@@ -8,6 +8,7 @@ const MemberProfileForm = ({
   member,
   loading = true,
   removeSelectedStudyMember,
+  removeSelectedScheduleList,
 }) => {
   const [isChange, setIsChange] = useState(false);
   const [studyList, setStudyList] = useState([]);
@@ -84,6 +85,14 @@ const MemberProfileForm = ({
       removeSelectedStudyMember({ studyList: studyList });
     },
     [studyList],
+  );
+
+  const hadnleRemoveSelectedScheduleList = useCallback(
+    (e) => {
+      e.preventDefault();
+      removeSelectedScheduleList({ scheduleList: scheduleList });
+    },
+    [scheduleList],
   );
 
   return (
@@ -200,7 +209,11 @@ const MemberProfileForm = ({
                   ))}
                 </tbody>
               </Table>
-              <Button variant="danger" className="danger-button">
+              <Button
+                variant="danger"
+                className="danger-button"
+                onClick={hadnleRemoveSelectedScheduleList}
+              >
                 선택한 스케줄 삭제하기
               </Button>
             </div>
