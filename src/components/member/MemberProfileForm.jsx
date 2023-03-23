@@ -9,6 +9,7 @@ const MemberProfileForm = ({
   loading = true,
   removeSelectedStudyMember,
   removeSelectedScheduleList,
+  removeSelectedTodoList,
 }) => {
   const [isChange, setIsChange] = useState(false);
   const [studyList, setStudyList] = useState([]);
@@ -82,7 +83,7 @@ const MemberProfileForm = ({
   const handleRemoveSelectedStudyMember = useCallback(
     (e) => {
       e.preventDefault();
-      removeSelectedStudyMember({ studyList: studyList });
+      removeSelectedStudyMember(studyList);
     },
     [studyList],
   );
@@ -90,9 +91,17 @@ const MemberProfileForm = ({
   const hadnleRemoveSelectedScheduleList = useCallback(
     (e) => {
       e.preventDefault();
-      removeSelectedScheduleList({ scheduleList: scheduleList });
+      removeSelectedScheduleList(scheduleList);
     },
     [scheduleList],
+  );
+
+  const hadnleRemoveSelectedTodoList = useCallback(
+    (e) => {
+      e.preventDefault();
+      removeSelectedTodoList(todoList);
+    },
+    [todoList],
   );
 
   return (
@@ -249,7 +258,11 @@ const MemberProfileForm = ({
                   ))}
                 </tbody>
               </Table>
-              <Button variant="danger" className="danger-button">
+              <Button
+                variant="danger"
+                className="danger-button"
+                onClick={hadnleRemoveSelectedTodoList}
+              >
                 선택한 Todo 삭제하기
               </Button>
             </div>

@@ -16,10 +16,22 @@ export const fetchStudyMemberList = () =>
   client.get(`/api/members`, privateHeader);
 
 export const removeStudyMember = (studyList) =>
-  client.delete(`/api/study`, { data: studyList, ...privateHeader });
+  client.delete(`/api/study`, {
+    data: { studyList: studyList },
+    ...privateHeader,
+  });
 
 export const removeScheduleList = (scheduleList) =>
-  client.delete(`/api/schedule`, { data: scheduleList, ...privateHeader });
+  client.delete(`/api/schedule`, {
+    data: { scheduleList: scheduleList },
+    ...privateHeader,
+  });
+
+export const removeTodoList = (todoList) =>
+  client.delete(`/api/todo`, {
+    data: { todoList: todoList },
+    ...privateHeader,
+  });
 
 export const createMember = (memberId, password, name, age) =>
   client.post(`/api/register`, { memberId, password, name, age });
