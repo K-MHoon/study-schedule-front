@@ -5,42 +5,31 @@ import createRequestSaga, {
 import * as api from './api';
 import { takeLatest } from 'redux-saga/effects';
 
-const [
-  LIST_PUBLIC_STUDY,
-  LIST_PUBLIC_STUDY_SUCCESS,
-  LIST_PUBLIC_STUDY_FAILURE,
-] = createRequestActionTypes('study/LIST_PUBLIC_STUDY');
+const [STUDY_DETAIL, STUDY_DETAIL_SUCCESS, STUDY_DETAIL_FAILURE] =
+  createRequestActionTypes('study/STUDY_DETAIL');
 
-export const listStudy = createAction(
-  LIST_PUBLIC_STUDY,
-  (page, size, sort) => ({ page, size, sort }),
-);
+export const studyDetail = createAction(STUDY_DETAIL, (studyId) => studyId);
 
-const listStudySaga = createRequestSaga(
-  LIST_PUBLIC_STUDY,
-  api.fetchPublicStudyList,
-);
+const studyDetailSaga = createRequestSaga(STUDY_DETAIL, api.fetchStudyDetail);
 
 export function* studySaga() {
-  yield takeLatest(LIST_PUBLIC_STUDY, listStudySaga);
+  yield takeLatest(STUDY_DETAIL, studyDetailSaga);
 }
 
 const initialState = {
-  data: [],
-  page: [],
+  study: null,
   meta: null,
   error: null,
 };
 
 const study = handleActions(
   {
-    [LIST_PUBLIC_STUDY_SUCCESS]: (state, { payload: study, meta }) => ({
+    [STUDY_DETAIL_SUCCESS]: (state, { payload: study, meta }) => ({
       ...state,
-      page: study.page,
-      data: study.data,
+      study,
       meta,
     }),
-    [LIST_PUBLIC_STUDY_FAILURE]: (state, { payload: error, meta }) => ({
+    [STUDY_DETAIL_FAILURE]: (state, { payload: error, meta }) => ({
       ...state,
       error,
       meta,

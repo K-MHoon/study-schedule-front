@@ -13,6 +13,7 @@ import LoginPage from './pages/auth/LoginPage';
 import Private from './modules/Private';
 import MemberProfilePage from './pages/member/MemberProfilePage';
 import StudyCreatePage from './pages/study/StudyCreatePage';
+import StudyDetailPage from './pages/study/StudyDetailPage';
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
       </Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />
+      <Route path="/study/:studyId" element={<StudyDetailPage />} />
 
       <Route path="/member/register" element={<MemberRegisterPage />} />
       <Route path="/member/:memberId/schedule" element={<ScheduleListPage />} />

@@ -1,11 +1,11 @@
 import React from 'react';
-import StudyCreateContainer from '../../containers/study/StudyCreateContainer';
+import StudyDetailContainer from '../../containers/study/StudyDetailContainer';
 import MainLayout from '../../layout/MainLayout';
 
 const StudyDetailPage = () => {
   return (
     <MainLayout title="스터디 상세 정보">
-      <StudyCreateContainer />
+      <StudyDetailContainer />
     </MainLayout>
   );
 };
