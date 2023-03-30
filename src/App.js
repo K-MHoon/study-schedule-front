@@ -14,6 +14,7 @@ import Private from './modules/Private';
 import MemberProfilePage from './pages/member/MemberProfilePage';
 import StudyCreatePage from './pages/study/StudyCreatePage';
 import StudyDetailPage from './pages/study/StudyDetailPage';
+import StudyRegisterPage from './pages/study/StudyRegisterPage';
 
 const App = () => {
   return (
@@ -22,6 +23,10 @@ const App = () => {
         <Route path="/member/profile" element={<MemberProfilePage />} />
         <Route path="/members" element={<MemberListPage />} />
         <Route path="/study/create" element={<StudyCreatePage />} />
+        <Route
+          path="/study/:studyId/register"
+          element={<StudyRegisterPage />}
+        />
       </Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />
