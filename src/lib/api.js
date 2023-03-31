@@ -64,6 +64,10 @@ export const fetchTodoByScheduleList = (scheduleId) =>
 export const fetchPublicStudyList = ({ page, size, sort }) =>
   client.get(`/api/study?page=${page}&size=${size}&sort=${sort}`);
 
+export const fetchStudyRegister = (studyId, goal, objective, comment) => 
+    client.post(`/api/study/register/${studyId}`, 
+    { goal, objective, comment}, privateHeader);
+
 export const login = ({ memberId, password }) =>
   client.post(`/api/login`, { memberId, password });
 
