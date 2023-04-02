@@ -15,6 +15,7 @@ import MemberProfilePage from './pages/member/MemberProfilePage';
 import StudyCreatePage from './pages/study/StudyCreatePage';
 import StudyDetailPage from './pages/study/StudyDetailPage';
 import StudyRegisterPage from './pages/study/StudyRegisterPage';
+import MyStudyPage from './pages/study/MyStudyPage';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           path="/study/:studyId/register"
           element={<StudyRegisterPage />}
         />
+        <Route path="/study/my" element={<MyStudyPage />} />
       </Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />

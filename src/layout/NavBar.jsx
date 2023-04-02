@@ -43,10 +43,13 @@ const NavBar = () => {
         {getAccessToken() ? (
           <>
             <li>
-              <span onClick={handleLogout}>로그아웃</span>
+              <span onClick={(e) => console.log(e)}>스터디</span>
             </li>
             <li>
               <span onClick={handleGotoMyPage}>마이페이지</span>
+            </li>
+            <li>
+              <span onClick={handleLogout}>로그아웃</span>
             </li>
           </>
         ) : (
