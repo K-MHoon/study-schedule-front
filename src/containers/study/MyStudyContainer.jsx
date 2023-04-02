@@ -1,7 +1,8 @@
 import React from 'react';
+import MyStudyForm from '../../components/study/MyStudyForm';
 
 const MyStudyContainer = () => {
-  return <div></div>;
+  return <MyStudyForm />;
 };
 
 export default MyStudyContainer;

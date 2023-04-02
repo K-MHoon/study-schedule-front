@@ -18,6 +18,8 @@ export const fetchStudyMemberList = () =>
 export const fetchStudyDetail = (studyId) =>
   client.get(`/api/study/${studyId}`);
 
+export const fetchMyStudy = () => client.get(`/api/study/my`, privateHeader);
+
 export const removeStudyMember = (studyList) =>
   client.delete(`/api/study`, {
     data: { studyList: studyList },
@@ -64,9 +66,12 @@ export const fetchTodoByScheduleList = (scheduleId) =>
 export const fetchPublicStudyList = ({ page, size, sort }) =>
   client.get(`/api/study?page=${page}&size=${size}&sort=${sort}`);
 
-export const fetchStudyRegister = (studyId, goal, objective, comment) => 
-    client.post(`/api/study/register/${studyId}`, 
-    { goal, objective, comment}, privateHeader);
+export const fetchStudyRegister = (studyId, goal, objective, comment) =>
+  client.post(
+    `/api/study/register/${studyId}`,
+    { goal, objective, comment },
+    privateHeader,
+  );
 
 export const login = ({ memberId, password }) =>
   client.post(`/api/login`, { memberId, password });
