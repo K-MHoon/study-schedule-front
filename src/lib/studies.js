@@ -55,7 +55,7 @@ const studies = handleActions(
     }),
     [LIST_MY_STUDY_SUCCESS]: (state, { payload: studies, meta }) => ({
       ...state,
-      data: studies.data,
+      data: studies,
       meta,
     }),
     [LIST_MY_STUDY_FAILURE]: (state, { payload: error, meta }) => ({

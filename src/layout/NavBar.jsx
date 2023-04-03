@@ -32,6 +32,10 @@ const NavBar = () => {
     navigate('/member/profile');
   }, []);
 
+  const handleGotoMyStudy = useCallback(() => {
+    navigate('/study/my');
+  }, []);
+
   const handleLogo = useCallback(() => {
     navigate('/');
   }, []);
@@ -43,7 +47,7 @@ const NavBar = () => {
         {getAccessToken() ? (
           <>
             <li>
-              <span onClick={(e) => console.log(e)}>스터디</span>
+              <span onClick={handleGotoMyStudy}>스터디</span>
             </li>
             <li>
               <span onClick={handleGotoMyPage}>마이페이지</span>
