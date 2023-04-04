@@ -28,6 +28,7 @@ const MyStudyForm = ({ studies, loading }) => {
                 <th>스터디 명</th>
                 <th>방장</th>
                 <th>활성화 여부</th>
+                <th>가입일</th>
                 <th>스터디 생성일</th>
               </tr>
             </thead>
@@ -41,6 +42,7 @@ const MyStudyForm = ({ studies, loading }) => {
                   <td>{study.studyName}</td>
                   <td>{study.leaderName}</td>
                   <td>{study.isUse}</td>
+                  <td>{study.joinedAt}</td>
                   <td>{study.createdAt}</td>
                 </MyTr>
               ))}
