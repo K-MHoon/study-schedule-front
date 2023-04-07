@@ -8,12 +8,26 @@ import { takeLatest } from 'redux-saga/effects';
 const [STUDY_DETAIL, STUDY_DETAIL_SUCCESS, STUDY_DETAIL_FAILURE] =
   createRequestActionTypes('study/STUDY_DETAIL');
 
+const [MY_STUDY_DETAIL, MY_STUDY_DETAIL_SUCCESS, MY_STUDY_DETAIL_FAILURE] =
+  createRequestActionTypes('study/MY_STUDY_DETAIL');
+
 export const studyDetail = createAction(STUDY_DETAIL, (studyId) => studyId);
+
+export const myStudyDetail = createAction(
+  MY_STUDY_DETAIL,
+  (studyId) => studyId,
+);
 
 const studyDetailSaga = createRequestSaga(STUDY_DETAIL, api.fetchStudyDetail);
 
+const myStudyDetailSaga = createRequestSaga(
+  MY_STUDY_DETAIL,
+  api.fetchMyStudyDetail,
+);
+
 export function* studySaga() {
   yield takeLatest(STUDY_DETAIL, studyDetailSaga);
+  yield takeLatest(MY_STUDY_DETAIL, myStudyDetailSaga);
 }
 
 const initialState = {
@@ -30,6 +44,16 @@ const study = handleActions(
       meta,
     }),
     [STUDY_DETAIL_FAILURE]: (state, { payload: error, meta }) => ({
+      ...state,
+      error,
+      meta,
+    }),
+    [MY_STUDY_DETAIL_SUCCESS]: (state, { payload: study, meta }) => ({
+      ...state,
+      study,
+      meta,
+    }),
+    [MY_STUDY_DETAIL_FAILURE]: (state, { payload: error, meta }) => ({
       ...state,
       error,
       meta,

@@ -18,6 +18,9 @@ export const fetchStudyMemberList = () =>
 export const fetchStudyDetail = (studyId) =>
   client.get(`/api/study/${studyId}`);
 
+export const fetchMyStudyDetail = (studyId) =>
+  client.get(`/api/study/my/${studyId}`, privateHeader);
+
 export const fetchMyStudy = () => client.get(`/api/study/my`, privateHeader);
 
 export const removeStudyMember = (studyList) =>

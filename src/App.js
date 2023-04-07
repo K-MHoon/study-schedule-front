@@ -16,6 +16,7 @@ import StudyCreatePage from './pages/study/StudyCreatePage';
 import StudyDetailPage from './pages/study/StudyDetailPage';
 import StudyRegisterPage from './pages/study/StudyRegisterPage';
 import MyStudyPage from './pages/study/MyStudyPage';
+import StudyManagePage from './pages/study/StudyManagePage';
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           element={<StudyRegisterPage />}
         />
         <Route path="/study/my" element={<MyStudyPage />} />
+        <Route path="/study/my/manage/:studyId" element={<StudyManagePage />} />
       </Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />
