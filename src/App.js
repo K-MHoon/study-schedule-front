@@ -30,7 +30,7 @@ const App = () => {
           element={<StudyRegisterPage />}
         />
         <Route path="/study/my" element={<MyStudyPage />} />
-        <Route path="/study/my/manage/:studyId" element={<StudyManagePage />} />
+        <Route path="/study/my/:studyId" element={<StudyManagePage />} />
       </Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />

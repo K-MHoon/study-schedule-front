@@ -3,7 +3,7 @@ import { Spinner, Table } from 'react-bootstrap';
 import styled from 'styled-components';
 
 const MyTr = styled.tr`
-  background-color: ${(props) => (props.mine ? '#CCFDB1' : '#FCF8B6')};
+  background-color: ${(props) => (props.isMine ? '#CCFDB1' : '#FCF8B6')};
 `;
 
 const MyStudyForm = ({ studies, loading }) => {
@@ -37,7 +37,7 @@ const MyStudyForm = ({ studies, loading }) => {
                 <MyTr
                   key={study.id}
                   onClick={(e) => console.log(e)}
-                  mine={study.mine}
+                  isMine={study.isMine}
                 >
                   <td>{study.studyName}</td>
                   <td>{study.leaderName}</td>
