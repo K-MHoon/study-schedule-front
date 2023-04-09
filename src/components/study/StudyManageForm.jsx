@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Button,
+  CloseButton,
   Col,
   Container,
   Form,
@@ -10,6 +11,7 @@ import {
 } from 'react-bootstrap';
 import styled from 'styled-components';
 import { SubmitButton } from '../common/CustomButton';
+import Popup from '../common/Popup';
 
 const CleanDisabledForm = styled(Form.Control)`
   &:disabled {
@@ -23,6 +25,9 @@ const MiddleTable = styled(Table)`
 `;
 
 const StudyManageForm = ({ study, loading = true }) => {
+  const [showPopup, setShowPopup] = useState(true);
+  const [showRequest, setShowRequest] = useState({});
+
   return (
     <>
       {loading && (
@@ -159,7 +164,10 @@ const StudyManageForm = ({ study, loading = true }) => {
                       {study.registerRequestList.map((request) => (
                         <tr
                           key={request.id}
-                          onClick={(e) => console.log('toast')}
+                          onClick={() => {
+                            setShowRequest(request);
+                            setShowPopup(true);
+                          }}
                         >
                           <td>{request.requestMemberId}</td>
                           <td>{request.goal}</td>
@@ -171,6 +179,91 @@ const StudyManageForm = ({ study, loading = true }) => {
                 </Col>
               </Row>
             </>
+          )}
+          {showPopup && showRequest && (
+            <Popup>
+              <CloseButton
+                style={{ float: 'right' }}
+                onClick={() => setShowPopup(false)}
+              />
+              <Container
+                style={{
+                  paddingLeft: '40px',
+                  paddingRight: '40px',
+                  paddingTop: '80px',
+                }}
+              >
+                <Row>
+                  <Form.Label column lg={2}>
+                    멤버 ID
+                  </Form.Label>
+                  <Col>
+                    <CleanDisabledForm
+                      type="text"
+                      value={showRequest.requestMemberId}
+                      disabled
+                    />
+                  </Col>
+                </Row>
+                <br />
+                <Row>
+                  <Form.Label column lg={2}>
+                    목표
+                  </Form.Label>
+                  <Col>
+                    <CleanDisabledForm
+                      type="text"
+                      value={showRequest.goal}
+                      disabled
+                    />
+                  </Col>
+                </Row>
+                <br />
+                <Row>
+                  <Form.Label column lg={2}>
+                    목적
+                  </Form.Label>
+                  <Col>
+                    <CleanDisabledForm
+                      type="text"
+                      value={showRequest.objective}
+                      disabled
+                    />
+                  </Col>
+                </Row>
+                <br />
+                <Row>
+                  <Form.Label column lg={2}>
+                    Comment
+                  </Form.Label>
+                  <Col>
+                    <CleanDisabledForm
+                      type="text"
+                      value={showRequest.comment}
+                      disabled
+                    />
+                  </Col>
+                </Row>
+                <br />
+                <Row>
+                  <Form.Label column lg={2}>
+                    신청 일자
+                  </Form.Label>
+                  <Col>
+                    <CleanDisabledForm
+                      type="text"
+                      value={showRequest.createdAt}
+                      disabled
+                    />
+                  </Col>
+                </Row>
+                <br />
+                <SubmitButton>승인하기</SubmitButton>
+                <SubmitButton style={{ marginBottom: '30px' }}>
+                  거부하기
+                </SubmitButton>
+              </Container>
+            </Popup>
           )}
         </Container>
       )}
