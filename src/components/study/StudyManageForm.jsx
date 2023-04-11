@@ -24,7 +24,7 @@ const MiddleTable = styled(Table)`
   vertical-align: middle;
 `;
 
-const StudyManageForm = ({ study, loading = true }) => {
+const StudyManageForm = ({ study, loading = true, updateRegisterState }) => {
   const [showPopup, setShowPopup] = useState(true);
   const [showRequest, setShowRequest] = useState({});
 
@@ -165,6 +165,7 @@ const StudyManageForm = ({ study, loading = true }) => {
                         <tr
                           key={request.id}
                           onClick={() => {
+                            updateRegisterState(study.id, request.id, 'read');
                             setShowRequest(request);
                             setShowPopup(true);
                           }}
@@ -258,8 +259,19 @@ const StudyManageForm = ({ study, loading = true }) => {
                   </Col>
                 </Row>
                 <br />
-                <SubmitButton>승인하기</SubmitButton>
-                <SubmitButton style={{ marginBottom: '30px' }}>
+                <SubmitButton
+                  onClick={() =>
+                    updateRegisterState(study.id, showRequest.id, 'pass')
+                  }
+                >
+                  승인하기
+                </SubmitButton>
+                <SubmitButton
+                  onClick={() =>
+                    updateRegisterState(study.id, showRequest.id, 'reject')
+                  }
+                  style={{ marginBottom: '30px' }}
+                >
                   거부하기
                 </SubmitButton>
               </Container>

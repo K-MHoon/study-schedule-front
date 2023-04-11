@@ -29,6 +29,9 @@ export const removeStudyMember = (studyList) =>
     ...privateHeader,
   });
 
+export const updateRegisterState = (studyId, registerId, changeState) =>
+client.post(`/api/study/${studyId}/state/${registerId}`, { changeState }, privateHeader);
+
 export const removeScheduleList = (scheduleList) =>
   client.delete(`/api/schedule`, {
     data: { scheduleList: scheduleList },
