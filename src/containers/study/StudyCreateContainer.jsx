@@ -8,14 +8,15 @@ const StudyCreateContainer = () => {
 
   const handleCreateStudy = async ({
     studyName,
+    content,
     secret,
     password,
     fullCount,
     isUse,
   }) => {
-    console.log(studyName, secret, password, fullCount, isUse);
+    console.log(studyName, content, secret, password, fullCount, isUse);
     try {
-      await createStudy(studyName, secret, password, fullCount, isUse);
+      await createStudy(studyName, content, secret, password, fullCount, isUse);
       alert('스터디 생성에 성공했습니다!');
       navigate(-1); // 이전 화면으로 이동
     } catch (e) {

@@ -10,6 +10,7 @@ const Middle = styled.div`
 
 const StudyCreateForm = ({ handleCreateStudy }) => {
   const [studyName, setStudyName] = useState('');
+  const [content, setContent] = useState('');
   const [isSecret, setIsSecret] = useState(false);
   const [password, setPassword] = useState('');
   const [fullCount, setFullCount] = useState(1);
@@ -17,6 +18,10 @@ const StudyCreateForm = ({ handleCreateStudy }) => {
 
   const handleChangeName = useCallback((e) => {
     setStudyName(e.target.value);
+  }, []);
+
+  const handleContent = useCallback((e) => {
+    setContent(e.target.value);
   }, []);
 
   const handleChangeIsSecret = useCallback((e) => {
@@ -43,13 +48,22 @@ const StudyCreateForm = ({ handleCreateStudy }) => {
       e.preventDefault();
       handleCreateStudy({
         studyName,
+        content,
         secret: isSecret,
         password,
         fullCount: Number.parseInt(fullCount),
         isUse: isUse ? 'Y' : 'N',
       });
     },
-    [studyName, isSecret, password, fullCount, isUse, handleCreateStudy],
+    [
+      studyName,
+      content,
+      isSecret,
+      password,
+      fullCount,
+      isUse,
+      handleCreateStudy,
+    ],
   );
 
   return (
@@ -65,6 +79,15 @@ const StudyCreateForm = ({ handleCreateStudy }) => {
             value={studyName}
             onChange={handleChangeName}
             placeholder="스터디 이름을 입력해주세요."
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="content">
+          <Form.Label>스터디 내용</Form.Label>
+          <Form.Control
+            type="text"
+            value={content}
+            onChange={handleContent}
+            placeholder="어떤 스터디를 하실건가요? (ex. 다이어트, 독서)"
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="secret">

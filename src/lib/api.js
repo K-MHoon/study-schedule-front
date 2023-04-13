@@ -30,7 +30,11 @@ export const removeStudyMember = (studyList) =>
   });
 
 export const updateRegisterState = (studyId, registerId, changeState) =>
-client.post(`/api/study/${studyId}/state/${registerId}`, { changeState }, privateHeader);
+  client.post(
+    `/api/study/${studyId}/state/${registerId}`,
+    { changeState },
+    privateHeader,
+  );
 
 export const removeScheduleList = (scheduleList) =>
   client.delete(`/api/schedule`, {
@@ -47,11 +51,19 @@ export const removeTodoList = (todoList) =>
 export const createMember = (memberId, password, name, age) =>
   client.post(`/api/register`, { memberId, password, name, age });
 
-export const createStudy = (studyName, secret, password, fullCount, isUse) =>
+export const createStudy = (
+  studyName,
+  content,
+  secret,
+  password,
+  fullCount,
+  isUse,
+) =>
   client.post(
     `/api/study`,
     {
       studyName,
+      content,
       secret,
       password,
       fullCount,
