@@ -31,8 +31,8 @@ export const removeStudyMember = (studyList) =>
 
 export const updateRegisterState = (studyId, registerId, changeState) =>
   client.post(
-    `/api/study/${studyId}/state/${registerId}`,
-    { changeState },
+    `/api/study/my/${studyId}/state/${registerId}`,
+    { state: changeState },
     privateHeader,
   );
 

@@ -24,8 +24,8 @@ const MiddleTable = styled(Table)`
   vertical-align: middle;
 `;
 
-const StudyManageForm = ({ study, loading = true, updateRegisterState }) => {
-  const [showPopup, setShowPopup] = useState(true);
+const StudyManageForm = ({ study, loading = true, handleRegisterState }) => {
+  const [showPopup, setShowPopup] = useState(false);
   const [showRequest, setShowRequest] = useState({});
 
   return (
@@ -165,7 +165,7 @@ const StudyManageForm = ({ study, loading = true, updateRegisterState }) => {
                         <tr
                           key={request.id}
                           onClick={() => {
-                            updateRegisterState(study.id, request.id, 'read');
+                            handleRegisterState(request.id, 'read');
                             setShowRequest(request);
                             setShowPopup(true);
                           }}
@@ -260,16 +260,12 @@ const StudyManageForm = ({ study, loading = true, updateRegisterState }) => {
                 </Row>
                 <br />
                 <SubmitButton
-                  onClick={() =>
-                    updateRegisterState(study.id, showRequest.id, 'pass')
-                  }
+                  onClick={() => handleRegisterState(showRequest.id, 'pass')}
                 >
                   승인하기
                 </SubmitButton>
                 <SubmitButton
-                  onClick={() =>
-                    updateRegisterState(study.id, showRequest.id, 'reject')
-                  }
+                  onClick={() => handleRegisterState(showRequest.id, 'reject')}
                   style={{ marginBottom: '30px' }}
                 >
                   거부하기
