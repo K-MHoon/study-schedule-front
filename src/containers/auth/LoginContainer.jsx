@@ -16,11 +16,10 @@ const LoginContainer = () => {
       window.location.reload();
     } catch (e) {
       console.log(e);
-      if (e.response.status === 403) {
-        alert('로그인에 실패했습니다!');
-      } else if (e.response.status === 504) {
+      if (e.response.status === 504) {
         alert('서버가 점검 중입니다. 관리자에게 문의해주세요.');
       }
+      alert('로그인에 실패했습니다!');
     }
   };
 
