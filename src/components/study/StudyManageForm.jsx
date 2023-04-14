@@ -28,6 +28,22 @@ const StudyManageForm = ({ study, loading = true, handleRegisterState }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [showRequest, setShowRequest] = useState({});
 
+  const readRegisterState = (id) => {
+    handleRegisterState(id, 'read');
+  };
+
+  const passRegisterState = () => {
+    handleRegisterState(showRequest.id, 'pass');
+    alert('요청이 승인 되었습니다.');
+    window.location.reload();
+  };
+
+  const rejectRegisterState = () => {
+    handleRegisterState(showRequest.id, 'reject');
+    alert('요청이 거절 되었습니다.');
+    window.location.reload();
+  };
+
   return (
     <>
       {loading && (
@@ -165,7 +181,7 @@ const StudyManageForm = ({ study, loading = true, handleRegisterState }) => {
                         <tr
                           key={request.id}
                           onClick={() => {
-                            handleRegisterState(request.id, 'read');
+                            readRegisterState(request.id);
                             setShowRequest(request);
                             setShowPopup(true);
                           }}
@@ -259,13 +275,11 @@ const StudyManageForm = ({ study, loading = true, handleRegisterState }) => {
                   </Col>
                 </Row>
                 <br />
-                <SubmitButton
-                  onClick={() => handleRegisterState(showRequest.id, 'pass')}
-                >
+                <SubmitButton onClick={passRegisterState}>
                   승인하기
                 </SubmitButton>
                 <SubmitButton
-                  onClick={() => handleRegisterState(showRequest.id, 'reject')}
+                  onClick={rejectRegisterState}
                   style={{ marginBottom: '30px' }}
                 >
                   거부하기
