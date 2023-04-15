@@ -1,5 +1,6 @@
 import React from 'react';
 import { Spinner, Table } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const MyTr = styled.tr`
@@ -7,6 +8,7 @@ const MyTr = styled.tr`
 `;
 
 const MyStudyForm = ({ studies, loading }) => {
+  const navigate = useNavigate();
   return (
     <>
       {loading && (
@@ -36,7 +38,7 @@ const MyStudyForm = ({ studies, loading }) => {
               {studies.map((study) => (
                 <MyTr
                   key={study.id}
-                  onClick={(e) => console.log(e)}
+                  onClick={() => navigate(`/study/my/${study.id}`)}
                   isMine={study.isMine}
                 >
                   <td>{study.studyName}</td>
