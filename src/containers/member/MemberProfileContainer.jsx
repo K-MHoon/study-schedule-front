@@ -7,6 +7,7 @@ import {
   removeScheduleList,
   removeStudyMember,
   removeTodoList,
+  updateMemberProfile,
 } from '../../lib/api';
 import { memberProfile } from '../../lib/member';
 
@@ -63,6 +64,25 @@ const MemberProfileContainer = () => {
     removeList(removeTodoList, todoList, '선택한 할 일 삭제에 성공했습니다.');
   };
 
+  const changeMemberProfile = async (name, age) => {
+    try {
+      await updateMemberProfile(name, age);
+      alert('수정에 성공했습니다!');
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
+      if (e.response.status === 504) {
+        alert('서버가 점검 중입니다. 관리자에게 문의해주세요.');
+      } else {
+        if (!e.response.data.errorList) {
+          alert(`[Failed] ${e.response.data.message} \n`);
+        } else {
+          alert(`[Failed] ${e.response.data.errorList[0].message}`);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     dispatch(memberProfile());
   }, []);
@@ -74,6 +94,7 @@ const MemberProfileContainer = () => {
       removeSelectedStudyMember={removeSelectedStudyMember}
       removeSelectedScheduleList={removeSelectedScheduleList}
       removeSelectedTodoList={removeSelectedTodoList}
+      changeMemberProfile={changeMemberProfile}
     />
   );
 };

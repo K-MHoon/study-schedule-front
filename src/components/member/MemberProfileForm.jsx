@@ -10,6 +10,7 @@ const MemberProfileForm = ({
   removeSelectedStudyMember,
   removeSelectedScheduleList,
   removeSelectedTodoList,
+  changeMemberProfile,
 }) => {
   const [isChange, setIsChange] = useState(false);
   const [studyList, setStudyList] = useState([]);
@@ -61,9 +62,22 @@ const MemberProfileForm = ({
   const handleIsChange = useCallback(
     (e) => {
       e.preventDefault();
+      if (isChange && (member.name !== name || member.age !== age)) {
+        if (name === '' || name === null || name === undefined) {
+          alert('이름은 빈 칸으로 둘 수 없습니다.');
+          setName(member.name);
+          return;
+        }
+        if (100 < age || age < 1) {
+          alert('나이는 1~100살 사이만 가능합니다.');
+          setAge(member.age);
+          return;
+        }
+        changeMemberProfile(name, age);
+      }
       setIsChange((value) => !value);
     },
-    [isChange],
+    [isChange, name, age],
   );
 
   const handleName = useCallback(
