@@ -77,7 +77,7 @@ const StudyDetailForm = ({ study, loading = true }) => {
               스터디 생성일
             </Form.Label>
             <Col>
-              <CleanDisabledForm type="text" value={study.createdBy} disabled />
+              <CleanDisabledForm type="text" value={study.createdAt} disabled />
             </Col>
           </Row>
           <br />

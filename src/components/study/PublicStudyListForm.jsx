@@ -42,7 +42,7 @@ const PublicStudyListForm = ({
                 <td>
                   {study.remainCount}/{study.fullCount}
                 </td>
-                <td>{study.createdBy}</td>
+                <td>{study.createdAt}</td>
               </tr>
             ))}
           </tbody>
