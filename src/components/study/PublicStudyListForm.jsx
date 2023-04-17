@@ -38,7 +38,7 @@ const PublicStudyListForm = ({
               <tr key={study.id}>
                 <td>{study.id}</td>
                 <td>{study.studyName}</td>
-                <td>{study.leaderName}</td>
+                <td>{study.leaderId}</td>
                 <td>
                   {study.remainCount}/{study.fullCount}
                 </td>

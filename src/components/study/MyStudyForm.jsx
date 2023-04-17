@@ -42,7 +42,7 @@ const MyStudyForm = ({ studies, loading }) => {
                   isMine={study.isMine}
                 >
                   <td>{study.studyName}</td>
-                  <td>{study.leaderName}</td>
+                  <td>{study.leaderId}</td>
                   <td>{study.isUse}</td>
                   <td>{study.joinedAt}</td>
                   <td>{study.createdAt}</td>

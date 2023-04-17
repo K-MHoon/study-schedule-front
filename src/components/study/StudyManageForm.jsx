@@ -67,11 +67,7 @@ const StudyManageForm = ({ study, loading = true, handleRegisterState }) => {
               스터디 방장
             </Form.Label>
             <Col>
-              <CleanDisabledForm
-                type="text"
-                value={study.leaderName}
-                disabled
-              />
+              <CleanDisabledForm type="text" value={study.leaderId} disabled />
             </Col>
           </Row>
           <br />
@@ -125,14 +121,16 @@ const StudyManageForm = ({ study, loading = true, handleRegisterState }) => {
                           <td>{member.name}</td>
                           <td>{member.age}</td>
                           <td>
-                            <Button
-                              style={{ display: 'inline-block' }}
-                              variant="danger"
-                              className="danger-button"
-                              onClick={(e) => console.log(e)}
-                            >
-                              강퇴하기
-                            </Button>
+                            {study.leaderId !== member.memberId && (
+                              <Button
+                                style={{ display: 'inline-block' }}
+                                variant="danger"
+                                className="danger-button"
+                                onClick={(e) => console.log(e)}
+                              >
+                                강퇴하기
+                              </Button>
+                            )}
                           </td>
                         </tr>
                       ))}

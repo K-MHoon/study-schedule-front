@@ -33,11 +33,7 @@ const StudyDetailForm = ({ study, loading = true }) => {
               스터디 방장
             </Form.Label>
             <Col>
-              <CleanDisabledForm
-                type="text"
-                value={study.leaderName}
-                disabled
-              />
+              <CleanDisabledForm type="text" value={study.leaderId} disabled />
             </Col>
           </Row>
           <br />
