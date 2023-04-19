@@ -36,6 +36,13 @@ export const updateRegisterState = (studyId, registerId, changeState) =>
     privateHeader,
   );
 
+export const kickOffStudyMember = (studyId, memberId) =>
+  client.post(
+    `/api/study/my/${studyId}/member/${memberId}/out`,
+    {},
+    privateHeader,
+  );
+
 export const updateMemberProfile = (name, age) =>
   client.post(`/api/member/profile`, { name, age }, privateHeader);
 

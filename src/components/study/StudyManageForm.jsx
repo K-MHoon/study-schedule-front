@@ -24,7 +24,12 @@ const MiddleTable = styled(Table)`
   vertical-align: middle;
 `;
 
-const StudyManageForm = ({ study, loading = true, handleRegisterState }) => {
+const StudyManageForm = ({
+  study,
+  loading = true,
+  handleRegisterState,
+  handleKickOff,
+}) => {
   const [showPopup, setShowPopup] = useState(false);
   const [showRequest, setShowRequest] = useState({});
 
@@ -126,7 +131,9 @@ const StudyManageForm = ({ study, loading = true, handleRegisterState }) => {
                                 style={{ display: 'inline-block' }}
                                 variant="danger"
                                 className="danger-button"
-                                onClick={(e) => console.log(e)}
+                                onClick={() =>
+                                  handleKickOff(study.id, member.id)
+                                }
                               >
                                 강퇴하기
                               </Button>
