@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { Spinner, Table } from 'react-bootstrap';
 import Pagination from 'react-js-pagination';
 import '../../css/Pagination.scss';
+import { useNavigate } from 'react-router-dom';
 
 const PublicStudyListForm = ({
   page,
@@ -15,6 +16,7 @@ const PublicStudyListForm = ({
   loading = true,
   getPublicStudyList,
 }) => {
+  const navigate = useNavigate();
   return (
     <>
       {loading && (
@@ -35,7 +37,7 @@ const PublicStudyListForm = ({
           </thead>
           <tbody>
             {data.map((study) => (
-              <tr key={study.id}>
+              <tr key={study.id} onClick={() => navigate(`/study/${study.id}`)}>
                 <td>{study.id}</td>
                 <td>{study.studyName}</td>
                 <td>{study.leaderId}</td>
