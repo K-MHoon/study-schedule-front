@@ -31,25 +31,21 @@ const App = () => {
         />
         <Route path="/study/my" element={<MyStudyPage />} />
         <Route path="/study/my/:studyId" element={<StudyManagePage />} />
+
+        <Route path="/schedule/create" element={<ScheduleCreatePage />} />
+        <Route path="/schedules" element={<ScheduleListPage />} />
+        <Route
+          path="schedule/:scheduleId/todos"
+          element={<TodoByScheduleListPage />}
+        />
+        <Route path="todos" element={<TodoByMemberListPage />} />
       </Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />
       <Route path="/study/:studyId" element={<StudyDetailPage />} />
 
       <Route path="/member/register" element={<MemberRegisterPage />} />
-      <Route path="/member/:memberId/schedule" element={<ScheduleListPage />} />
-      <Route
-        path="/member/:memberId/schedule/create"
-        element={<ScheduleCreatePage />}
-      />
-      <Route
-        path="/member/:memberId/schedule/:scheduleId/todos"
-        element={<TodoByScheduleListPage />}
-      />
-      <Route
-        path="/member/:memberId/schedule/create/todos"
-        element={<TodoByMemberListPage />}
-      />
+
       <Route path="/study/public" element={<PublicStudyListPage />} />
     </Routes>
   );

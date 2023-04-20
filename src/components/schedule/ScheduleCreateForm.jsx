@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCallback } from 'react';
 import { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Col, Container, Form, Row } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import '../../css/Schedule.scss';
 import { SubmitButton } from '../common/CustomButton';
@@ -25,20 +25,38 @@ const ScheduleCreateForm = ({ nextTodoSelect }) => {
   }, []);
 
   return (
-    <Form>
-      <Form.Group className="mb-3" controlId="formScheduleName">
-        <Form.Label>스케줄 이름</Form.Label>
-        <Form.Control type="text" placeholder="name" onChange={onChangeName} />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formStartDate">
-        <Form.Label>시작일</Form.Label>
-        <DatePicker onChange={setStartDate} value={startDate} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formStartDate">
-        <Form.Label>종료일</Form.Label>
-        <DatePicker onChange={setEndDate} value={endDate} />
-      </Form.Group>
+    <Container>
+      <Row>
+        <Form.Label column lg={2}>
+          스케줄 이름
+        </Form.Label>
+        <Col>
+          <Form.Control
+            type="text"
+            placeholder="name"
+            onChange={onChangeName}
+          />
+        </Col>
+      </Row>
+      <br />
+      <Row>
+        <Form.Label column lg={2}>
+          시작일
+        </Form.Label>
+        <Col>
+          <DatePicker onChange={setStartDate} value={startDate} />
+        </Col>
+      </Row>
+      <br />
+      <Row>
+        <Form.Label column lg={2}>
+          종료일
+        </Form.Label>
+        <Col>
+          <DatePicker onChange={setEndDate} value={endDate} />
+        </Col>
+      </Row>
+      <br />
       <Form.Check
         type="checkbox"
         id="isUse"
@@ -51,7 +69,7 @@ const ScheduleCreateForm = ({ nextTodoSelect }) => {
       >
         할 일 선택하기
       </SubmitButton>
-    </Form>
+    </Container>
   );
 };
 
