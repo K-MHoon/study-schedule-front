@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Col, Container, Form, Row, Spinner } from 'react-bootstrap';
 import styled from 'styled-components';
 import { SubmitButton } from '../common/CustomButton';
+import { useNavigate } from 'react-router-dom';
 
 const CleanDisabledForm = styled(Form.Control)`
   &:disabled {
@@ -10,6 +11,7 @@ const CleanDisabledForm = styled(Form.Control)`
 `;
 
 const StudyDetailForm = ({ study, loading = true }) => {
+  const navigate = useNavigate();
   return (
     <>
       {loading && (
@@ -77,7 +79,7 @@ const StudyDetailForm = ({ study, loading = true }) => {
             </Col>
           </Row>
           <br />
-          <SubmitButton onClick={(e) => console.log(e)}>
+          <SubmitButton onClick={() => navigate(`/study/${study.id}/register`)}>
             가입 신청하기
           </SubmitButton>
         </Container>
