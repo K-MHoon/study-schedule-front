@@ -17,5 +17,10 @@
 
 .danger-button {
   margin: 0;
-  display: block;
+  width: 200px;
+  display: inline-block;
+}
+
+.danger-button:last-child {
+  margin-left: 10px;
 }

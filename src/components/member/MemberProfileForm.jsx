@@ -188,13 +188,15 @@ const MemberProfileForm = ({
                   ))}
                 </tbody>
               </Table>
-              <Button
-                variant="danger"
-                className="danger-button"
-                onClick={handleRemoveSelectedStudyMember}
-              >
-                선택한 스터디 탈퇴하기
-              </Button>
+              <div style={{ textAlign: 'right' }}>
+                <Button
+                  variant="danger"
+                  className="danger-button"
+                  onClick={handleRemoveSelectedStudyMember}
+                >
+                  선택한 스터디 탈퇴하기
+                </Button>
+              </div>
             </div>
           </Form.Group>
           <Form.Group className="mb-3 form-border" controlId="schedules">
@@ -232,13 +234,22 @@ const MemberProfileForm = ({
                   ))}
                 </tbody>
               </Table>
-              <Button
-                variant="danger"
-                className="danger-button"
-                onClick={hadnleRemoveSelectedScheduleList}
-              >
-                선택한 스케줄 삭제하기
-              </Button>
+              <div style={{ textAlign: 'right' }}>
+                <Button
+                  variant="success"
+                  className="danger-button"
+                  onClick={(e) => console.log(e)}
+                >
+                  스케줄 생성하기
+                </Button>
+                <Button
+                  variant="danger"
+                  className="danger-button"
+                  onClick={hadnleRemoveSelectedScheduleList}
+                >
+                  선택한 스케줄 삭제하기
+                </Button>
+              </div>
             </div>
           </Form.Group>
           <Form.Group className="mb-3 form-border" controlId="todos">
@@ -272,13 +283,22 @@ const MemberProfileForm = ({
                   ))}
                 </tbody>
               </Table>
-              <Button
-                variant="danger"
-                className="danger-button"
-                onClick={hadnleRemoveSelectedTodoList}
-              >
-                선택한 Todo 삭제하기
-              </Button>
+              <div style={{ textAlign: 'right' }}>
+                <Button
+                  variant="success"
+                  className="danger-button"
+                  onClick={(e) => console.log(e)}
+                >
+                  Todo 생성하기
+                </Button>
+                <Button
+                  variant="danger"
+                  className="danger-button"
+                  onClick={hadnleRemoveSelectedTodoList}
+                >
+                  선택한 Todo 삭제하기
+                </Button>
+              </div>
             </div>
           </Form.Group>
           <SubmitButton onClick={handleIsChange}>
