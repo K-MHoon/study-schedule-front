@@ -38,7 +38,7 @@ const App = () => {
           path="schedule/:scheduleId/todos"
           element={<TodoByScheduleListPage />}
         />
-        <Route path="todos" element={<TodoByMemberListPage />} />
+        <Route path="member/todos" element={<TodoByMemberListPage />} />
       </Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />

@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useState } from 'react';
 import { Button, Form, Spinner, Table } from 'react-bootstrap';
 import { SubmitButton } from '../common/CustomButton';
+import { useNavigate } from 'react-router-dom';
 
 const MemberProfileForm = ({
   member,
@@ -18,6 +19,7 @@ const MemberProfileForm = ({
   const [todoList, setTodoList] = useState([]);
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
+  const navigate = useNavigate();
 
   const handleStudyList = useCallback(
     (id) => {
@@ -157,6 +159,10 @@ const MemberProfileForm = ({
               <Form.Control type="text" value={member.roles[0]} disabled />
             </Form.Group>
           )}
+          <SubmitButton onClick={handleIsChange}>
+            {isChange ? '수정완료' : '수정하기'}
+          </SubmitButton>
+          <p />
           <Form.Group className="mb-3 form-border" controlId="joinedStudys">
             <div className="form-content">
               <Form.Label className="form-custom-label">
@@ -238,7 +244,7 @@ const MemberProfileForm = ({
                 <Button
                   variant="success"
                   className="danger-button"
-                  onClick={(e) => console.log(e)}
+                  onClick={() => navigate('/schedule/create')}
                 >
                   스케줄 생성하기
                 </Button>
@@ -301,9 +307,6 @@ const MemberProfileForm = ({
               </div>
             </div>
           </Form.Group>
-          <SubmitButton onClick={handleIsChange}>
-            {isChange ? '수정완료' : '수정하기'}
-          </SubmitButton>
         </Form>
       )}
     </>
