@@ -17,6 +17,7 @@ import StudyDetailPage from './pages/study/StudyDetailPage';
 import StudyRegisterPage from './pages/study/StudyRegisterPage';
 import MyStudyPage from './pages/study/MyStudyPage';
 import StudyManagePage from './pages/study/StudyManagePage';
+import TodoCreatePage from './pages/todo/TodoCreatePage';
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
           element={<TodoByScheduleListPage />}
         />
         <Route path="member/todos" element={<TodoByMemberListPage />} />
+        <Route path="todo/create" element={<TodoCreatePage />} />
       </Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />
