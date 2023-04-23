@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createTodo } from '../../lib/api';
+import TodoCreateForm from '../../components/todo/TodoCreateForm';
 
 const TodoCreateContainer = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const TodoCreateContainer = () => {
       }
     }
   };
-  return <div></div>;
+  return <TodoCreateForm handleCreateTodo={handleCreateTodo} />;
 };
 
 export default TodoCreateContainer;

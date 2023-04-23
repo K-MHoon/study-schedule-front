@@ -293,7 +293,7 @@ const MemberProfileForm = ({
                 <Button
                   variant="success"
                   className="danger-button"
-                  onClick={(e) => console.log(e)}
+                  onClick={() => navigate('/todo/create')}
                 >
                   Todo 생성하기
                 </Button>
