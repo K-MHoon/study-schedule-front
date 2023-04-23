@@ -91,6 +91,9 @@ export const fetchScheduleMemberList = (memberId) =>
 export const fetchTodoByMemberList = (memberId) =>
   client.get(`/api/todo`, privateHeader);
 
+export const fetchRegisterList = () =>
+  client.get(`/api/study/my/register`, privateHeader);
+
 export const fetchTodoByScheduleList = (scheduleId) =>
   client.get(`/api/todo/schedule/${scheduleId}`);
 
