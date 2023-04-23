@@ -23,14 +23,13 @@ const TodoByMemberListContainer = () => {
   const createScheduleRequest = async (todoList) => {
     try {
       await createSchedule(
-        memberId,
         name,
         format.asString(startDate),
         format.asString(endDate),
         isUse,
         todoList,
       );
-      navigate(`/member/${memberId}/schedule`);
+      navigate(`/schedules`);
     } catch (e) {
       console.log(e);
       if (e.response.status === 504) {

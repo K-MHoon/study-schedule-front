@@ -89,7 +89,7 @@ export const fetchScheduleMemberList = (memberId) =>
   client.get(`/api/schedule/member/${memberId}`);
 
 export const fetchTodoByMemberList = (memberId) =>
-  client.get(`/api/todo/member/${memberId}`);
+  client.get(`/api/todo`, privateHeader);
 
 export const fetchTodoByScheduleList = (scheduleId) =>
   client.get(`/api/todo/schedule/${scheduleId}`);
@@ -107,20 +107,17 @@ export const fetchStudyRegister = (studyId, goal, objective, comment) =>
 export const login = ({ memberId, password }) =>
   client.post(`/api/login`, { memberId, password });
 
-export const createSchedule = (
-  memberId,
-  name,
-  startDate,
-  endDate,
-  isUse,
-  todoList,
-) =>
-  client.post(`/api/schedule/member/${memberId}`, {
-    name,
-    startDate,
-    endDate,
-    isUse,
-    todoList,
-  });
+export const createSchedule = (name, startDate, endDate, isUse, todoList) =>
+  client.post(
+    `/api/schedule`,
+    {
+      name,
+      startDate,
+      endDate,
+      isUse,
+      todoList,
+    },
+    privateHeader,
+  );
 
 export const isAuth = () => client.post('/api/token/check');
