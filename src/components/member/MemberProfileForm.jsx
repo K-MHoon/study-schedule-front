@@ -4,6 +4,7 @@ import MemberInformation from './profile/MemberInformation';
 import MemberStudy from './profile/MemberStudy';
 import MemberSchedule from './profile/MemberSchedule';
 import MemberTodo from './profile/MemberTodo';
+import MemberRegisterRequestContainer from '../../containers/study/profile/MemberRegisterRequestContainer';
 
 const MemberProfileForm = ({
   member,
@@ -46,7 +47,9 @@ const MemberProfileForm = ({
               removeSelectedTodoList={removeSelectedTodoList}
             />
           </Tab>
-          <Tab eventKey="request" title="Request"></Tab>
+          <Tab eventKey="request" title="Request">
+            <MemberRegisterRequestContainer />
+          </Tab>
         </Tabs>
       )}
     </>
