@@ -6,12 +6,11 @@ import MemberProfileForm from '../../components/member/MemberProfileForm';
 import {
   removeScheduleList,
   removeStudyMember,
-  removeTodoList,
   updateMemberProfile,
 } from '../../lib/api';
 import { memberProfile } from '../../lib/member';
 
-const removeList = async (removeFunction, items, message) => {
+export const removeList = async (removeFunction, items, message) => {
   if (items.length === 0) {
     alert('목록에서 선택된 것이 없습니다.');
     return;
@@ -35,7 +34,6 @@ const removeList = async (removeFunction, items, message) => {
 };
 
 const MemberProfileContainer = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { member, loading } = useSelector(({ member, loading }) => ({
@@ -58,10 +56,6 @@ const MemberProfileContainer = () => {
       scheduleList,
       '선택한 스케줄 삭제에 성공했습니다.',
     );
-  };
-
-  const removeSelectedTodoList = (todoList) => {
-    removeList(removeTodoList, todoList, '선택한 할 일 삭제에 성공했습니다.');
   };
 
   const changeMemberProfile = async (name, age) => {
@@ -93,7 +87,6 @@ const MemberProfileContainer = () => {
       loading={loading}
       removeSelectedStudyMember={removeSelectedStudyMember}
       removeSelectedScheduleList={removeSelectedScheduleList}
-      removeSelectedTodoList={removeSelectedTodoList}
       changeMemberProfile={changeMemberProfile}
     />
   );

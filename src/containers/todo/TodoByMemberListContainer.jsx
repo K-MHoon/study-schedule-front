@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { createSchedule } from '../../lib/api';
 import { listMemberTodos } from '../../lib/todos';
 import format from 'date-format';
 import TodoByMemberListForm from '../../components/todo/TodoByMemberListForm';
 
 const TodoByMemberListContainer = () => {
-  const { memberId } = useParams();
   const dispatch = useDispatch();
   const location = useLocation();
   const { name, startDate, endDate, isUse } =
@@ -45,8 +44,8 @@ const TodoByMemberListContainer = () => {
   };
 
   useEffect(() => {
-    dispatch(listMemberTodos(memberId));
-  }, [dispatch, memberId]);
+    dispatch(listMemberTodos());
+  }, [dispatch]);
 
   return (
     <TodoByMemberListForm

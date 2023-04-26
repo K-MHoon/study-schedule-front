@@ -20,10 +20,7 @@ export const listScheduleTodos = createAction(
   LIST_SCHEDULE_TODOS,
   (scheduleId) => scheduleId,
 );
-export const listMemberTodos = createAction(
-  LIST_MEMBER_TODOS,
-  (memberId) => memberId,
-);
+export const listMemberTodos = createAction(LIST_MEMBER_TODOS);
 
 const listScheduleTodosSaga = createRequestSaga(
   LIST_SCHEDULE_TODOS,

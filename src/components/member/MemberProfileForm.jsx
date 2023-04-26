@@ -3,15 +3,14 @@ import { Spinner, Tab, Tabs } from 'react-bootstrap';
 import MemberInformation from './profile/MemberInformation';
 import MemberStudy from './profile/MemberStudy';
 import MemberSchedule from './profile/MemberSchedule';
-import MemberTodo from './profile/MemberTodo';
-import MemberRegisterRequestContainer from '../../containers/study/profile/MemberRegisterRequestContainer';
+import MemberRegisterRequestContainer from '../../containers/member/profile/MemberRegisterRequestContainer';
+import MemberTodoContainer from '../../containers/member/profile/MemberTodoContainer';
 
 const MemberProfileForm = ({
   member,
   loading = true,
   removeSelectedStudyMember,
   removeSelectedScheduleList,
-  removeSelectedTodoList,
   changeMemberProfile,
 }) => {
   return (
@@ -42,10 +41,7 @@ const MemberProfileForm = ({
             />
           </Tab>
           <Tab eventKey="todo" title="Todo">
-            <MemberTodo
-              memberTodoList={member.todoList}
-              removeSelectedTodoList={removeSelectedTodoList}
-            />
+            <MemberTodoContainer />
           </Tab>
           <Tab eventKey="request" title="Request">
             <MemberRegisterRequestContainer />
