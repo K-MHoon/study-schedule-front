@@ -5,12 +5,12 @@ import MemberStudy from './profile/MemberStudy';
 import MemberSchedule from './profile/MemberSchedule';
 import MemberRegisterRequestContainer from '../../containers/member/profile/MemberRegisterRequestContainer';
 import MemberTodoContainer from '../../containers/member/profile/MemberTodoContainer';
+import MemberScheduleContainer from '../../containers/member/profile/MemberScheduleContainer';
 
 const MemberProfileForm = ({
   member,
   loading = true,
   removeSelectedStudyMember,
-  removeSelectedScheduleList,
   changeMemberProfile,
 }) => {
   return (
@@ -35,10 +35,7 @@ const MemberProfileForm = ({
             />
           </Tab>
           <Tab eventKey="schedule" title="Schedule">
-            <MemberSchedule
-              memberScheduleList={member.scheduleList}
-              removeSelectedScheduleList={removeSelectedScheduleList}
-            />
+            <MemberScheduleContainer />
           </Tab>
           <Tab eventKey="todo" title="Todo">
             <MemberTodoContainer />

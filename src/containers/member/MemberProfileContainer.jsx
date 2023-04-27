@@ -1,13 +1,8 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import MemberProfileForm from '../../components/member/MemberProfileForm';
-import {
-  removeScheduleList,
-  removeStudyMember,
-  updateMemberProfile,
-} from '../../lib/api';
+import { removeStudyMember, updateMemberProfile } from '../../lib/api';
 import { memberProfile } from '../../lib/member';
 
 export const removeList = async (removeFunction, items, message) => {
@@ -50,14 +45,6 @@ const MemberProfileContainer = () => {
     );
   };
 
-  const removeSelectedScheduleList = (scheduleList) => {
-    removeList(
-      removeScheduleList,
-      scheduleList,
-      '선택한 스케줄 삭제에 성공했습니다.',
-    );
-  };
-
   const changeMemberProfile = async (name, age) => {
     try {
       await updateMemberProfile(name, age);
@@ -86,7 +73,6 @@ const MemberProfileContainer = () => {
       member={member}
       loading={loading}
       removeSelectedStudyMember={removeSelectedStudyMember}
-      removeSelectedScheduleList={removeSelectedScheduleList}
       changeMemberProfile={changeMemberProfile}
     />
   );

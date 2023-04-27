@@ -85,8 +85,8 @@ export const createStudy = (
 export const createTodo = (title, content) =>
   client.post(`/api/todo`, { title, content }, privateHeader);
 
-export const fetchScheduleMemberList = (memberId) =>
-  client.get(`/api/schedule/member/${memberId}`);
+export const fetchScheduleMemberList = () =>
+  client.get(`/api/schedule`, privateHeader);
 
 export const fetchTodoByMemberList = () =>
   client.get(`/api/todo`, privateHeader);
