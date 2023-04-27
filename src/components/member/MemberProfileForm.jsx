@@ -1,18 +1,12 @@
 import React from 'react';
 import { Spinner, Tab, Tabs } from 'react-bootstrap';
 import MemberInformation from './profile/MemberInformation';
-import MemberStudy from './profile/MemberStudy';
-import MemberSchedule from './profile/MemberSchedule';
 import MemberRegisterRequestContainer from '../../containers/member/profile/MemberRegisterRequestContainer';
 import MemberTodoContainer from '../../containers/member/profile/MemberTodoContainer';
 import MemberScheduleContainer from '../../containers/member/profile/MemberScheduleContainer';
+import MemberStudyContainer from '../../containers/member/profile/MemberStudyContainer';
 
-const MemberProfileForm = ({
-  member,
-  loading = true,
-  removeSelectedStudyMember,
-  changeMemberProfile,
-}) => {
+const MemberProfileForm = ({ member, loading = true, changeMemberProfile }) => {
   return (
     <>
       {loading && (
@@ -29,10 +23,7 @@ const MemberProfileForm = ({
             />
           </Tab>
           <Tab eventKey="study" title="Study">
-            <MemberStudy
-              joinedStudyList={member.joinedStudyList}
-              removeSelectedStudyMember={removeSelectedStudyMember}
-            />
+            <MemberStudyContainer />
           </Tab>
           <Tab eventKey="schedule" title="Schedule">
             <MemberScheduleContainer />

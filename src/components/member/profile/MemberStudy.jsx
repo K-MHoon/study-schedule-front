@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 
-const MemberStudy = ({ joinedStudyList, removeSelectedStudyMember }) => {
+const MemberStudy = ({ data, removeSelectedStudyMember }) => {
   const [studyList, setStudyList] = useState([]);
 
   const handleRemoveSelectedStudyMember = useCallback(
@@ -39,18 +39,18 @@ const MemberStudy = ({ joinedStudyList, removeSelectedStudyMember }) => {
             </tr>
           </thead>
           <tbody>
-            {joinedStudyList.map((study) => (
-              <tr key={study.studyId}>
+            {data.map((study) => (
+              <tr key={study.id}>
                 <td>
                   <Form.Check
                     type="checkbox"
-                    id={study.studyId}
-                    onChange={(e) => handleStudyList(study.studyId)}
+                    id={study.id}
+                    onChange={(e) => handleStudyList(study.id)}
                   />
                 </td>
                 <td>{study.studyName}</td>
-                <td>{study.studyCreatedBy}</td>
-                <td>{study.joinedBy}</td>
+                <td>{study.createdAt}</td>
+                <td>{study.joinedAt}</td>
               </tr>
             ))}
           </tbody>

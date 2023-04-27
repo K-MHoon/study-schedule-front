@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MemberProfileForm from '../../components/member/MemberProfileForm';
-import { removeStudyMember, updateMemberProfile } from '../../lib/api';
+import { updateMemberProfile } from '../../lib/api';
 import { memberProfile } from '../../lib/member';
 
 export const removeList = async (removeFunction, items, message) => {
@@ -37,14 +37,6 @@ const MemberProfileContainer = () => {
     loading: loading['member/MEMBER'],
   }));
 
-  const removeSelectedStudyMember = (studyList) => {
-    removeList(
-      removeStudyMember,
-      studyList,
-      '선택한 스터디를 탈퇴에 성공했습니다.',
-    );
-  };
-
   const changeMemberProfile = async (name, age) => {
     try {
       await updateMemberProfile(name, age);
@@ -72,7 +64,6 @@ const MemberProfileContainer = () => {
     <MemberProfileForm
       member={member}
       loading={loading}
-      removeSelectedStudyMember={removeSelectedStudyMember}
       changeMemberProfile={changeMemberProfile}
     />
   );
