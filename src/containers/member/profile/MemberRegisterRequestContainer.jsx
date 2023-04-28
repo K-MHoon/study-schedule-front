@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listRegister } from '../../../lib/register';
 import MemberRegisterRequestForm from '../../../components/member/profile/MemberRegisterRequestForm';
+import LoadingComponent from '../../../components/common/LoadingComponent';
 
 const MemberRegisterRequestContainer = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,11 @@ const MemberRegisterRequestContainer = () => {
     dispatch(listRegister());
   }, [dispatch]);
 
-  return <MemberRegisterRequestForm data={register} loading={loading} />;
+  return (
+    <LoadingComponent loading={loading}>
+      <MemberRegisterRequestForm data={register} />
+    </LoadingComponent>
+  );
 };
 
 export default MemberRegisterRequestContainer;

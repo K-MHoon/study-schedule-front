@@ -4,6 +4,7 @@ import { listSchedules } from '../../../lib/schedules';
 import MemberSchedule from '../../../components/member/profile/MemberSchedule';
 import { removeList } from '../MemberProfileContainer';
 import { removeScheduleList } from '../../../lib/api';
+import LoadingComponent from '../../../components/common/LoadingComponent';
 
 const MemberScheduleContainer = () => {
   const dispatch = useDispatch();
@@ -27,11 +28,12 @@ const MemberScheduleContainer = () => {
   };
 
   return (
-    <MemberSchedule
-      data={schedules}
-      loading={loading}
-      removeSelectedScheduleList={removeSelectedScheduleList}
-    />
+    <LoadingComponent loading={loading}>
+      <MemberSchedule
+        data={schedules}
+        removeSelectedScheduleList={removeSelectedScheduleList}
+      />
+    </LoadingComponent>
   );
 };
 

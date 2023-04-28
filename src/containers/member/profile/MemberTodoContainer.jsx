@@ -4,6 +4,7 @@ import MemberTodo from '../../../components/member/profile/MemberTodo';
 import { removeList } from '../MemberProfileContainer';
 import { removeTodoList } from '../../../lib/api';
 import { listMemberTodos } from '../../../lib/todos';
+import LoadingComponent from '../../../components/common/LoadingComponent';
 
 const MemberTodoContainer = () => {
   const dispatch = useDispatch();
@@ -23,11 +24,12 @@ const MemberTodoContainer = () => {
   }, [dispatch]);
 
   return (
-    <MemberTodo
-      data={memberTodos}
-      loading={loading}
-      removeSelectedTodoList={removeSelectedTodoList}
-    />
+    <LoadingComponent loading={loading}>
+      <MemberTodo
+        data={memberTodos}
+        removeSelectedTodoList={removeSelectedTodoList}
+      />
+    </LoadingComponent>
   );
 };
 
