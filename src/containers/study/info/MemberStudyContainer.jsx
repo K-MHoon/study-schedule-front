@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { listMyStudy } from '../../../lib/studies';
 import { useDispatch, useSelector } from 'react-redux';
-import MemberStudy from '../../../components/member/profile/MemberStudy';
-import { removeList } from '../MemberProfileContainer';
 import { removeStudyMember } from '../../../lib/api';
 import LoadingComponent from '../../../components/common/LoadingComponent';
+import MemberStudy from '../../../components/study/info/MemberStudy';
+import { removeList } from '../StudyInfoContainer';
 
 const MemberStudyContainer = () => {
   const dispatch = useDispatch();

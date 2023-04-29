@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import '../css/layout/NavBar.scss';
 import { getAccessToken, removeCookieToken } from '../modules/Cookie';
+import { Url } from '../App';
 
 const Logo = styled.span`
   float: left;
@@ -33,7 +34,7 @@ const NavBar = () => {
   }, []);
 
   const handleGotoMyStudy = useCallback(() => {
-    navigate('/study/my');
+    navigate(Url.studyInfoPage);
   }, []);
 
   const handleLogo = useCallback(() => {
@@ -50,7 +51,7 @@ const NavBar = () => {
               <span onClick={handleGotoMyStudy}>스터디</span>
             </li>
             <li>
-              <span onClick={handleGotoMyPage}>마이페이지</span>
+              <span onClick={handleGotoMyPage}>내정보</span>
             </li>
             <li>
               <span onClick={handleLogout}>로그아웃</span>

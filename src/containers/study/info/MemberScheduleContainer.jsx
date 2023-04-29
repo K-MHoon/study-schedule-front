@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { listSchedules } from '../../../lib/schedules';
-import MemberSchedule from '../../../components/member/profile/MemberSchedule';
-import { removeList } from '../MemberProfileContainer';
 import { removeScheduleList } from '../../../lib/api';
 import LoadingComponent from '../../../components/common/LoadingComponent';
+import MemberSchedule from '../../../components/study/info/MemberSchedule';
+import { removeList } from '../StudyInfoContainer';
 
 const MemberScheduleContainer = () => {
   const dispatch = useDispatch();

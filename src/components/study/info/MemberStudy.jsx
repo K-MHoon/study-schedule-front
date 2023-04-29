@@ -1,8 +1,15 @@
 import React, { useCallback, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const MyTr = styled.tr`
+  background-color: ${(props) => (props.isMine ? '#CCFDB1' : '#FCF8B6')};
+`;
 
 const MemberStudy = ({ data, removeSelectedStudyMember }) => {
   const [studyList, setStudyList] = useState([]);
+  const navigate = useNavigate();
 
   const handleRemoveSelectedStudyMember = useCallback(
     (e) => {
@@ -29,18 +36,30 @@ const MemberStudy = ({ data, removeSelectedStudyMember }) => {
         <Form.Label className="form-custom-label">
           가입된 스터디 목록
         </Form.Label>
+        <div style={{ textAlign: 'right', fontSize: '13px' }}>
+          <span style={{ color: '#CCFDB1' }}>●</span> 내가 생성한 스터디
+          <br />
+          <span style={{ color: '#FCF8B6' }}>●</span> 내가 가입한 스터디
+        </div>
+        <p />
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
               <th>#</th>
               <th>이름</th>
+              <th>방장</th>
+              <th>활성화</th>
               <th>생성일</th>
               <th>가입일</th>
             </tr>
           </thead>
           <tbody>
             {data.map((study) => (
-              <tr key={study.id}>
+              <MyTr
+                key={study.id}
+                onClick={() => navigate(`/study/my/${study.id}`)}
+                isMine={study.isMine}
+              >
                 <td>
                   <Form.Check
                     type="checkbox"
@@ -49,9 +68,11 @@ const MemberStudy = ({ data, removeSelectedStudyMember }) => {
                   />
                 </td>
                 <td>{study.studyName}</td>
+                <td>{study.leaderId}</td>
+                <td>{study.isUse}</td>
                 <td>{study.createdAt}</td>
                 <td>{study.joinedAt}</td>
-              </tr>
+              </MyTr>
             ))}
           </tbody>
         </Table>

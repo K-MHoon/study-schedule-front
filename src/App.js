@@ -19,6 +19,10 @@ import StudyManagePage from './pages/study/StudyManagePage';
 import TodoCreatePage from './pages/todo/TodoCreatePage';
 import StudyInfoPage from './pages/study/StudyInfoPage';
 
+export const Url = {
+  studyInfoPage: '/info/study',
+};
+
 const App = () => {
   return (
     <Routes>
@@ -30,7 +34,7 @@ const App = () => {
           path="/study/:studyId/register"
           element={<StudyRegisterPage />}
         />
-        <Route path="/info/study" element={<StudyInfoPage />} />
+        <Route path={Url.studyInfoPage} element={<StudyInfoPage />} />
         <Route path="/info/study/:studyId" element={<StudyManagePage />} />
 
         <Route path="/schedule/create" element={<ScheduleCreatePage />} />

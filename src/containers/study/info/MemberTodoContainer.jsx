@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import MemberTodo from '../../../components/member/profile/MemberTodo';
-import { removeList } from '../MemberProfileContainer';
 import { removeTodoList } from '../../../lib/api';
 import { listMemberTodos } from '../../../lib/todos';
 import LoadingComponent from '../../../components/common/LoadingComponent';
+import MemberTodo from '../../../components/study/info/MemberTodo';
+import { removeList } from '../StudyInfoContainer';
 
 const MemberTodoContainer = () => {
   const dispatch = useDispatch();
