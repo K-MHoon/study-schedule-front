@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { Url } from '../../../App';
 
 const MyTr = styled.tr`
   background-color: ${(props) => (props.isMine ? '#CCFDB1' : '#FCF8B6')};
@@ -57,7 +58,7 @@ const MemberStudy = ({ data, removeSelectedStudyMember }) => {
             {data.map((study) => (
               <MyTr
                 key={study.id}
-                onClick={() => navigate(`/study/my/${study.id}`)}
+                onClick={() => navigate(`${Url.studyInfoPage}/${study.id}`)}
                 isMine={study.isMine}
               >
                 <td>

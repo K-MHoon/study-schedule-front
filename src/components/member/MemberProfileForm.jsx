@@ -79,6 +79,14 @@ const MemberProfileForm = ({ data, changeMemberProfile }) => {
           <Form.Control type="text" value={data.roles[0]} disabled />
         </Form.Group>
       )}
+      <Form.Group className="mb-3" controlId="createdAt">
+        <Form.Label>생성일</Form.Label>
+        <Form.Control type="text" value={data.createdAt} disabled={true} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="updatedAt">
+        <Form.Label>최종 수정일</Form.Label>
+        <Form.Control type="text" value={data.updatedAt} disabled={true} />
+      </Form.Group>
       <SubmitButton onClick={handleIsChange}>
         {isChange ? '수정완료' : '수정하기'}
       </SubmitButton>
