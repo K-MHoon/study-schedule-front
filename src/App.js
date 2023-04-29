@@ -15,9 +15,9 @@ import MemberProfilePage from './pages/member/MemberProfilePage';
 import StudyCreatePage from './pages/study/StudyCreatePage';
 import StudyDetailPage from './pages/study/StudyDetailPage';
 import StudyRegisterPage from './pages/study/StudyRegisterPage';
-import MyStudyPage from './pages/study/MyStudyPage';
 import StudyManagePage from './pages/study/StudyManagePage';
 import TodoCreatePage from './pages/todo/TodoCreatePage';
+import StudyInfoPage from './pages/study/StudyInfoPage';
 
 const App = () => {
   return (
@@ -30,8 +30,8 @@ const App = () => {
           path="/study/:studyId/register"
           element={<StudyRegisterPage />}
         />
-        <Route path="/study/my" element={<MyStudyPage />} />
-        <Route path="/study/my/:studyId" element={<StudyManagePage />} />
+        <Route path="/info/study" element={<StudyInfoPage />} />
+        <Route path="/info/study/:studyId" element={<StudyManagePage />} />
 
         <Route path="/schedule/create" element={<ScheduleCreatePage />} />
         <Route path="/schedules" element={<ScheduleListPage />} />

@@ -1,30 +1,88 @@
-import React from 'react';
-import { Tab, Tabs } from 'react-bootstrap';
-import MemberRegisterRequestContainer from '../../containers/member/profile/MemberRegisterRequestContainer';
-import MemberTodoContainer from '../../containers/member/profile/MemberTodoContainer';
-import MemberScheduleContainer from '../../containers/member/profile/MemberScheduleContainer';
-import MemberStudyContainer from '../../containers/member/profile/MemberStudyContainer';
-import MemberInformationContainer from '../../containers/member/profile/MemberInformationContainer';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Form } from 'react-bootstrap';
+import { SubmitButton } from '../common/CustomButton';
 
-const MemberProfileForm = () => {
+const MemberProfileForm = ({ data, changeMemberProfile }) => {
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [isChange, setIsChange] = useState(false);
+
+  useEffect(() => {
+    setName(data.name);
+    setAge(data.age);
+  }, []);
+
+  const handleIsChange = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (isChange && (data.name !== name || data.age !== age)) {
+        if (name === '' || name === null || name === undefined) {
+          alert('이름은 빈 칸으로 둘 수 없습니다.');
+          setName(data.name);
+          return;
+        }
+        if (100 < age || age < 1) {
+          alert('나이는 1~100살 사이만 가능합니다.');
+          setAge(data.age);
+          return;
+        }
+        changeMemberProfile(name, age);
+      }
+      setIsChange((value) => !value);
+    },
+    [isChange, name, age],
+  );
+
+  const handleName = useCallback(
+    (e) => {
+      setName(e.target.value);
+    },
+    [name],
+  );
+
+  const handleAge = useCallback(
+    (e) => {
+      setAge(e.target.value);
+    },
+    [age],
+  );
+
   return (
-    <Tabs defaultActiveKey="info" className="mb-3" fill>
-      <Tab eventKey="info" title="Information">
-        <MemberInformationContainer />
-      </Tab>
-      <Tab eventKey="study" title="Study">
-        <MemberStudyContainer />
-      </Tab>
-      <Tab eventKey="schedule" title="Schedule">
-        <MemberScheduleContainer />
-      </Tab>
-      <Tab eventKey="todo" title="Todo">
-        <MemberTodoContainer />
-      </Tab>
-      <Tab eventKey="request" title="Request">
-        <MemberRegisterRequestContainer />
-      </Tab>
-    </Tabs>
+    <Form>
+      <Form.Group className="mb-3" controlId="memberId">
+        <Form.Label>아이디</Form.Label>
+        <Form.Control type="text" value={data.memberId} disabled />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="name">
+        <Form.Label>이름</Form.Label>
+        <Form.Control
+          type="text"
+          value={name}
+          disabled={isChange ? false : true}
+          onChange={handleName}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="age">
+        <Form.Label>나이</Form.Label>
+        <Form.Control
+          type="text"
+          value={age}
+          disabled={isChange ? false : true}
+          onChange={handleAge}
+        />
+      </Form.Group>
+      {data.roles !== undefined && (
+        <Form.Group className="mb-3" controlId="role">
+          <Form.Label>등급</Form.Label>
+          <Form.Control type="text" value={data.roles[0]} disabled />
+        </Form.Group>
+      )}
+      <SubmitButton onClick={handleIsChange}>
+        {isChange ? '수정완료' : '수정하기'}
+      </SubmitButton>
+    </Form>
   );
 };
 

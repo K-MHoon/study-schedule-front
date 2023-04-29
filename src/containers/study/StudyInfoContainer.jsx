@@ -3,7 +3,7 @@ import MyStudyForm from '../../components/study/MyStudyForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { listMyStudy } from '../../lib/studies';
 
-const MyStudyContainer = () => {
+const StudyInfoContainer = () => {
   const dispatch = useDispatch();
 
   const { data, loading } = useSelector(({ studies, loading }) => ({
@@ -19,4 +19,4 @@ const MyStudyContainer = () => {
   return <MyStudyForm studies={data} loading={loading} />;
 };
 
-export default MyStudyContainer;
+export default StudyInfoContainer;
