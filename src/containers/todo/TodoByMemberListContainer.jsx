@@ -5,6 +5,8 @@ import { createSchedule } from '../../lib/api';
 import { listMemberTodos } from '../../lib/todos';
 import format from 'date-format';
 import TodoByMemberListForm from '../../components/todo/TodoByMemberListForm';
+import { Url } from '../../App';
+import LoadingComponent from '../../components/common/LoadingComponent';
 
 const TodoByMemberListContainer = () => {
   const dispatch = useDispatch();
@@ -28,7 +30,8 @@ const TodoByMemberListContainer = () => {
         isUse,
         todoList,
       );
-      navigate(`/schedules`);
+      alert('스케줄 생성에 성공했습니다!');
+      navigate(Url.studyInfoPage);
     } catch (e) {
       console.log(e);
       if (e.response.status === 504) {
@@ -48,11 +51,14 @@ const TodoByMemberListContainer = () => {
   }, [dispatch]);
 
   return (
-    <TodoByMemberListForm
-      todos={memberTodos}
-      loading={loading}
-      createScheduleRequest={location.state ? createScheduleRequest : undefined}
-    />
+    <LoadingComponent loading={loading}>
+      <TodoByMemberListForm
+        data={memberTodos}
+        createScheduleRequest={
+          location.state ? createScheduleRequest : undefined
+        }
+      />
+    </LoadingComponent>
   );
 };
 
