@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { myStudyDetail } from '../../lib/study';
 import { kickOffStudyMember, updateRegisterState } from '../../lib/api';
+import LoadingComponent from '../../components/common/LoadingComponent';
 
 const StudyManageContainer = () => {
   const dispatch = useDispatch();
@@ -56,12 +57,13 @@ const StudyManageContainer = () => {
   }, [dispatch, studyId]);
 
   return (
-    <StudyManageForm
-      study={study}
-      loading={loading}
-      handleRegisterState={handleRegisterState}
-      handleKickOff={handleKickOff}
-    />
+    <LoadingComponent loading={loading}>
+      <StudyManageForm
+        data={study}
+        handleRegisterState={handleRegisterState}
+        handleKickOff={handleKickOff}
+      />
+    </LoadingComponent>
   );
 };
 
