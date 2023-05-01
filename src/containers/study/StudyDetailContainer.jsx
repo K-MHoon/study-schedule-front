@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import StudyDetailForm from '../../components/study/StudyDetailForm';
 import { studyDetail } from '../../lib/study';
+import LoadingComponent from '../../components/common/LoadingComponent';
 
 const StudyDetailContainer = () => {
   const dispatch = useDispatch();
   const { studyId } = useParams();
+  const location = useLocation();
 
   const { study, loading } = useSelector(({ study, loading }) => ({
     study: study.study,
@@ -18,7 +20,11 @@ const StudyDetailContainer = () => {
     dispatch(studyDetail(studyId));
   }, [dispatch, studyId]);
 
-  return <StudyDetailForm study={study} loading={loading} />;
+  return (
+    <LoadingComponent loading={loading}>
+      <StudyDetailForm data={study} readOnly={location.state.readOnly} />
+    </LoadingComponent>
+  );
 };
 
 export default StudyDetailContainer;

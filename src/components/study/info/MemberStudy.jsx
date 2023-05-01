@@ -31,6 +31,14 @@ const MemberStudy = ({ data, removeSelectedStudyMember }) => {
     [studyList],
   );
 
+  const gotoStudyManageForm = useCallback((study) => {
+    if (study.isMine) {
+      navigate(`${Url.studyInfoPage}/${study.id}`);
+    } else {
+      navigate(`/study/${study.id}`, { state: { readOnly: true } });
+    }
+  }, []);
+
   return (
     <Form.Group className="mb-3 form-border" controlId="joinedStudys">
       <div className="form-content">
@@ -58,7 +66,7 @@ const MemberStudy = ({ data, removeSelectedStudyMember }) => {
             {data.map((study) => (
               <MyTr
                 key={study.id}
-                onClick={() => navigate(`${Url.studyInfoPage}/${study.id}`)}
+                onClick={() => gotoStudyManageForm(study)}
                 isMine={study.isMine}
               >
                 <td>
