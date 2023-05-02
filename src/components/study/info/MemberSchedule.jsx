@@ -28,9 +28,7 @@ const MemberSchedule = ({ data, removeSelectedScheduleList }) => {
   return (
     <Form.Group className="mb-3 form-border" controlId="schedules">
       <div className="form-content">
-        <Form.Label className="form-custom-label">
-          생성한 스케줄 목록
-        </Form.Label>
+        <Form.Label className="form-custom-label">내 스케줄 목록</Form.Label>
         <Table striped bordered hover size="sm">
           <thead>
             <tr>

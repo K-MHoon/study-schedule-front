@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PublicStudyListForm from '../../components/study/PublicStudyListForm';
 import { listStudy } from '../../lib/studies';
+import LoadingComponent from '../../components/common/LoadingComponent';
 
 const PublicStudyListContainer = () => {
   const dispatch = useDispatch();
@@ -22,12 +23,13 @@ const PublicStudyListContainer = () => {
   };
 
   return (
-    <PublicStudyListForm
-      page={page}
-      data={data}
-      loading={loading}
-      getPublicStudyList={getPublicStudyList}
-    />
+    <LoadingComponent loading={loading}>
+      <PublicStudyListForm
+        page={page}
+        data={data}
+        getPublicStudyList={getPublicStudyList}
+      />
+    </LoadingComponent>
   );
 };
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Form, Spinner, Table } from 'react-bootstrap';
+import { Button, Form, Table } from 'react-bootstrap';
 
-const MemberRegisterRequestForm = ({ data, loading = true }) => {
+const MemberRegisterRequestForm = ({ data }) => {
   return (
     <Form.Group className="mb-3 form-border" controlId="todos">
       <div className="form-content">

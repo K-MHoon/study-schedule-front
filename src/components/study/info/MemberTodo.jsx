@@ -28,7 +28,7 @@ const MemberTodo = ({ data, loading = true, removeSelectedTodoList }) => {
   return (
     <Form.Group className="mb-3 form-border" controlId="todos">
       <div className="form-content">
-        <Form.Label className="form-custom-label">생성한 Todo 목록</Form.Label>
+        <Form.Label className="form-custom-label">내 Todo 목록</Form.Label>
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
