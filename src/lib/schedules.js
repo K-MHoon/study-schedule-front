@@ -9,10 +9,7 @@ const [LIST_SCHEDULES, LIST_SCHEDULES_SUCCESS, LIST_SCHEDULES_FAILURE] =
   createRequestActionTypes('schedules/LIST_SCHEDULES');
 
 // 액션 생성 함수에서 우선적인 처리가 가능하며, 리턴되는 값은 payload로 들어가게 된다.
-export const listSchedules = createAction(
-  LIST_SCHEDULES,
-  (memberId) => memberId,
-);
+export const listSchedules = createAction(LIST_SCHEDULES, (studyId) => studyId);
 
 const listSchedulesSaga = createRequestSaga(
   LIST_SCHEDULES,

@@ -41,7 +41,10 @@ const App = () => {
         />
 
         <Route path="/schedule/create" element={<ScheduleCreatePage />} />
-        <Route path="/schedules" element={<ScheduleListPage />} />
+        <Route
+          path="/study/:studyId/schedules"
+          element={<ScheduleListPage />}
+        />
         <Route
           path="schedule/:scheduleId/todos"
           element={<TodoByScheduleListPage />}
