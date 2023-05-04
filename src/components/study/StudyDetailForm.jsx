@@ -12,6 +12,7 @@ const CleanDisabledForm = styled(Form.Control)`
 
 const StudyDetailForm = ({ data, readOnly = false }) => {
   const navigate = useNavigate();
+
   return (
     <Container>
       <Row>
@@ -71,6 +72,11 @@ const StudyDetailForm = ({ data, readOnly = false }) => {
       {!readOnly && (
         <SubmitButton onClick={() => navigate(`/study/${data.id}/register`)}>
           가입 신청하기
+        </SubmitButton>
+      )}
+      {readOnly && (
+        <SubmitButton onClick={() => navigate(`/study/${data.id}/schedules`)}>
+          내 스케줄 기록 확인하기
         </SubmitButton>
       )}
     </Container>

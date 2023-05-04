@@ -11,11 +11,10 @@ const ScheduleListForm = ({ data, navigateToTodos }) => {
             <Accordion.Header onClick={() => navigateToTodos(schedule.id)}>
               <Container>
                 <Row>
-                  <Col sm={2}>{schedule.id}</Col>
-                  <Col sm={4}>{schedule.name}</Col>
                   <Col sm={6}>
                     {schedule.startDate} ~ {schedule.endDate}
                   </Col>
+                  <Col sm={4}>{schedule.name}</Col>
                 </Row>
               </Container>
             </Accordion.Header>

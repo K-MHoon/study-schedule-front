@@ -4,7 +4,7 @@ import MainLayout from '../../layout/MainLayout';
 
 const ScheduleListPage = () => {
   return (
-    <MainLayout title="회원 스케줄 정보">
+    <MainLayout title="내 스케줄 기록 확인하기">
       <ScheduleListContainer />
     </MainLayout>
   );
