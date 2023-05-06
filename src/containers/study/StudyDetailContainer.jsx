@@ -22,7 +22,10 @@ const StudyDetailContainer = () => {
 
   return (
     <LoadingComponent loading={loading}>
-      <StudyDetailForm data={study} readOnly={location.state.readOnly} />
+      <StudyDetailForm
+        data={study}
+        readOnly={location.state === null ? false : location.state.readOnly}
+      />
     </LoadingComponent>
   );
 };
