@@ -33,6 +33,10 @@ const NavBar = () => {
     navigate('/member/profile');
   }, []);
 
+  const handleGotoTodayScheduleList = useCallback(() => {
+    navigate('/schedule/today');
+  }, []);
+
   const handleGotoMyStudy = useCallback(() => {
     navigate(Url.studyInfoPage);
   }, []);
@@ -47,6 +51,9 @@ const NavBar = () => {
       <ul className="account_options">
         {getAccessToken() ? (
           <>
+            <li>
+              <span onClick={handleGotoTodayScheduleList}>할 일</span>
+            </li>
             <li>
               <span onClick={handleGotoMyStudy}>스터디</span>
             </li>
