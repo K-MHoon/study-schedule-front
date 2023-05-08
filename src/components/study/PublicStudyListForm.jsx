@@ -5,7 +5,7 @@ import {
   KeyboardDoubleArrowRight,
 } from '@mui/icons-material';
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Button, Col, Form, Row, Table } from 'react-bootstrap';
 import Pagination from 'react-js-pagination';
 import '../../css/Pagination.scss';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +14,19 @@ const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
   const navigate = useNavigate();
   return (
     <>
+      <Form onSubmit={(e) => console.log(e)}>
+        <Row className="mb-3">
+          <Form.Group as={Col} md="4" controlId="studyName">
+            <Form.Label>스터디 명</Form.Label>
+            <Form.Control type="text" placeholder="스터디 명" />
+          </Form.Group>
+          <Form.Group as={Col} md="4" controlId="studyLeader">
+            <Form.Label>방장</Form.Label>
+            <Form.Control type="text" placeholder="방장" />
+          </Form.Group>
+        </Row>
+        <Button type="submit">검색</Button>
+      </Form>
       <Table striped bordered hover>
         <thead>
           <tr>
