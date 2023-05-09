@@ -5,28 +5,45 @@ import {
   KeyboardDoubleArrowRight,
 } from '@mui/icons-material';
 import React from 'react';
-import { Button, Col, Form, Row, Table } from 'react-bootstrap';
+import { Button, Col, Form, InputGroup, Row, Table } from 'react-bootstrap';
 import Pagination from 'react-js-pagination';
 import '../../css/Pagination.scss';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const SearchButton = styled(Button)`
+  margin: 0;
+  background-color: #22b8cf;
+  border-radius: 10px !important;
+  border: 0;
+
+  &:hover {
+    background-color: #088699;
+  }
+`;
 
 const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
   const navigate = useNavigate();
   return (
     <>
-      <Form onSubmit={(e) => console.log(e)}>
-        <Row className="mb-3">
-          <Form.Group as={Col} md="4" controlId="studyName">
-            <Form.Label>스터디 명</Form.Label>
-            <Form.Control type="text" placeholder="스터디 명" />
-          </Form.Group>
-          <Form.Group as={Col} md="4" controlId="studyLeader">
-            <Form.Label>방장</Form.Label>
-            <Form.Control type="text" placeholder="방장" />
-          </Form.Group>
-        </Row>
-        <Button type="submit">검색</Button>
-      </Form>
+      <InputGroup className="mb-3">
+        <InputGroup.Text style={{ borderRadius: '10px 0 0 10px' }}>
+          스터디명
+        </InputGroup.Text>
+        <Form.Control
+          style={{ marginRight: '20px', borderRadius: '0 10px 10px 0' }}
+          type="text"
+        />
+        <InputGroup.Text style={{ borderRadius: '10px 0 0 10px' }}>
+          방장
+        </InputGroup.Text>
+        <Form.Control
+          style={{ marginRight: '20px', borderRadius: '0 10px 10px 0' }}
+          type="text"
+        />
+        <SearchButton>검색</SearchButton>
+      </InputGroup>
+
       <Table striped bordered hover>
         <thead>
           <tr>
