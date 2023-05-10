@@ -4,8 +4,8 @@ import {
   KeyboardDoubleArrowLeft,
   KeyboardDoubleArrowRight,
 } from '@mui/icons-material';
-import React from 'react';
-import { Button, Col, Form, InputGroup, Row, Table } from 'react-bootstrap';
+import React, { useCallback, useState } from 'react';
+import { Button, Form, InputGroup, Table } from 'react-bootstrap';
 import Pagination from 'react-js-pagination';
 import '../../css/Pagination.scss';
 import { useNavigate } from 'react-router-dom';
@@ -24,6 +24,17 @@ const SearchButton = styled(Button)`
 
 const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
   const navigate = useNavigate();
+  const [studyName, setStudyName] = useState('');
+  const [studyLeader, setStudyLeader] = useState('');
+
+  const handleStudyName = useCallback((e) => {
+    setStudyName(e.target.value);
+  }, []);
+
+  const handleStudyLeader = useCallback((e) => {
+    setStudyLeader(e.target.value);
+  }, []);
+
   return (
     <>
       <InputGroup className="mb-3">
@@ -33,6 +44,8 @@ const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
         <Form.Control
           style={{ marginRight: '20px', borderRadius: '0 10px 10px 0' }}
           type="text"
+          onChange={handleStudyName}
+          value={studyName}
         />
         <InputGroup.Text style={{ borderRadius: '10px 0 0 10px' }}>
           방장
@@ -40,6 +53,8 @@ const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
         <Form.Control
           style={{ marginRight: '20px', borderRadius: '0 10px 10px 0' }}
           type="text"
+          onChange={handleStudyLeader}
+          value={studyLeader}
         />
         <SearchButton>검색</SearchButton>
       </InputGroup>
