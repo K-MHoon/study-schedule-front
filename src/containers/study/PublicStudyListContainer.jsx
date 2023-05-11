@@ -15,11 +15,11 @@ const PublicStudyListContainer = () => {
   }));
 
   useEffect(() => {
-    dispatch(listStudy(0, 10, ''));
+    dispatch(listStudy('', '', 0, 10, ''));
   }, [dispatch]);
 
-  const getPublicStudyList = (pageNumber) => {
-    dispatch(listStudy(pageNumber, 10, ''));
+  const getPublicStudyList = (name, leader, pageNumber) => {
+    dispatch(listStudy(name, leader, pageNumber, 10, ''));
   };
 
   return (

@@ -100,8 +100,10 @@ export const fetchRegisterList = () =>
 export const fetchTodoByScheduleList = (scheduleId) =>
   client.get(`/api/todo/schedule/${scheduleId}`);
 
-export const fetchPublicStudyList = ({ page, size, sort }) =>
-  client.get(`/api/study?page=${page}&size=${size}&sort=${sort}`);
+export const fetchPublicStudyList = ({ name, leader, page, size, sort }) =>
+  client.get(
+    `/api/study?name=${name}&leader=${leader}&page=${page}&size=${size}&sort=${sort}`,
+  );
 
 export const fetchStudyRegister = (studyId, goal, objective, comment) =>
   client.post(

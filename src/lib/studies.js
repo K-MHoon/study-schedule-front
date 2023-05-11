@@ -16,7 +16,7 @@ const [LIST_MY_STUDY, LIST_MY_STUDY_SUCCESS, LIST_MY_STUDY_FAILURE] =
 
 export const listStudy = createAction(
   LIST_PUBLIC_STUDY,
-  (page, size, sort) => ({ page, size, sort }),
+  (name, leader, page, size, sort) => ({name, leader, page, size, sort }),
 );
 
 export const listMyStudy = createAction(LIST_MY_STUDY);
