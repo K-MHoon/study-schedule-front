@@ -22,10 +22,23 @@ const SearchButton = styled(Button)`
   }
 `;
 
+const jsonLocalStorage = {
+  setItem: (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+  },
+  getItem: (key) => {
+    return JSON.parse(localStorage.getItem(key));
+  },
+};
+
 const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
   const navigate = useNavigate();
-  const [studyName, setStudyName] = useState('');
-  const [studyLeader, setStudyLeader] = useState('');
+  const [studyName, setStudyName] = useState(
+    jsonLocalStorage.getItem('studyName') || '',
+  );
+  const [studyLeader, setStudyLeader] = useState(
+    jsonLocalStorage.getItem('studyLeader') || '',
+  );
 
   const handleStudyName = useCallback((e) => {
     setStudyName(e.target.value);
@@ -34,6 +47,15 @@ const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
   const handleStudyLeader = useCallback((e) => {
     setStudyLeader(e.target.value);
   }, []);
+
+  const handleRequest = useCallback(
+    (count) => {
+      jsonLocalStorage.setItem('studyName', studyName);
+      jsonLocalStorage.setItem('studyLeader', studyLeader);
+      getPublicStudyList(studyName, studyLeader, count);
+    },
+    [studyName, studyLeader],
+  );
 
   return (
     <>
@@ -56,7 +78,7 @@ const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
           onChange={handleStudyLeader}
           value={studyLeader}
         />
-        <SearchButton>검색</SearchButton>
+        <SearchButton onClick={() => handleRequest(0)}>검색</SearchButton>
       </InputGroup>
 
       <Table striped bordered hover>
@@ -110,7 +132,7 @@ const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
             style={{ fontSize: 25, display: 'flex', color: '#22b8cf' }}
           />
         }
-        onChange={(e) => getPublicStudyList(e - 1)}
+        onChange={(e) => handleRequest(e - 1)}
       />
     </>
   );
