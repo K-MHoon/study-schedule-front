@@ -1,7 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 
-const MemberRegisterRequestForm = ({ data }) => {
+const MemberRegisterRequestForm = ({
+  data,
+  cancelSelectedStudyRegisterList,
+}) => {
   const [requestList, setRequestList] = useState([]);
 
   const handleRequestList = useCallback(
@@ -14,6 +17,16 @@ const MemberRegisterRequestForm = ({ data }) => {
     },
     [requestList],
   );
+
+  const handleCancelSelectedStudyRegisterList = useCallback(
+    (e) => {
+      e.preventDefault();
+      cancelSelectedStudyRegisterList(requestList);
+    },
+    [requestList],
+  );
+
+  console.log(requestList);
 
   return (
     <Form.Group className="mb-3 form-border" controlId="todos">
@@ -54,7 +67,7 @@ const MemberRegisterRequestForm = ({ data }) => {
           <Button
             variant="danger"
             className="danger-button"
-            onClick={(e) => console.log(e)}
+            onClick={handleCancelSelectedStudyRegisterList}
           >
             신청 취소하기
           </Button>
