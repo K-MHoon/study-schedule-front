@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 
 const MemberRegisterRequestForm = ({ data }) => {
+  const [requestList, setRequestList] = useState([]);
+
+  const handleRequestList = useCallback(
+    (id) => {
+      if (requestList.find((data) => data === id)) {
+        setRequestList(requestList.filter((data) => data !== id));
+      } else {
+        setRequestList([...requestList, id]);
+      }
+    },
+    [requestList],
+  );
+
   return (
     <Form.Group className="mb-3 form-border" controlId="todos">
       <div className="form-content">
@@ -22,7 +35,12 @@ const MemberRegisterRequestForm = ({ data }) => {
                   <Form.Check
                     type="checkbox"
                     id={register.id}
-                    onChange={(e) => console.log(e)}
+                    onChange={(e) => handleRequestList(register.id)}
+                    disabled={
+                      register.state === 'READ' || register.state === 'NO_READ'
+                        ? false
+                        : true
+                    }
                   />
                 </td>
                 <td>{register.study.studyName}</td>

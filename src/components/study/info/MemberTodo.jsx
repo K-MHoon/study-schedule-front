@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { Button, Form, Spinner, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const MemberTodo = ({ data, loading = true, removeSelectedTodoList }) => {
+const MemberTodo = ({ data, removeSelectedTodoList }) => {
   const navigate = useNavigate();
   const [todoList, setTodoList] = useState([]);
 
