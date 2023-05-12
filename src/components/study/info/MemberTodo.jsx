@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Button, Form, Spinner, Table } from 'react-bootstrap';
+import { Button, Form, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 const MemberTodo = ({ data, removeSelectedTodoList }) => {
@@ -17,7 +17,7 @@ const MemberTodo = ({ data, removeSelectedTodoList }) => {
     [todoList],
   );
 
-  const hadnleRemoveSelectedTodoList = useCallback(
+  const handleRemoveSelectedTodoList = useCallback(
     (e) => {
       e.preventDefault();
       removeSelectedTodoList(todoList);
@@ -66,7 +66,7 @@ const MemberTodo = ({ data, removeSelectedTodoList }) => {
           <Button
             variant="danger"
             className="danger-button"
-            onClick={hadnleRemoveSelectedTodoList}
+            onClick={handleRemoveSelectedTodoList}
           >
             선택한 Todo 삭제하기
           </Button>

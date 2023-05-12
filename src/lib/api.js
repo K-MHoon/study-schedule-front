@@ -58,6 +58,15 @@ export const removeTodoList = (todoList) =>
     ...privateHeader,
   });
 
+export const cancelStudyRegisterList = (studyRegisterList) =>
+  client.post(
+    `/api/study/register/cancel`,
+    {
+      studyRegisterList: studyRegisterList,
+    },
+    privateHeader,
+  );
+
 export const createMember = (memberId, password, name, age) =>
   client.post(`/api/register`, { memberId, password, name, age });
 

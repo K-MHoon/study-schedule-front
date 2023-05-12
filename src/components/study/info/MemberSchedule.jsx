@@ -17,7 +17,7 @@ const MemberSchedule = ({ data, removeSelectedScheduleList }) => {
     [scheduleList],
   );
 
-  const hadnleRemoveSelectedScheduleList = useCallback(
+  const handleRemoveSelectedScheduleList = useCallback(
     (e) => {
       e.preventDefault();
       removeSelectedScheduleList(scheduleList);
@@ -70,7 +70,7 @@ const MemberSchedule = ({ data, removeSelectedScheduleList }) => {
           <Button
             variant="danger"
             className="danger-button"
-            onClick={hadnleRemoveSelectedScheduleList}
+            onClick={handleRemoveSelectedScheduleList}
           >
             선택한 스케줄 삭제하기
           </Button>
