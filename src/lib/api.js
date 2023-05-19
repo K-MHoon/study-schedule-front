@@ -36,6 +36,13 @@ export const updateRegisterState = (studyId, registerId, changeState) =>
     privateHeader,
   );
 
+export const updateTodayScheduleTodo = (clearScheduleTodoList) =>
+  client.post(
+    `/api/schedule/today`,
+    { clearScheduleTodoList: clearScheduleTodoList },
+    privateHeader,
+  );
+
 export const kickOffStudyMember = (studyId, memberId) =>
   client.post(
     `/api/study/my/${studyId}/member/${memberId}/out`,
