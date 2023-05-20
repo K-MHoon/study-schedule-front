@@ -54,9 +54,6 @@ const TodayScheduleListForm = ({ data, updateScheduleTodo }) => {
     const clearScheduleTodoList = [];
 
     Object.keys(checkedList).map((key) => {
-      if (checkedList[key].length === 0) {
-        return;
-      }
       clearScheduleTodoList.push({
         scheduleId: Number.parseInt(key),
         clearTodoIdList: checkedList[key],
