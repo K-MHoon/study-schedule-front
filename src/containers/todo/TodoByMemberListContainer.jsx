@@ -11,7 +11,7 @@ import LoadingComponent from '../../components/common/LoadingComponent';
 const TodoByMemberListContainer = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { name, startDate, endDate, isUse } =
+  const { name, startDate, endDate, isUse, studyId } =
     location.state !== null ? location.state : {};
   const navigate = useNavigate();
 
@@ -29,6 +29,7 @@ const TodoByMemberListContainer = () => {
         format.asString(endDate),
         isUse,
         todoList,
+        studyId,
       );
       alert('스케줄 생성에 성공했습니다!');
       navigate(Url.studyInfoPage);

@@ -131,7 +131,14 @@ export const fetchStudyRegister = (studyId, goal, objective, comment) =>
 export const login = ({ memberId, password }) =>
   client.post(`/api/login`, { memberId, password });
 
-export const createSchedule = (name, startDate, endDate, isUse, todoList) =>
+export const createSchedule = (
+  name,
+  startDate,
+  endDate,
+  isUse,
+  todoList,
+  studyId,
+) =>
   client.post(
     `/api/schedule`,
     {
@@ -140,6 +147,7 @@ export const createSchedule = (name, startDate, endDate, isUse, todoList) =>
       endDate,
       isUse,
       todoList,
+      studyId,
     },
     privateHeader,
   );
