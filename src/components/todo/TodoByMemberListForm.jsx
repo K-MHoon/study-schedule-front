@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Form, Table } from 'react-bootstrap';
 import { SubmitButton } from '../common/CustomButton';
 
-const TodoByMemberListForm = ({ todos, createScheduleRequest }) => {
+const TodoByMemberListForm = ({ data, createScheduleRequest }) => {
   const [todoList, setTodoList] = useState([]);
   const createFlag = createScheduleRequest !== undefined;
 
@@ -29,7 +29,7 @@ const TodoByMemberListForm = ({ todos, createScheduleRequest }) => {
           </tr>
         </thead>
         <tbody>
-          {todos.map((todo) => (
+          {data.map((todo) => (
             <tr key={todo.id}>
               {createFlag && (
                 <td>

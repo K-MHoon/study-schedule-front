@@ -79,15 +79,10 @@ const StudyDetailForm = ({ data, readOnly = false }) => {
           <SubmitButton onClick={() => navigate(`/study/${data.id}/schedules`)}>
             내 스케줄 이력 확인하기
           </SubmitButton>
-          <SubmitButton onClick={(e) => console.log(e)}>
-            내 스케줄 관리하기
-          </SubmitButton>
           <SubmitButton
-            onClick={() =>
-              navigate(`/schedule/create`, { state: { studyId: data.id } })
-            }
+            onClick={() => navigate(`/study/${data.id}/schedules/manage`)}
           >
-            신규 스케줄 생성하기
+            내 스케줄 관리하기
           </SubmitButton>
         </>
       )}
