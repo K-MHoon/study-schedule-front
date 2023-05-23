@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import { Button, Form, Spinner, Table } from 'react-bootstrap';
+import { Button, Form, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const MemberSchedule = ({ data, removeSelectedScheduleList }) => {
+const MemberSchedule = ({ data, studyId, removeSelectedScheduleList }) => {
   const [scheduleList, setScheduleList] = useState([]);
   const navigate = useNavigate();
 
@@ -63,7 +63,9 @@ const MemberSchedule = ({ data, removeSelectedScheduleList }) => {
           <Button
             variant="success"
             className="danger-button"
-            onClick={() => navigate('/schedule/create')}
+            onClick={() =>
+              navigate(`/schedule/create`, { state: { studyId: studyId } })
+            }
           >
             스케줄 생성하기
           </Button>

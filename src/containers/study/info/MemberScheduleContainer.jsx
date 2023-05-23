@@ -5,9 +5,11 @@ import { removeScheduleList } from '../../../lib/api';
 import LoadingComponent from '../../../components/common/LoadingComponent';
 import MemberSchedule from '../../../components/study/info/MemberSchedule';
 import { removeList } from '../StudyInfoContainer';
+import { useParams } from 'react-router-dom';
 
 const MemberScheduleContainer = () => {
   const dispatch = useDispatch();
+  const { studyId } = useParams();
 
   const { schedules, loading } = useSelector(({ schedules, loading }) => ({
     schedules: schedules.schedules,
@@ -16,7 +18,7 @@ const MemberScheduleContainer = () => {
   }));
 
   useEffect(() => {
-    dispatch(listSchedules());
+    dispatch(listSchedules(studyId));
   }, [dispatch]);
 
   const removeSelectedScheduleList = (scheduleList) => {
@@ -31,6 +33,7 @@ const MemberScheduleContainer = () => {
     <LoadingComponent loading={loading}>
       <MemberSchedule
         data={schedules}
+        studyId={studyId}
         removeSelectedScheduleList={removeSelectedScheduleList}
       />
     </LoadingComponent>

@@ -19,6 +19,7 @@ import StudyManagePage from './pages/study/StudyManagePage';
 import TodoCreatePage from './pages/todo/TodoCreatePage';
 import StudyInfoPage from './pages/study/StudyInfoPage';
 import TodayScheduleListPage from './pages/schedule/TodayScheduleListPage';
+import MemberSchedulePage from './pages/schedule/MemberSchedulePage';
 
 export const Url = {
   studyInfoPage: '/info/study',
@@ -45,6 +46,10 @@ const App = () => {
         <Route
           path="/study/:studyId/schedules"
           element={<ScheduleListPage />}
+        />
+        <Route
+          path="/study/:studyId/schedules/manage"
+          element={<MemberSchedulePage />}
         />
         <Route
           path="schedule/:scheduleId/todos"
