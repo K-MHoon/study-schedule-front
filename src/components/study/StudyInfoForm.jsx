@@ -11,12 +11,12 @@ const StudyInfoForm = () => {
       <Tab eventKey="study" title="Study">
         <MemberStudyContainer />
       </Tab>
-      <Tab eventKey="schedule" title="Schedule">
+      {/* <Tab eventKey="schedule" title="Schedule">
         <MemberScheduleContainer />
       </Tab>
       <Tab eventKey="todo" title="Todo">
         <MemberTodoContainer />
-      </Tab>
+      </Tab> */}
       <Tab eventKey="request" title="Request">
         <MemberRegisterRequestContainer />
       </Tab>
