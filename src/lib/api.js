@@ -116,6 +116,9 @@ export const fetchRegisterList = () =>
 export const fetchTodoByScheduleList = (scheduleId) =>
   client.get(`/api/todo/schedule/${scheduleId}`);
 
+export const fetchScheduleDetail = (scheduleId) =>
+  client.get(`/api/schedule/${scheduleId}`, privateHeader);
+
 export const fetchPublicStudyList = ({ name, leader, page, size, sort }) =>
   client.get(
     `/api/study?name=${name}&leader=${leader}&page=${page}&size=${size}&sort=${sort}`,
