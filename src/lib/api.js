@@ -137,6 +137,8 @@ export const createSchedule = (
   endDate,
   isUse,
   todoList,
+  period,
+  custom,
   studyId,
 ) =>
   client.post(
@@ -147,6 +149,8 @@ export const createSchedule = (
       endDate,
       isUse,
       todoList,
+      period,
+      customDay: custom,
       studyId,
     },
     privateHeader,

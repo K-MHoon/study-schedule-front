@@ -12,7 +12,7 @@ const ScheduleCreateForm = ({ nextTodoSelect }) => {
   const [endDate, setEndDate] = useState(new Date());
   const [isUse, setIsUse] = useState('N');
   const [period, setPeriod] = useState('DAY');
-  const [custom, setCustom] = useState(1);
+  const [custom, setCustom] = useState(0);
 
   const onChangeName = useCallback((e) => {
     setName(e.target.value);
@@ -27,7 +27,7 @@ const ScheduleCreateForm = ({ nextTodoSelect }) => {
   }, []);
 
   const handlePeriodChange = (e) => {
-    console.log(e.target.value);
+    setCustom(0);
     setPeriod(e.target.value);
   };
 
@@ -139,7 +139,9 @@ const ScheduleCreateForm = ({ nextTodoSelect }) => {
       </Row>
       <br />
       <SubmitButton
-        onClick={(e) => nextTodoSelect({ name, startDate, endDate, isUse })}
+        onClick={(e) =>
+          nextTodoSelect({ name, startDate, endDate, isUse, period, custom })
+        }
       >
         할 일 선택하기
       </SubmitButton>
