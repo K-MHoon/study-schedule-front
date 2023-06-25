@@ -50,7 +50,11 @@ const MemberSchedule = ({ data, studyId, removeSelectedScheduleList }) => {
                     onChange={(e) => handleScheduleList(schedule.id)}
                   />
                 </td>
-                <td onClick={(e) => navigate(`/schedule/${schedule.id}`)}>
+                <td
+                  onClick={(e) =>
+                    navigate(`/study/${studyId}/schedule/${schedule.id}`)
+                  }
+                >
                   {schedule.name}
                 </td>
                 <td>{schedule.startDate}</td>
