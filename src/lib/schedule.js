@@ -13,7 +13,7 @@ export const scheduleDetail = createAction(
   (scheduleId) => scheduleId,
 );
 
-const scheduleDetailSaga = createRequestSaga(SCHEDULE, api.fetchStudyDetail);
+const scheduleDetailSaga = createRequestSaga(SCHEDULE, api.fetchScheduleDetail);
 
 export function* scheduleSaga() {
   yield takeLatest(SCHEDULE, scheduleDetailSaga);
