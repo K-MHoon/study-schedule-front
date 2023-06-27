@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import LoadingComponent from '../../components/common/LoadingComponent';
 import ScheduleDetailForm from '../../components/schedule/ScheduleDetailForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { scheduleDetail } from '../../lib/schedule';
 
 const ScheduleDetailContainer = () => {
   const dispatch = useDispatch();
-  const { scheduleId } = useParams();
+  const { studyId, scheduleId } = useParams();
 
   const { schedule, loading } = useSelector(({ schedule, loading }) => ({
     schedule: schedule.schedule,
@@ -15,13 +15,38 @@ const ScheduleDetailContainer = () => {
     loading: loading['schedule/SCHEDULE'],
   }));
 
+  const navigate = useNavigate();
+
+  const nextTodoSelect = ({
+    name,
+    startDate,
+    endDate,
+    isUse,
+    period,
+    custom,
+  }) => {
+    const alreadyTodos = schedule.todoList.map((t) => t.id);
+    navigate(`/member/todos`, {
+      state: {
+        name,
+        startDate,
+        endDate,
+        isUse,
+        period,
+        custom,
+        studyId,
+        alreadyTodos,
+      },
+    });
+  };
+
   useEffect(() => {
     dispatch(scheduleDetail(scheduleId));
   }, [dispatch, scheduleId]);
 
   return (
     <LoadingComponent loading={loading}>
-      <ScheduleDetailForm data={schedule} />
+      <ScheduleDetailForm data={schedule} nextTodoSelect={nextTodoSelect} />
     </LoadingComponent>
   );
 };

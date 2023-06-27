@@ -11,8 +11,16 @@ import LoadingComponent from '../../components/common/LoadingComponent';
 const TodoByMemberListContainer = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { name, startDate, endDate, isUse, period, custom, studyId } =
-    location.state !== null ? location.state : {};
+  const {
+    name,
+    startDate,
+    endDate,
+    isUse,
+    period,
+    custom,
+    studyId,
+    alreadyTodos,
+  } = location.state !== null ? location.state : {};
   const navigate = useNavigate();
 
   const { memberTodos, loading } = useSelector(({ todos, loading }) => ({
@@ -60,6 +68,7 @@ const TodoByMemberListContainer = () => {
         createScheduleRequest={
           location.state ? createScheduleRequest : undefined
         }
+        alreadyTodos={alreadyTodos}
       />
     </LoadingComponent>
   );

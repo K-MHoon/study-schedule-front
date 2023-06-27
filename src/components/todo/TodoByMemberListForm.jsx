@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Form, Table } from 'react-bootstrap';
 import { SubmitButton } from '../common/CustomButton';
 
-const TodoByMemberListForm = ({ data, createScheduleRequest }) => {
+const TodoByMemberListForm = ({
+  data,
+  createScheduleRequest,
+  alreadyTodos,
+}) => {
   const [todoList, setTodoList] = useState([]);
   const createFlag = createScheduleRequest !== undefined;
+
+  useEffect(() => {
+    if (alreadyTodos !== undefined) {
+      setTodoList(
+        data.map((d) => d.id).filter((d) => alreadyTodos.includes(d)),
+      );
+    }
+  }, []);
 
   const handleTodoList = (id) => {
     if (todoList.find((data) => data === id)) {
@@ -36,6 +48,7 @@ const TodoByMemberListForm = ({ data, createScheduleRequest }) => {
                   <Form.Check
                     type="checkbox"
                     id={todo.id}
+                    checked={todoList.indexOf(todo.id) >= 0}
                     onChange={(e) => handleTodoList(todo.id)}
                   />
                 </td>
