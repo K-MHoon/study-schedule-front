@@ -18,6 +18,7 @@ const ScheduleDetailContainer = () => {
   const navigate = useNavigate();
 
   const nextTodoSelect = ({
+    scheduleId,
     name,
     startDate,
     endDate,
@@ -28,6 +29,7 @@ const ScheduleDetailContainer = () => {
     const alreadyTodos = schedule.todoList.map((t) => t.id);
     navigate(`/member/todos`, {
       state: {
+        scheduleId,
         name,
         startDate,
         endDate,

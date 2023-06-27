@@ -4,6 +4,7 @@ import DatePicker from 'react-date-picker';
 import { SubmitButton } from '../common/CustomButton';
 
 const ScheduleDetailForm = ({ data, nextTodoSelect }) => {
+  const [scheduleId, setScheduleId] = useState(0);
   const [name, setName] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -12,6 +13,7 @@ const ScheduleDetailForm = ({ data, nextTodoSelect }) => {
   const [custom, setCustom] = useState(0);
 
   useEffect(() => {
+    setScheduleId(data.id);
     setName(data.name);
     setIsUse(data.isUse);
     setPeriod(data.period);
@@ -148,7 +150,15 @@ const ScheduleDetailForm = ({ data, nextTodoSelect }) => {
       <br />
       <SubmitButton
         onClick={(e) =>
-          nextTodoSelect({ name, startDate, endDate, isUse, period, custom })
+          nextTodoSelect({
+            scheduleId,
+            name,
+            startDate,
+            endDate,
+            isUse,
+            period,
+            custom,
+          })
         }
       >
         할 일 수정하기

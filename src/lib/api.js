@@ -135,6 +135,7 @@ export const login = ({ memberId, password }) =>
   client.post(`/api/login`, { memberId, password });
 
 export const createSchedule = (
+  scheduleId,
   name,
   startDate,
   endDate,
@@ -147,6 +148,7 @@ export const createSchedule = (
   client.post(
     `/api/schedule`,
     {
+      scheduleId,
       name,
       startDate,
       endDate,

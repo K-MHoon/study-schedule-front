@@ -12,6 +12,7 @@ const TodoByMemberListContainer = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const {
+    scheduleId,
     name,
     startDate,
     endDate,
@@ -32,6 +33,7 @@ const TodoByMemberListContainer = () => {
   const createScheduleRequest = async (todoList) => {
     try {
       await createSchedule(
+        scheduleId,
         name,
         format.asString(startDate),
         format.asString(endDate),
@@ -41,7 +43,7 @@ const TodoByMemberListContainer = () => {
         custom,
         studyId,
       );
-      alert('스케줄 생성에 성공했습니다!');
+      alert('요청이 성공했습니다!');
       navigate(Url.studyInfoPage);
     } catch (e) {
       console.log(e);

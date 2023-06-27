@@ -64,7 +64,7 @@ const TodoByMemberListForm = ({
       </Table>
       {createFlag && (
         <SubmitButton onClick={(e) => createScheduleRequest(todoList)}>
-          스케줄 생성하기
+          {alreadyTodos === undefined ? `스케줄 생성하기` : `스케줄 수정하기`}
         </SubmitButton>
       )}
     </>
