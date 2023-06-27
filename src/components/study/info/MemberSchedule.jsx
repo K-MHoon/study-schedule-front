@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { LinkTd } from '../../common/CustomTable';
 
 const MemberSchedule = ({ data, studyId, removeSelectedScheduleList }) => {
   const [scheduleList, setScheduleList] = useState([]);
@@ -50,13 +51,13 @@ const MemberSchedule = ({ data, studyId, removeSelectedScheduleList }) => {
                     onChange={(e) => handleScheduleList(schedule.id)}
                   />
                 </td>
-                <td
+                <LinkTd
                   onClick={(e) =>
                     navigate(`/study/${studyId}/schedule/${schedule.id}`)
                   }
                 >
                   {schedule.name}
-                </td>
+                </LinkTd>
                 <td>{schedule.startDate}</td>
                 <td>{schedule.endDate}</td>
                 <td>{schedule.isUse}</td>

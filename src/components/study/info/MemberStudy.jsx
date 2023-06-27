@@ -3,6 +3,7 @@ import { Button, Form, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Url } from '../../../App';
+import { LinkTd } from '../../common/CustomTable';
 
 const MyTr = styled.tr`
   background-color: ${(props) => (props.isMine ? '#CCFDB1' : '#FCF8B6')};
@@ -64,11 +65,7 @@ const MemberStudy = ({ data, removeSelectedStudyMember }) => {
           </thead>
           <tbody>
             {data.map((study) => (
-              <MyTr
-                key={study.id}
-                onClick={() => gotoStudyManageForm(study)}
-                isMine={study.isMine}
-              >
+              <MyTr key={study.id} isMine={study.isMine}>
                 <td>
                   <Form.Check
                     type="checkbox"
@@ -76,7 +73,9 @@ const MemberStudy = ({ data, removeSelectedStudyMember }) => {
                     onChange={(e) => handleStudyList(study.id)}
                   />
                 </td>
-                <td>{study.studyName}</td>
+                <LinkTd onClick={() => gotoStudyManageForm(study)}>
+                  {study.studyName}
+                </LinkTd>
                 <td>{study.leaderId}</td>
                 <td>{study.isUse}</td>
                 <td>{study.createdAt}</td>
