@@ -3,7 +3,11 @@ import StudyManageForm from '../../components/study/StudyManageForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { myStudyDetail } from '../../lib/study';
-import { kickOffStudyMember, updateRegisterState } from '../../lib/api';
+import {
+  kickOffStudyMember,
+  updateRegisterState,
+  updateStudySecret,
+} from '../../lib/api';
 import LoadingComponent from '../../components/common/LoadingComponent';
 
 const StudyManageContainer = () => {
@@ -52,6 +56,25 @@ const StudyManageContainer = () => {
     }
   };
 
+  const changeStudyToSecertMode = async (studyId, password) => {
+    try {
+      await updateStudySecret(studyId, password);
+      alert(`비밀 스터디로 전환에 성공했습니다.`);
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
+      if (e.response.status === 504) {
+        alert('서버가 점검 중입니다. 관리자에게 문의해주세요.');
+      } else {
+        if (!e.response.data.errorList) {
+          alert(`[Failed] ${e.response.data.message} \n`);
+        } else {
+          alert(`[Failed] ${e.response.data.errorList[0].message}`);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     dispatch(myStudyDetail(studyId));
   }, [dispatch, studyId]);
@@ -62,6 +85,7 @@ const StudyManageContainer = () => {
         data={study}
         handleRegisterState={handleRegisterState}
         handleKickOff={handleKickOff}
+        changeStudyToSecertMode={changeStudyToSecertMode}
       />
     </LoadingComponent>
   );

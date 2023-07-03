@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   Button,
   CloseButton,
@@ -23,9 +23,18 @@ const MiddleTable = styled(Table)`
   vertical-align: middle;
 `;
 
-const StudyManageForm = ({ data, handleRegisterState, handleKickOff }) => {
+const StudyManageForm = ({
+  data,
+  handleRegisterState,
+  handleKickOff,
+  changeStudyToSecertMode,
+}) => {
   const [showPopup, setShowPopup] = useState(false);
   const [showRequest, setShowRequest] = useState({});
+  const [showPasswordPopup, setShowPasswordPopup] = useState(false);
+  const [password, setPassword] = useState('');
+
+  console.log(password);
 
   const readRegisterState = (id) => {
     handleRegisterState(id, 'read');
@@ -42,6 +51,14 @@ const StudyManageForm = ({ data, handleRegisterState, handleKickOff }) => {
     alert('요청이 거절 되었습니다.');
     window.location.reload();
   };
+
+  const handleShowPasswordPopup = useCallback((e) => {
+    setShowPasswordPopup((p) => !p);
+  }, []);
+
+  const handlePassword = useCallback((e) => {
+    setPassword(e.target.value);
+  }, []);
 
   return (
     <Container>
@@ -267,6 +284,56 @@ const StudyManageForm = ({ data, handleRegisterState, handleKickOff }) => {
               style={{ marginBottom: '30px' }}
             >
               거부하기
+            </SubmitButton>
+          </Container>
+        </Popup>
+      )}
+      {data.isMine && !data.secret && (
+        <SubmitButton onClick={handleShowPasswordPopup}>
+          비밀 스터디 전환하기
+        </SubmitButton>
+      )}
+      {showPasswordPopup && (
+        <Popup>
+          <CloseButton
+            style={{ float: 'right' }}
+            onClick={handleShowPasswordPopup}
+          />
+          <Row
+            style={{
+              height: '64px',
+              alignContent: 'center',
+              justifyContent: 'center',
+              paddingLeft: '64px',
+            }}
+          >
+            비밀번호 관리하기
+          </Row>
+          <Container
+            style={{
+              paddingLeft: '40px',
+              paddingRight: '40px',
+              paddingTop: '30px',
+            }}
+          >
+            <Row>
+              <Form.Label column lg={2}>
+                비밀번호
+              </Form.Label>
+              <Col>
+                <CleanDisabledForm
+                  type="password"
+                  value={password}
+                  onChange={handlePassword}
+                />
+              </Col>
+            </Row>
+            <br />
+            <SubmitButton
+              onClick={(e) => changeStudyToSecertMode(data.id, password)}
+              style={{ marginBottom: '30px' }}
+            >
+              설정완료
             </SubmitButton>
           </Container>
         </Popup>
