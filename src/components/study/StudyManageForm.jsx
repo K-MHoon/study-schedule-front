@@ -288,6 +288,11 @@ const StudyManageForm = ({
           </Container>
         </Popup>
       )}
+      {data.isMine && data.secret && (
+        <SubmitButton onClick={handleShowPasswordPopup}>
+          공개 스터디 전환하기
+        </SubmitButton>
+      )}
       {data.isMine && !data.secret && (
         <SubmitButton onClick={handleShowPasswordPopup}>
           비밀 스터디 전환하기
@@ -334,6 +339,51 @@ const StudyManageForm = ({
               style={{ marginBottom: '30px' }}
             >
               설정완료
+            </SubmitButton>
+          </Container>
+        </Popup>
+      )}
+      {showPasswordPopup && (
+        <Popup>
+          <CloseButton
+            style={{ float: 'right' }}
+            onClick={handleShowPasswordPopup}
+          />
+          <Row
+            style={{
+              height: '64px',
+              alignContent: 'center',
+              justifyContent: 'center',
+              paddingLeft: '64px',
+            }}
+          >
+            {data.secret ? '공개' : '비밀'} 스터디로 상태 전환하기
+          </Row>
+          <Container
+            style={{
+              paddingLeft: '40px',
+              paddingRight: '40px',
+              paddingTop: '30px',
+            }}
+          >
+            <Row>
+              <Form.Label column lg={2}>
+                비밀번호
+              </Form.Label>
+              <Col>
+                <CleanDisabledForm
+                  type="password"
+                  value={password}
+                  onChange={handlePassword}
+                />
+              </Col>
+            </Row>
+            <br />
+            <SubmitButton
+              onClick={(e) => changeStudyMode(data.id, !data.secret, password)}
+              style={{ marginBottom: '30px' }}
+            >
+              전환하기
             </SubmitButton>
           </Container>
         </Popup>
