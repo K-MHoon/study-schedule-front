@@ -27,7 +27,7 @@ const StudyManageForm = ({
   data,
   handleRegisterState,
   handleKickOff,
-  changeStudyToSecertMode,
+  changeStudyMode,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [showRequest, setShowRequest] = useState({});
@@ -330,7 +330,7 @@ const StudyManageForm = ({
             </Row>
             <br />
             <SubmitButton
-              onClick={(e) => changeStudyToSecertMode(data.id, password)}
+              onClick={(e) => changeStudyMode(data.id, true, password)}
               style={{ marginBottom: '30px' }}
             >
               설정완료

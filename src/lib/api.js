@@ -36,8 +36,12 @@ export const updateRegisterState = (studyId, registerId, changeState) =>
     privateHeader,
   );
 
-export const updateStudySecret = (studyId, password) =>
-  client.post(`/api/study/${studyId}/secret`, { password }, privateHeader);
+export const updateStudySecret = (studyId, secret, password) =>
+  client.post(
+    `/api/study/${studyId}/secret`,
+    { secret, password },
+    privateHeader,
+  );
 
 export const updateTodayScheduleTodo = (clearScheduleTodoList) =>
   client.post(

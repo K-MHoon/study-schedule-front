@@ -56,10 +56,14 @@ const StudyManageContainer = () => {
     }
   };
 
-  const changeStudyToSecertMode = async (studyId, password) => {
+  const changeStudyMode = async (studyId, secret, password) => {
     try {
-      await updateStudySecret(studyId, password);
-      alert(`비밀 스터디로 전환에 성공했습니다.`);
+      await updateStudySecret(studyId, secret, password);
+      if (secret) {
+        alert('비밀 스터디로 전환에 성공 했습니다.');
+      } else {
+        alert('공개 스터디로 전환에 성공 했습니다.');
+      }
       window.location.reload();
     } catch (e) {
       console.log(e);
@@ -85,7 +89,7 @@ const StudyManageContainer = () => {
         data={study}
         handleRegisterState={handleRegisterState}
         handleKickOff={handleKickOff}
-        changeStudyToSecertMode={changeStudyToSecertMode}
+        changeStudyMode={changeStudyMode}
       />
     </LoadingComponent>
   );
