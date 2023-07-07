@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Button,
   CloseButton,
@@ -33,8 +33,11 @@ const StudyManageForm = ({
   const [showRequest, setShowRequest] = useState({});
   const [showPasswordPopup, setShowPasswordPopup] = useState(false);
   const [password, setPassword] = useState('');
+  const [edit, setEdit] = useState(true);
 
-  console.log(password);
+  const [name, setName] = useState('');
+  const [content, setContent] = useState('');
+  const [fullCount, setFullCount] = useState(0);
 
   const readRegisterState = (id) => {
     handleRegisterState(id, 'read');
@@ -60,6 +63,45 @@ const StudyManageForm = ({
     setPassword(e.target.value);
   }, []);
 
+  const handleEdit = useCallback(() => {
+    if (edit) {
+      setEdit((p) => !p);
+    } else {
+      alert('저장하시겠습니까?');
+    }
+  }, [edit]);
+
+  const handleName = useCallback(
+    (e) => {
+      setName(e.target.value);
+    },
+    [name],
+  );
+
+  const handleContent = useCallback(
+    (e) => {
+      setContent(e.target.value);
+    },
+    [content],
+  );
+
+  const handleFullCount = useCallback(
+    (e) => {
+      if (e.target.value > 100) {
+        alert('수정 가능한 최대 수는 1~100 입니다.');
+        return;
+      }
+      setFullCount(e.target.value);
+    },
+    [fullCount],
+  );
+
+  useEffect(() => {
+    setName(data.studyName);
+    setContent(data.content);
+    setFullCount(data.fullCount);
+  }, []);
+
   return (
     <Container>
       <Row>
@@ -67,7 +109,12 @@ const StudyManageForm = ({
           스터디 이름
         </Form.Label>
         <Col>
-          <CleanDisabledForm type="text" value={data.studyName} disabled />
+          <CleanDisabledForm
+            type="text"
+            value={name}
+            onChange={handleName}
+            disabled={edit}
+          />
         </Col>
       </Row>
       <br />
@@ -85,7 +132,12 @@ const StudyManageForm = ({
           스터디 내용
         </Form.Label>
         <Col>
-          <CleanDisabledForm type="text" value={data.content} disabled />
+          <CleanDisabledForm
+            type="text"
+            value={content}
+            onChange={handleContent}
+            disabled={edit}
+          />
         </Col>
       </Row>
       <br />
@@ -151,7 +203,12 @@ const StudyManageForm = ({
           최대 인원
         </Form.Label>
         <Col>
-          <CleanDisabledForm type="text" value={data.fullCount} disabled />
+          <CleanDisabledForm
+            type="number"
+            value={fullCount}
+            onChange={handleFullCount}
+            disabled={edit}
+          />
         </Col>
       </Row>
       <br />
@@ -296,6 +353,11 @@ const StudyManageForm = ({
       {data.isMine && !data.secret && (
         <SubmitButton onClick={handleShowPasswordPopup}>
           비밀 스터디 전환하기
+        </SubmitButton>
+      )}
+      {data.isMine && (
+        <SubmitButton onClick={handleEdit}>
+          {edit ? '스터디 정보 수정하기' : '수정 완료'}
         </SubmitButton>
       )}
       {showPasswordPopup && (
