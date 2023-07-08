@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { myStudyDetail } from '../../lib/study';
 import {
   kickOffStudyMember,
+  updateMyStudy,
   updateRegisterState,
   updateStudySecret,
 } from '../../lib/api';
@@ -79,6 +80,25 @@ const StudyManageContainer = () => {
     }
   };
 
+  const updateMyStudyInfo = async (studyId, studyName, content, fullCount) => {
+    try {
+      await updateMyStudy(studyId, studyName, content, fullCount);
+      alert('스터디 업데이트에 성공했습니다!');
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
+      if (e.response.status === 504) {
+        alert('서버가 점검 중입니다. 관리자에게 문의해주세요.');
+      } else {
+        if (!e.response.data.errorList) {
+          alert(`[Failed] ${e.response.data.message} \n`);
+        } else {
+          alert(`[Failed] ${e.response.data.errorList[0].message}`);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     dispatch(myStudyDetail(studyId));
   }, [dispatch, studyId]);
@@ -90,6 +110,7 @@ const StudyManageContainer = () => {
         handleRegisterState={handleRegisterState}
         handleKickOff={handleKickOff}
         changeStudyMode={changeStudyMode}
+        updateMyStudyInfo={updateMyStudyInfo}
       />
     </LoadingComponent>
   );

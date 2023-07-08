@@ -28,6 +28,7 @@ const StudyManageForm = ({
   handleRegisterState,
   handleKickOff,
   changeStudyMode,
+  updateMyStudyInfo,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [showRequest, setShowRequest] = useState({});
@@ -35,7 +36,7 @@ const StudyManageForm = ({
   const [password, setPassword] = useState('');
   const [edit, setEdit] = useState(true);
 
-  const [name, setName] = useState('');
+  const [studyName, setStudyName] = useState('');
   const [content, setContent] = useState('');
   const [fullCount, setFullCount] = useState(0);
 
@@ -71,11 +72,11 @@ const StudyManageForm = ({
     }
   }, [edit]);
 
-  const handleName = useCallback(
+  const handleStudyName = useCallback(
     (e) => {
-      setName(e.target.value);
+      setStudyName(e.target.value);
     },
-    [name],
+    [studyName],
   );
 
   const handleContent = useCallback(
@@ -97,7 +98,7 @@ const StudyManageForm = ({
   );
 
   useEffect(() => {
-    setName(data.studyName);
+    setStudyName(data.studyName);
     setContent(data.content);
     setFullCount(data.fullCount);
   }, []);
@@ -111,8 +112,8 @@ const StudyManageForm = ({
         <Col>
           <CleanDisabledForm
             type="text"
-            value={name}
-            onChange={handleName}
+            value={studyName}
+            onChange={handleStudyName}
             disabled={edit}
           />
         </Col>
@@ -356,7 +357,15 @@ const StudyManageForm = ({
         </SubmitButton>
       )}
       {data.isMine && (
-        <SubmitButton onClick={handleEdit}>
+        <SubmitButton
+          onClick={(e) => {
+            handleEdit();
+            console.log(edit);
+            if (!edit) {
+              updateMyStudyInfo(data.id, studyName, content, fullCount);
+            }
+          }}
+        >
           {edit ? '스터디 정보 수정하기' : '수정 완료'}
         </SubmitButton>
       )}

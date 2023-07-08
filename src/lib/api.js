@@ -43,6 +43,13 @@ export const updateStudySecret = (studyId, secret, password) =>
     privateHeader,
   );
 
+export const updateMyStudy = (studyId, studyName, content, fullCount) =>
+  client.post(
+    `/api/study/my/${studyId}`,
+    { studyName, content, fullCount },
+    privateHeader,
+  );
+
 export const updateTodayScheduleTodo = (clearScheduleTodoList) =>
   client.post(
     `/api/schedule/today`,
