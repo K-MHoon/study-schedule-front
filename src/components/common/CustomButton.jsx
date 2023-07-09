@@ -14,3 +14,14 @@ export const SubmitButton = styled(Button)`
     background-color: #088699;
   }
 `;
+
+export const SearchButton = styled(Button)`
+  margin: 0;
+  background-color: #22b8cf;
+  border-radius: 10px !important;
+  border: 0;
+
+  &:hover {
+    background-color: #088699;
+  }
+`;
