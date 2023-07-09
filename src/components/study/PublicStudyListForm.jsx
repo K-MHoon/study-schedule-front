@@ -5,22 +5,22 @@ import {
   KeyboardDoubleArrowRight,
 } from '@mui/icons-material';
 import React, { useCallback, useState } from 'react';
-import { Button, Form, InputGroup, Table } from 'react-bootstrap';
+import {
+  Button,
+  CloseButton,
+  Col,
+  Container,
+  Form,
+  InputGroup,
+  Row,
+  Table,
+} from 'react-bootstrap';
 import Pagination from 'react-js-pagination';
 import '../../css/Pagination.scss';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-
-const SearchButton = styled(Button)`
-  margin: 0;
-  background-color: #22b8cf;
-  border-radius: 10px !important;
-  border: 0;
-
-  &:hover {
-    background-color: #088699;
-  }
-`;
+import Popup from '../common/Popup';
+import { SearchButton, SubmitButton } from '../common/CustomButton';
+import { CleanDisabledForm } from '../common/CustomForm';
 
 const jsonLocalStorage = {
   setItem: (key, value) => {
@@ -39,6 +39,8 @@ const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
   const [studyLeader, setStudyLeader] = useState(
     jsonLocalStorage.getItem('studyLeader') || '',
   );
+  const [showSecretStudyPopup, setShowSecretStudyPopup] = useState(false);
+  const [code, setCode] = useState('');
 
   const handleStudyName = useCallback((e) => {
     setStudyName(e.target.value);
@@ -55,6 +57,20 @@ const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
       getPublicStudyList(studyName, studyLeader, count);
     },
     [studyName, studyLeader],
+  );
+
+  const handleShowSecretStudyPopup = useCallback(
+    (e) => {
+      setShowSecretStudyPopup((p) => !p);
+    },
+    [showSecretStudyPopup],
+  );
+
+  const handleCode = useCallback(
+    (e) => {
+      setCode(e.target.value);
+    },
+    [code],
   );
 
   return (
@@ -105,35 +121,89 @@ const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
           ))}
         </tbody>
       </Table>
-      <Pagination
-        activePage={page.number + 1}
-        itemsCountPerPage={10}
-        totalItemsCount={
-          page.totalElements === undefined ? 0 : page.totalElements
-        }
-        pageRangeDisplayed={5}
-        firstPageText={
-          <KeyboardDoubleArrowLeft
-            style={{ fontSize: 25, display: 'flex', color: '#22b8cf' }}
+      <Button
+        onClick={handleShowSecretStudyPopup}
+        variant="danger"
+        style={{ float: 'right', margin: 0 }}
+      >
+        비밀 스터디 찾기
+      </Button>
+      <div style={{ marginLeft: 148.47 }}>
+        <Pagination
+          activePage={page.number + 1}
+          itemsCountPerPage={10}
+          totalItemsCount={
+            page.totalElements === undefined ? 0 : page.totalElements
+          }
+          pageRangeDisplayed={5}
+          firstPageText={
+            <KeyboardDoubleArrowLeft
+              style={{ fontSize: 25, display: 'flex', color: '#22b8cf' }}
+            />
+          }
+          prevPageText={
+            <ArrowBackIos
+              style={{ fontSize: 15, display: 'flex', color: '#22b8cf' }}
+            />
+          }
+          nextPageText={
+            <ArrowForwardIos
+              style={{ fontSize: 15, display: 'flex', color: '#22b8cf' }}
+            />
+          }
+          lastPageText={
+            <KeyboardDoubleArrowRight
+              style={{ fontSize: 25, display: 'flex', color: '#22b8cf' }}
+            />
+          }
+          onChange={(e) => handleRequest(e - 1)}
+        />
+      </div>
+      {showSecretStudyPopup && (
+        <Popup>
+          <CloseButton
+            style={{ float: 'right' }}
+            onClick={handleShowSecretStudyPopup}
           />
-        }
-        prevPageText={
-          <ArrowBackIos
-            style={{ fontSize: 15, display: 'flex', color: '#22b8cf' }}
-          />
-        }
-        nextPageText={
-          <ArrowForwardIos
-            style={{ fontSize: 15, display: 'flex', color: '#22b8cf' }}
-          />
-        }
-        lastPageText={
-          <KeyboardDoubleArrowRight
-            style={{ fontSize: 25, display: 'flex', color: '#22b8cf' }}
-          />
-        }
-        onChange={(e) => handleRequest(e - 1)}
-      />
+          <Row
+            style={{
+              height: '64px',
+              alignContent: 'center',
+              justifyContent: 'center',
+              paddingLeft: '64px',
+            }}
+          >
+            비밀 스터디 코드 입력
+          </Row>
+          <Container
+            style={{
+              paddingLeft: '40px',
+              paddingRight: '40px',
+              paddingTop: '30px',
+            }}
+          >
+            <Row>
+              <Form.Label column lg={2}>
+                비밀번호
+              </Form.Label>
+              <Col>
+                <CleanDisabledForm
+                  type="password"
+                  value={code}
+                  onChange={handleCode}
+                />
+              </Col>
+            </Row>
+            <br />
+            <SubmitButton
+              onClick={(e) => console.log(e)}
+              style={{ marginBottom: '30px' }}
+            >
+              찾기
+            </SubmitButton>
+          </Container>
+        </Popup>
+      )}
     </>
   );
 };
