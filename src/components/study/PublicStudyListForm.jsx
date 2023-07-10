@@ -31,7 +31,12 @@ const jsonLocalStorage = {
   },
 };
 
-const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
+const PublicStudyListForm = ({
+  page,
+  data,
+  getPublicStudyList,
+  gotoSecretStudyDetailPage,
+}) => {
   const navigate = useNavigate();
   const [studyName, setStudyName] = useState(
     jsonLocalStorage.getItem('studyName') || '',
@@ -184,7 +189,7 @@ const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
           >
             <Row>
               <Form.Label column lg={2}>
-                비밀번호
+                초대코드
               </Form.Label>
               <Col>
                 <CleanDisabledForm
@@ -196,7 +201,7 @@ const PublicStudyListForm = ({ page, data, getPublicStudyList }) => {
             </Row>
             <br />
             <SubmitButton
-              onClick={(e) => console.log(e)}
+              onClick={() => gotoSecretStudyDetailPage(code)}
               style={{ marginBottom: '30px' }}
             >
               찾기
