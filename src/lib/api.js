@@ -15,13 +15,16 @@ export const fetchStudyMemberProfile = () =>
 export const fetchStudyMemberList = () =>
   client.get(`/api/members`, privateHeader);
 
-export const fetchStudyDetail = (studyId) =>
-  client.get(`/api/study/${studyId}`);
+export const fetchStudyDetail = ({ studyId, inviteCode }) =>
+  client.get(`/api/study/${studyId}?invite-code=${inviteCode}`, privateHeader);
 
 export const fetchMyStudyDetail = (studyId) =>
   client.get(`/api/study/my/${studyId}`, privateHeader);
 
 export const fetchMyStudy = () => client.get(`/api/study/my`, privateHeader);
+
+export const fetchSecretStudy = (inviteCode) =>
+  client.get(`/api/study/secret?invite-code=${inviteCode}`, privateHeader);
 
 export const removeStudyMember = (studyList) =>
   client.delete(`/api/study`, {

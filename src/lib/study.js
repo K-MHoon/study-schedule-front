@@ -11,7 +11,13 @@ const [STUDY_DETAIL, STUDY_DETAIL_SUCCESS, STUDY_DETAIL_FAILURE] =
 const [MY_STUDY_DETAIL, MY_STUDY_DETAIL_SUCCESS, MY_STUDY_DETAIL_FAILURE] =
   createRequestActionTypes('study/MY_STUDY_DETAIL');
 
-export const studyDetail = createAction(STUDY_DETAIL, (studyId) => studyId);
+export const studyDetail = createAction(
+  STUDY_DETAIL,
+  (studyId, inviteCode) => ({
+    studyId,
+    inviteCode,
+  }),
+);
 
 export const myStudyDetail = createAction(
   MY_STUDY_DETAIL,

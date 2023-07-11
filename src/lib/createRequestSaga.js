@@ -28,6 +28,8 @@ export default function createRequestSaga(type, request) {
         payload: e,
         error: true,
       });
+      alert(e.response.data.message);
+      window.history.back();
     }
     yield put(finishLoading(type));
   };

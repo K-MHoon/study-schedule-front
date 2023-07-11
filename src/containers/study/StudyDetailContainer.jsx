@@ -9,6 +9,8 @@ const StudyDetailContainer = () => {
   const dispatch = useDispatch();
   const { studyId } = useParams();
   const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const inviteCode = params.get('invite-code');
 
   const { study, loading } = useSelector(({ study, loading }) => ({
     study: study.study,
@@ -17,7 +19,7 @@ const StudyDetailContainer = () => {
   }));
 
   useEffect(() => {
-    dispatch(studyDetail(studyId));
+    dispatch(studyDetail(studyId, inviteCode === null ? '' : inviteCode));
   }, [dispatch, studyId]);
 
   return (
