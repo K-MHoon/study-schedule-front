@@ -67,8 +67,8 @@ export const kickOffStudyMember = (studyId, memberId) =>
     privateHeader,
   );
 
-export const updateMemberProfile = (name, age) =>
-  client.post(`/api/member/profile`, { name, age }, privateHeader);
+export const updateMemberProfile = (name, password, age) =>
+  client.post(`/api/member/profile`, { name, password, age }, privateHeader);
 
 export const removeScheduleList = (scheduleList) =>
   client.delete(`/api/schedule`, {

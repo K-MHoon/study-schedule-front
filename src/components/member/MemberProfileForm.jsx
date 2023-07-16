@@ -5,6 +5,7 @@ import { SubmitButton } from '../common/CustomButton';
 const MemberProfileForm = ({ data, changeMemberProfile }) => {
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
+  const [password, setPassword] = useState('');
   const [isChange, setIsChange] = useState(false);
 
   useEffect(() => {
@@ -26,11 +27,11 @@ const MemberProfileForm = ({ data, changeMemberProfile }) => {
           setAge(data.age);
           return;
         }
-        changeMemberProfile(name, age);
+        changeMemberProfile(name, password, age);
       }
       setIsChange((value) => !value);
     },
-    [isChange, name, age],
+    [isChange, name, password, age],
   );
 
   const handleName = useCallback(
@@ -47,11 +48,33 @@ const MemberProfileForm = ({ data, changeMemberProfile }) => {
     [age],
   );
 
+  const handlePassword = useCallback(
+    (e) => {
+      setPassword(e.target.value);
+    },
+    [age],
+  );
+
   return (
     <Form>
       <Form.Group className="mb-3" controlId="memberId">
         <Form.Label>아이디</Form.Label>
         <Form.Control type="text" value={data.memberId} disabled />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="password">
+        <Form.Label>비밀번호</Form.Label>
+        <Form.Control
+          type="text"
+          value={password}
+          disabled={isChange ? false : true}
+          onChange={handlePassword}
+        />
+        <Form.Text className="text-muted">
+          <span style={{ color: 'red' }}>
+            빈 칸으로 두면 비밀번호가 유지됩니다.
+          </span>
+        </Form.Text>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="name">

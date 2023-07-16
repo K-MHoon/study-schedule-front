@@ -18,9 +18,9 @@ const MemberProfileContainer = () => {
     dispatch(memberProfile());
   }, []);
 
-  const changeMemberProfile = async (name, age) => {
+  const changeMemberProfile = async (name, password, age) => {
     try {
-      await updateMemberProfile(name, age);
+      await updateMemberProfile(name, password, age);
       alert('수정에 성공했습니다!');
       window.location.reload();
     } catch (e) {
