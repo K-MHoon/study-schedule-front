@@ -13,10 +13,20 @@ const ScheduleCreateContainer = () => {
     isUse,
     period,
     custom,
+    scheduleType,
   }) => {
     const studyId = location.state.studyId;
     navigate(`/member/todos`, {
-      state: { name, startDate, endDate, isUse, period, custom, studyId },
+      state: {
+        name,
+        startDate,
+        endDate,
+        isUse,
+        period,
+        custom,
+        studyId,
+        scheduleType,
+      },
     });
   };
   return <ScheduleCreateForm nextTodoSelect={nextTodoSelect} />;
