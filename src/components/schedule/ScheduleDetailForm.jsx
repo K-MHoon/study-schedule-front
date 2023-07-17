@@ -11,16 +11,17 @@ const ScheduleDetailForm = ({ data, nextTodoSelect }) => {
   const [isUse, setIsUse] = useState('N');
   const [period, setPeriod] = useState('DAY');
   const [custom, setCustom] = useState(0);
-  const [scheduleType, setScheduleType] = useState('PATTERN');
+  const [scheduleType, setScheduleType] = useState('');
 
   useEffect(() => {
     setScheduleId(data.id);
     setName(data.name);
     setIsUse(data.isUse);
     setPeriod(data.period);
-    setStartDate(data.startDate ? new Date(data.startDate) : new Date());
-    setEndDate(data.endDate ? new Date(data.endDate) : new Date());
+    setStartDate(data.startDate ? new Date(data.startDate) : Date.now());
+    setEndDate(data.endDate ? new Date(data.endDate) : Date.now());
     setCustom(data.custom === undefined ? 0 : data.custom);
+    setScheduleType(data.scheduleType);
   }, []);
 
   const onChangeName = useCallback(

@@ -35,8 +35,7 @@ const MemberSchedule = ({ data, studyId, removeSelectedScheduleList }) => {
             <tr>
               <th>#</th>
               <th>스케줄 명</th>
-              <th>스케줄 시작일</th>
-              <th>스케줄 종료일</th>
+              <th>스케줄 형식</th>
               <th>스케줄 사용여부</th>
               <th>스케줄 생성일</th>
             </tr>
@@ -58,8 +57,7 @@ const MemberSchedule = ({ data, studyId, removeSelectedScheduleList }) => {
                 >
                   {schedule.name}
                 </LinkTd>
-                <td>{schedule.startDate}</td>
-                <td>{schedule.endDate}</td>
+                <td>{schedule.scheduleType === 'PATTERN' ? '반복' : '기간'}</td>
                 <td>{schedule.isUse}</td>
                 <td>{schedule.createdAt}</td>
               </tr>
