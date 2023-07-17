@@ -183,6 +183,7 @@ const ScheduleCreateForm = ({ nextTodoSelect }) => {
         type="checkbox"
         id="isUse"
         label="스케줄 사용 여부"
+        checked={isUse === 'Y' ? true : false}
         onChange={onClickIsUse}
       />
       <p />

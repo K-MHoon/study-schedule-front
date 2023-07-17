@@ -25,6 +25,7 @@ const ScheduleDetailContainer = () => {
     isUse,
     period,
     custom,
+    scheduleType,
   }) => {
     const alreadyTodos = schedule.todoList.map((t) => t.id);
     navigate(`/member/todos`, {
@@ -38,6 +39,7 @@ const ScheduleDetailContainer = () => {
         custom,
         studyId,
         alreadyTodos,
+        scheduleType,
       },
     });
   };

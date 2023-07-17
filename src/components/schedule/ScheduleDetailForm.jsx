@@ -11,41 +11,61 @@ const ScheduleDetailForm = ({ data, nextTodoSelect }) => {
   const [isUse, setIsUse] = useState('N');
   const [period, setPeriod] = useState('DAY');
   const [custom, setCustom] = useState(0);
+  const [scheduleType, setScheduleType] = useState('PATTERN');
 
   useEffect(() => {
     setScheduleId(data.id);
     setName(data.name);
     setIsUse(data.isUse);
     setPeriod(data.period);
-    setStartDate(new Date(data.startDate));
-    setEndDate(new Date(data.endDate));
+    setStartDate(data.startDate ? new Date(data.startDate) : new Date());
+    setEndDate(data.endDate ? new Date(data.endDate) : new Date());
     setCustom(data.custom === undefined ? 0 : data.custom);
   }, []);
 
-  const onChangeName = useCallback((e) => {
-    setName(e.target.value);
-  }, []);
+  const onChangeName = useCallback(
+    (e) => {
+      setName(e.target.value);
+    },
+    [name],
+  );
 
-  const onClickIsUse = useCallback((e) => {
-    if (e.target.checked === true) {
-      setIsUse('Y');
-    } else {
-      setIsUse('N');
-    }
-  }, []);
+  const onClickIsUse = useCallback(
+    (e) => {
+      if (e.target.checked === true) {
+        setIsUse('Y');
+      } else {
+        setIsUse('N');
+      }
+    },
+    [isUse],
+  );
 
-  const handlePeriodChange = useCallback((e) => {
-    setCustom(0);
-    setPeriod(e.target.value);
-  }, []);
+  const handlePeriodChange = useCallback(
+    (e) => {
+      setCustom(0);
+      setPeriod(e.target.value);
+    },
+    [custom, period],
+  );
 
-  const handleCustomDay = useCallback((e) => {
-    if (e.target.value < 1 || e.target.value > 100) {
-      alert('별도 설정은 1~100일 까지 가능합니다.');
-      return;
-    }
-    setCustom(e.target.value);
-  }, []);
+  const handleCustomDay = useCallback(
+    (e) => {
+      if (e.target.value < 1 || e.target.value > 100) {
+        alert('별도 설정은 1~100일 까지 가능합니다.');
+        return;
+      }
+      setCustom(e.target.value);
+    },
+    [custom],
+  );
+
+  const handleScheduleType = useCallback(
+    (e) => {
+      setScheduleType(e.target.value);
+    },
+    [scheduleType],
+  );
 
   return (
     <Container>
@@ -64,90 +84,118 @@ const ScheduleDetailForm = ({ data, nextTodoSelect }) => {
       </Row>
       <br />
       <Row>
-        <Form.Label column lg={2}>
-          시작일
-        </Form.Label>
-        <Col>
-          <DatePicker onChange={setStartDate} value={startDate} />
-        </Col>
-      </Row>
-      <br />
-      <Row>
-        <Form.Label column lg={2}>
-          종료일
-        </Form.Label>
-        <Col>
-          <DatePicker onChange={setEndDate} value={endDate} />
-        </Col>
-      </Row>
-      <br />
-      <Form.Check
-        type="checkbox"
-        id="isUse"
-        label="스케줄 사용 여부"
-        checked={isUse === 'Y'}
-        onChange={onClickIsUse}
-      />
-      <p />
-      <Row>
         <Form.Group controlId="period">
+          <Form.Label column lg={2}>
+            스케줄 타입
+          </Form.Label>
           <Form.Check
             inline
-            label="매일"
+            label="패턴"
             type="radio"
-            value="DAY"
-            onChange={handlePeriodChange}
-            checked={period === 'DAY'}
+            value="PATTERN"
+            onChange={handleScheduleType}
+            checked={scheduleType === 'PATTERN'}
           />
           <Form.Check
             inline
-            label="매주"
+            label="기간"
             type="radio"
-            value="WEEK"
-            onChange={handlePeriodChange}
-            checked={period === 'WEEK'}
-          />
-          <Form.Check
-            inline
-            label="매월"
-            type="radio"
-            value="MONTH"
-            onChange={handlePeriodChange}
-            checked={period === 'MONTH'}
-          />
-          <Form.Check
-            inline
-            label="매년"
-            type="radio"
-            value="YEAR"
-            onChange={handlePeriodChange}
-            checked={period === 'YEAR'}
-          />
-          <Form.Check
-            inline
-            label="별도 설정"
-            type="radio"
-            value="CUSTOM"
-            onChange={handlePeriodChange}
-            checked={period === 'CUSTOM'}
+            value="LONG_TERM"
+            onChange={handleScheduleType}
+            checked={scheduleType === 'LONG_TERM'}
           />
         </Form.Group>
       </Row>
       <br />
-      <Row>
-        <Form.Label column lg={2}>
-          별도 설정(일)
-        </Form.Label>
-        <Col>
-          <Form.Control
-            type="number"
-            value={custom}
-            onChange={handleCustomDay}
-            disabled={period !== 'CUSTOM'}
-          />
-        </Col>
-      </Row>
-      <br />
+      <div hidden={scheduleType !== 'LONG_TERM'}>
+        <Row>
+          <Form.Label column lg={2}>
+            시작일
+          </Form.Label>
+          <Col>
+            <DatePicker onChange={setStartDate} value={startDate} />
+          </Col>
+        </Row>
+        <br />
+        <Row>
+          <Form.Label column lg={2}>
+            종료일
+          </Form.Label>
+          <Col>
+            <DatePicker onChange={setEndDate} value={endDate} />
+          </Col>
+        </Row>
+        <br />
+      </div>
+      <div hidden={scheduleType !== 'PATTERN'}>
+        <Row>
+          <Form.Group controlId="period">
+            <Form.Check
+              inline
+              label="매일"
+              type="radio"
+              value="DAY"
+              onChange={handlePeriodChange}
+              checked={period === 'DAY'}
+            />
+            <Form.Check
+              inline
+              label="매주"
+              type="radio"
+              value="WEEK"
+              onChange={handlePeriodChange}
+              checked={period === 'WEEK'}
+            />
+            <Form.Check
+              inline
+              label="매월"
+              type="radio"
+              value="MONTH"
+              onChange={handlePeriodChange}
+              checked={period === 'MONTH'}
+            />
+            <Form.Check
+              inline
+              label="매년"
+              type="radio"
+              value="YEAR"
+              onChange={handlePeriodChange}
+              checked={period === 'YEAR'}
+            />
+            <Form.Check
+              inline
+              label="별도 설정"
+              type="radio"
+              value="CUSTOM"
+              onChange={handlePeriodChange}
+              checked={period === 'CUSTOM'}
+            />
+          </Form.Group>
+        </Row>
+        <br />
+        <Row>
+          <Form.Label column lg={2}>
+            별도 설정(일)
+          </Form.Label>
+          <Col>
+            <Form.Control
+              type="number"
+              value={custom}
+              onChange={handleCustomDay}
+              disabled={period !== 'CUSTOM'}
+            />
+          </Col>
+        </Row>
+        <br />
+      </div>
+      <Form.Check
+        type="checkbox"
+        id="isUse"
+        label="스케줄 사용 여부"
+        checked={isUse === 'Y' ? true : false}
+        onChange={onClickIsUse}
+      />
+      <p />
       <SubmitButton
         onClick={(e) =>
           nextTodoSelect({
@@ -158,6 +206,7 @@ const ScheduleDetailForm = ({ data, nextTodoSelect }) => {
             isUse,
             period,
             custom,
+            scheduleType,
           })
         }
       >

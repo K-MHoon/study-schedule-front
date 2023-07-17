@@ -21,6 +21,7 @@ const TodoByMemberListContainer = () => {
     custom,
     studyId,
     alreadyTodos,
+    scheduleType,
   } = location.state !== null ? location.state : {};
   const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ const TodoByMemberListContainer = () => {
         period,
         custom,
         studyId,
+        scheduleType,
       );
       alert('요청이 성공했습니다!');
       navigate(Url.studyInfoPage);

@@ -161,6 +161,7 @@ export const createSchedule = (
   period,
   custom,
   studyId,
+  scheduleType,
 ) =>
   client.post(
     `/api/schedule`,
@@ -174,6 +175,7 @@ export const createSchedule = (
       period,
       customDay: custom,
       studyId,
+      scheduleType,
     },
     privateHeader,
   );
