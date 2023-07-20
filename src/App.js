@@ -21,6 +21,7 @@ import StudyInfoPage from './pages/study/StudyInfoPage';
 import TodayScheduleListPage from './pages/schedule/TodayScheduleListPage';
 import MemberSchedulePage from './pages/schedule/MemberSchedulePage';
 import ScheduleDetailPage from './pages/schedule/ScheduleDetailPage';
+import StudyCodePage from './pages/study/StudyCodePage';
 
 export const Url = {
   studyInfoPage: '/info/study',
@@ -42,7 +43,10 @@ const App = () => {
           path={`${Url.studyInfoPage}/:studyId`}
           element={<StudyManagePage />}
         />
-
+        <Route
+          path={`${Url.studyInfoPage}/:studyId/studyCode`}
+          element={<StudyCodePage />}
+        />
         <Route path="/schedule/create" element={<ScheduleCreatePage />} />
         <Route
           path="/study/:studyId/schedules"
