@@ -24,6 +24,7 @@ const StudyManageForm = ({
   handleKickOff,
   changeStudyMode,
   updateMyStudyInfo,
+  navigateToStudyCodeListPage,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [showRequest, setShowRequest] = useState({});
@@ -93,9 +94,9 @@ const StudyManageForm = ({
   );
 
   useEffect(() => {
-    setStudyName(data.studyName);
-    setContent(data.content);
-    setFullCount(data.fullCount);
+    setStudyName(data.study.studyName);
+    setContent(data.study.content);
+    setFullCount(data.study.fullCount);
   }, []);
 
   return (
@@ -120,7 +121,11 @@ const StudyManageForm = ({
             스터디 방장
           </Form.Label>
           <Col>
-            <CleanDisabledForm type="text" value={data.leaderId} disabled />
+            <CleanDisabledForm
+              type="text"
+              value={data.study.leaderId}
+              disabled
+            />
           </Col>
         </Row>
         <br />
@@ -143,11 +148,15 @@ const StudyManageForm = ({
             현재 가입된 인원
           </Form.Label>
           <Col>
-            <CleanDisabledForm type="text" value={data.remainCount} disabled />
+            <CleanDisabledForm
+              type="text"
+              value={data.study.remainCount}
+              disabled
+            />
           </Col>
         </Row>
         <br />
-        {data.isMine && (
+        {data.study.isMine && (
           <>
             <Row>
               <Form.Label column lg={2}>
@@ -169,18 +178,20 @@ const StudyManageForm = ({
                     </tr>
                   </thead>
                   <tbody>
-                    {data.registeredMemberList.map((member) => (
+                    {data.study.registeredMemberList.map((member) => (
                       <tr key={member.id}>
                         <td>{member.memberId}</td>
                         <td>{member.name}</td>
                         <td>{member.age}</td>
                         <td>
-                          {data.leaderId !== member.memberId && (
+                          {data.study.leaderId !== member.memberId && (
                             <Button
                               style={{ display: 'inline-block' }}
                               variant="danger"
                               className="danger-button"
-                              onClick={() => handleKickOff(data.id, member.id)}
+                              onClick={() =>
+                                handleKickOff(data.study.id, member.id)
+                              }
                             >
                               강퇴하기
                             </Button>
@@ -214,11 +225,15 @@ const StudyManageForm = ({
             스터디 생성일
           </Form.Label>
           <Col>
-            <CleanDisabledForm type="text" value={data.createdAt} disabled />
+            <CleanDisabledForm
+              type="text"
+              value={data.study.createdAt}
+              disabled
+            />
           </Col>
         </Row>
         <br />
-        {data.isMine && (
+        {data.study.isMine && (
           <>
             <Row>
               <Form.Label column lg={2}>
@@ -234,7 +249,7 @@ const StudyManageForm = ({
                     </tr>
                   </thead>
                   <tbody>
-                    {data.registerRequestList.map((request) => (
+                    {data.study.registerRequestList.map((request) => (
                       <tr
                         key={request.id}
                         onClick={() => {
@@ -342,23 +357,30 @@ const StudyManageForm = ({
             </Container>
           </Popup>
         )}
-        {data.isMine && data.secret && (
-          <SubmitButton onClick={handleShowPasswordPopup}>
-            공개 스터디 전환하기
-          </SubmitButton>
+        {data.study.isMine && data.study.secret && (
+          <>
+            <SubmitButton onClick={handleShowPasswordPopup}>
+              공개 스터디 전환하기
+            </SubmitButton>
+            <SubmitButton
+              onClick={() => navigateToStudyCodeListPage(data.studyCodeList)}
+            >
+              스터디 초대 코드 관리하기
+            </SubmitButton>
+          </>
         )}
-        {data.isMine && !data.secret && (
+        {data.study.isMine && !data.study.secret && (
           <SubmitButton onClick={handleShowPasswordPopup}>
             비밀 스터디 전환하기
           </SubmitButton>
         )}
-        {data.isMine && (
+        {data.study.isMine && (
           <SubmitButton
             onClick={(e) => {
               handleEdit();
               console.log(edit);
               if (!edit) {
-                updateMyStudyInfo(data.id, studyName, content, fullCount);
+                updateMyStudyInfo(data.study.id, studyName, content, fullCount);
               }
             }}
           >
@@ -402,7 +424,7 @@ const StudyManageForm = ({
               </Row>
               <br />
               <SubmitButton
-                onClick={(e) => changeStudyMode(data.id, true, password)}
+                onClick={(e) => changeStudyMode(data.study.id, true, password)}
                 style={{ marginBottom: '30px' }}
               >
                 설정완료
@@ -425,7 +447,7 @@ const StudyManageForm = ({
               paddingLeft: '64px',
             }}
           >
-            {data.secret ? '공개' : '비밀'} 스터디로 상태 전환하기
+            {data.study.secret ? '공개' : '비밀'} 스터디로 상태 전환하기
           </Row>
           <Container
             style={{
@@ -448,7 +470,9 @@ const StudyManageForm = ({
             </Row>
             <br />
             <SubmitButton
-              onClick={(e) => changeStudyMode(data.id, !data.secret, password)}
+              onClick={(e) =>
+                changeStudyMode(data.study.id, !data.study.secret, password)
+              }
               style={{ marginBottom: '30px' }}
             >
               전환하기
