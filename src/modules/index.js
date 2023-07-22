@@ -9,6 +9,7 @@ import studies, { studiesSaga } from '../lib/studies';
 import study, { studySaga } from '../lib/study';
 import register, { registerSaga } from '../lib/register';
 import schedule, { scheduleSaga } from '../lib/schedule';
+import studycodes, { studycodesSaga } from '../lib/studycodes';
 
 const rootReducer = combineReducers({
   loading,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   study,
   member,
   schedule,
+  studycodes,
 });
 
 export function* rootSaga() {
@@ -32,6 +34,7 @@ export function* rootSaga() {
     studySaga(),
     registerSaga(),
     scheduleSaga(),
+    studycodesSaga(),
   ]);
 }
 

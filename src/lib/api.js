@@ -130,6 +130,9 @@ export const fetchTodoByMemberList = () =>
 export const fetchRegisterList = () =>
   client.get(`/api/study/my/register`, privateHeader);
 
+export const fetchStudyCodes = (studyId) =>
+  client.get(`/api/study/${studyId}/code`, privateHeader);
+
 export const fetchTodoByScheduleList = (scheduleId) =>
   client.get(`/api/todo/schedule/${scheduleId}`);
 
@@ -147,6 +150,9 @@ export const fetchStudyRegister = (studyId, goal, objective, comment) =>
     { goal, objective, comment },
     privateHeader,
   );
+
+export const createInviteStudyCode = (studyId) =>
+  client.post(`/api/study/${studyId}/code`, {}, privateHeader);
 
 export const login = ({ memberId, password }) =>
   client.post(`/api/login`, { memberId, password });
