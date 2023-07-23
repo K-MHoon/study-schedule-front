@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 
-const StudyCodeForm = (property) => {
+const StudyCodeForm = ({ data, createCode }) => {
+  const handleCreateCode = useCallback(() => {
+    createCode();
+  }, []);
+
   return (
     <Form.Group className="mb-3 form-border" controlId="studyCodeList">
       <div className="form-content">
@@ -15,7 +19,7 @@ const StudyCodeForm = (property) => {
             </tr>
           </thead>
           <tbody>
-            {property.data.map((studyCode) => (
+            {data.map((studyCode) => (
               <tr key={studyCode.id}>
                 <td>{studyCode.inviteCode}</td>
                 <td>{studyCode.userId}</td>
@@ -25,7 +29,11 @@ const StudyCodeForm = (property) => {
           </tbody>
         </Table>
         <div style={{ textAlign: 'right' }}>
-          <Button variant="success" className="danger-button">
+          <Button
+            variant="success"
+            className="danger-button"
+            onClick={handleCreateCode}
+          >
             스터디 코드 발급하기
           </Button>
           <Button variant="danger" className="danger-button">
