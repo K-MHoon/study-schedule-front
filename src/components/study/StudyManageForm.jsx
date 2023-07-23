@@ -363,7 +363,7 @@ const StudyManageForm = ({
               공개 스터디 전환하기
             </SubmitButton>
             <SubmitButton
-              onClick={() => navigateToStudyCodeListPage(data.studyCodeList)}
+              onClick={() => navigateToStudyCodeListPage()}
             >
               스터디 초대 코드 관리하기
             </SubmitButton>

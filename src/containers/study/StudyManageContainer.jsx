@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import StudyManageForm from '../../components/study/StudyManageForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { myStudyDetail } from '../../lib/study';
 import {
   kickOffStudyMember,
@@ -13,6 +13,7 @@ import LoadingComponent from '../../components/common/LoadingComponent';
 
 const StudyManageContainer = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { studyId } = useParams();
 
   const { study, loading } = useSelector(({ study, loading }) => ({
@@ -99,6 +100,10 @@ const StudyManageContainer = () => {
     }
   };
 
+  const navigateToStudyCodeListPage = () => {
+    navigate(`/info/study/${studyId}/studyCode`);
+  };
+
   useEffect(() => {
     dispatch(myStudyDetail(studyId));
   }, [dispatch, studyId]);
@@ -111,6 +116,7 @@ const StudyManageContainer = () => {
         handleKickOff={handleKickOff}
         changeStudyMode={changeStudyMode}
         updateMyStudyInfo={updateMyStudyInfo}
+        navigateToStudyCodeListPage={navigateToStudyCodeListPage}
       />
     </LoadingComponent>
   );
