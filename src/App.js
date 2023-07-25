@@ -22,6 +22,7 @@ import TodayScheduleListPage from './pages/schedule/TodayScheduleListPage';
 import MemberSchedulePage from './pages/schedule/MemberSchedulePage';
 import ScheduleDetailPage from './pages/schedule/ScheduleDetailPage';
 import StudyCodePage from './pages/study/StudyCodePage';
+import TodoManagePage from './pages/todo/TodoManagePage';
 
 export const Url = {
   studyInfoPage: '/info/study',
@@ -57,16 +58,17 @@ const App = () => {
           element={<MemberSchedulePage />}
         />
         <Route
-          path="schedule/:scheduleId/todos"
+          path="/schedule/:scheduleId/todos"
           element={<TodoByScheduleListPage />}
         />
         <Route
-          path="study/:studyId/schedule/:scheduleId"
+          path="/study/:studyId/schedule/:scheduleId"
           element={<ScheduleDetailPage />}
         />
-        <Route path="member/todos" element={<TodoByMemberListPage />} />
-        <Route path="todo/create" element={<TodoCreatePage />} />
+        <Route path="/member/todos" element={<TodoByMemberListPage />} />
+        <Route path="/todo/create" element={<TodoCreatePage />} />
         <Route path="/schedule/today" element={<TodayScheduleListPage />} />
+        <Route path="/member/todos/manage" element={<TodoManagePage />} />
       </Route>
       <Route path="/" element={<HomePage />} />
       <Route path="/auth/login" element={<LoginPage />} />

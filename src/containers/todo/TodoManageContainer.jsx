@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeTodoList } from '../../../lib/api';
-import { listMemberTodos } from '../../../lib/todos';
-import LoadingComponent from '../../../components/common/LoadingComponent';
-import MemberTodo from '../../../components/study/info/MemberTodo';
-import { removeList } from '../StudyInfoContainer';
+import { removeTodoList } from '../../lib/api';
+import { listMemberTodos } from '../../lib/todos';
+import LoadingComponent from '../../components/common/LoadingComponent';
+import { removeList } from '../study/StudyInfoContainer';
+import TodoManageForm from '../../components/todo/TodoManageForm';
 
-const MemberTodoContainer = () => {
+const TodoManageContainer = () => {
   const dispatch = useDispatch();
 
   const { memberTodos, loading } = useSelector(({ todos, loading }) => ({
@@ -25,7 +25,7 @@ const MemberTodoContainer = () => {
 
   return (
     <LoadingComponent loading={loading}>
-      <MemberTodo
+      <TodoManageForm
         data={memberTodos}
         removeSelectedTodoList={removeSelectedTodoList}
       />
@@ -33,4 +33,4 @@ const MemberTodoContainer = () => {
   );
 };
 
-export default MemberTodoContainer;
+export default TodoManageContainer;

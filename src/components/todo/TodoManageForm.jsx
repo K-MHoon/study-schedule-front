@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-const MemberTodo = ({ data, removeSelectedTodoList }) => {
+const TodoManageForm = ({ data, removeSelectedTodoList }) => {
   const navigate = useNavigate();
   const [todoList, setTodoList] = useState([]);
 
@@ -76,4 +76,4 @@ const MemberTodo = ({ data, removeSelectedTodoList }) => {
   );
 };
 
-export default MemberTodo;
+export default TodoManageForm;
