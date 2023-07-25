@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useState } from 'react';
 import { Form, Table } from 'react-bootstrap';
 import { SubmitButton } from '../common/CustomButton';
@@ -7,6 +7,7 @@ const TodoByMemberListForm = ({
   data,
   createScheduleRequest,
   alreadyTodos,
+  gotoTodoMangePage,
 }) => {
   const [todoList, setTodoList] = useState([]);
   const createFlag = createScheduleRequest !== undefined;
@@ -26,6 +27,10 @@ const TodoByMemberListForm = ({
       setTodoList([...todoList, id]);
     }
   };
+
+  const handleGotoTodoManagePage = useCallback(() => {
+    gotoTodoMangePage();
+  }, []);
 
   return (
     <>
@@ -62,6 +67,9 @@ const TodoByMemberListForm = ({
           ))}
         </tbody>
       </Table>
+      <SubmitButton onClick={handleGotoTodoManagePage}>
+        내 할 일 관리하기
+      </SubmitButton>
       {createFlag && (
         <SubmitButton onClick={(e) => createScheduleRequest(todoList)}>
           {alreadyTodos === undefined ? `스케줄 생성하기` : `스케줄 수정하기`}

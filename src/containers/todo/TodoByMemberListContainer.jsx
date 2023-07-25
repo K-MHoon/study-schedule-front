@@ -61,6 +61,10 @@ const TodoByMemberListContainer = () => {
     }
   };
 
+  const gotoTodoMangePage = () => {
+    navigate(`/member/todos/manage`);
+  };
+
   useEffect(() => {
     dispatch(listMemberTodos());
   }, [dispatch]);
@@ -73,6 +77,7 @@ const TodoByMemberListContainer = () => {
           location.state ? createScheduleRequest : undefined
         }
         alreadyTodos={alreadyTodos}
+        gotoTodoMangePage={gotoTodoMangePage}
       />
     </LoadingComponent>
   );
