@@ -104,6 +104,14 @@ const StudyManageContainer = () => {
     navigate(`/info/study/${studyId}/studyCode`);
   };
 
+  const navigateToScheduleManagePage = () => {
+    navigate(`/study/${studyId}/schedules/manage`);
+  };
+
+  const navigateToScheduleHistoryPage = () => {
+    navigate(`/study/${studyId}/schedules`);
+  };
+
   useEffect(() => {
     dispatch(myStudyDetail(studyId));
   }, [dispatch, studyId]);
@@ -117,6 +125,8 @@ const StudyManageContainer = () => {
         changeStudyMode={changeStudyMode}
         updateMyStudyInfo={updateMyStudyInfo}
         navigateToStudyCodeListPage={navigateToStudyCodeListPage}
+        navigateToScheduleManagePage={navigateToScheduleManagePage}
+        navigateToScheduleHistoryPage={navigateToScheduleHistoryPage}
       />
     </LoadingComponent>
   );

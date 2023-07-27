@@ -25,6 +25,8 @@ const StudyManageForm = ({
   changeStudyMode,
   updateMyStudyInfo,
   navigateToStudyCodeListPage,
+  navigateToScheduleManagePage,
+  navigateToScheduleHistoryPage,
 }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [showRequest, setShowRequest] = useState({});
@@ -357,14 +359,18 @@ const StudyManageForm = ({
             </Container>
           </Popup>
         )}
+        <SubmitButton onClick={() => navigateToScheduleHistoryPage()}>
+          내 스케줄 이력 확인하기
+        </SubmitButton>
+        <SubmitButton onClick={() => navigateToScheduleManagePage()}>
+          내 스케줄 관리하기
+        </SubmitButton>
         {data.study.isMine && data.study.secret && (
           <>
             <SubmitButton onClick={handleShowPasswordPopup}>
               공개 스터디 전환하기
             </SubmitButton>
-            <SubmitButton
-              onClick={() => navigateToStudyCodeListPage()}
-            >
+            <SubmitButton onClick={() => navigateToStudyCodeListPage()}>
               스터디 초대 코드 관리하기
             </SubmitButton>
           </>
