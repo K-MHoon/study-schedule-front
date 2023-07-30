@@ -82,6 +82,11 @@ export const removeTodoList = (todoList) =>
     ...privateHeader,
   });
 
+export const removeMemberSelf = () =>
+  client.delete(`/api/member`, {
+    ...privateHeader,
+  });
+
 export const removeStudyCodeList = (studyId, studyCodeList) =>
   client.delete(`/api/study/${studyId}/code`, {
     data: { inviteCodeList: studyCodeList },

@@ -4,7 +4,7 @@ import { SubmitButton } from '../common/CustomButton';
 import Popup from '../common/Popup';
 import { CleanDisabledForm } from '../common/CustomForm';
 
-const MemberProfileForm = ({ data, changeMemberProfile }) => {
+const MemberProfileForm = ({ data, changeMemberProfile, removeMember }) => {
   const [showQuitButton, setShowQuitButton] = useState(false);
   const [quitText, setQuitText] = useState('');
 
@@ -70,6 +70,14 @@ const MemberProfileForm = ({ data, changeMemberProfile }) => {
     },
     [quitText],
   );
+
+  const handleRemoveMember = useCallback(() => {
+    if (quitText === '탈퇴하기') {
+      removeMember();
+      return;
+    }
+    alert('탈퇴를 위한 문구가 정확하게 입력되지 않았습니다.');
+  }, [quitText]);
 
   return (
     <>
@@ -169,7 +177,7 @@ const MemberProfileForm = ({ data, changeMemberProfile }) => {
             </Row>
             <br />
             <SubmitButton
-              onClick={(e) => console.log(e)}
+              onClick={handleRemoveMember}
               style={{ marginBottom: '30px' }}
             >
               탈퇴하기
