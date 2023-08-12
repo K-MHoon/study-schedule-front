@@ -132,8 +132,8 @@ export const createTodo = (title, content) =>
 export const fetchScheduleMemberList = (studyId) =>
   client.get(`/api/schedule?studyId=${studyId}`, privateHeader);
 
-export const fetchTodayScheduleList = () =>
-  client.get(`/api/schedule/today`, privateHeader);
+export const fetchTodayScheduleList = (scheduleType) =>
+  client.get(`/api/schedule/today?type=${scheduleType}`, privateHeader);
 
 export const fetchTodoByMemberList = () =>
   client.get(`/api/todo`, privateHeader);

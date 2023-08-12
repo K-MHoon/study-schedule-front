@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import MemberProfileForm from '../../components/member/MemberProfileForm';
 import LoadingComponent from '../../components/common/LoadingComponent';
-import {
-  quitStudy,
-  removeMemberSelf,
-  updateMemberProfile,
-} from '../../lib/api';
+import { removeMemberSelf, updateMemberProfile } from '../../lib/api';
 import { memberProfile } from '../../lib/member';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

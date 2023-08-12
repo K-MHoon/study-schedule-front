@@ -14,7 +14,7 @@ const [TODAY_SCHEDULES, TODAY_SCHEDULES_SUCCESS, TODAY_SCHEDULES_FAILURE] =
 // 액션 생성 함수에서 우선적인 처리가 가능하며, 리턴되는 값은 payload로 들어가게 된다.
 export const listSchedules = createAction(LIST_SCHEDULES, (studyId) => studyId);
 
-export const todaySchedules = createAction(TODAY_SCHEDULES);
+export const todaySchedules = createAction(TODAY_SCHEDULES, (scheduleType) => scheduleType);
 
 const listSchedulesSaga = createRequestSaga(
   LIST_SCHEDULES,

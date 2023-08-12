@@ -15,7 +15,7 @@ const TodayScheduleListContainer = () => {
   }));
 
   useEffect(() => {
-    dispatch(todaySchedules());
+    dispatch(todaySchedules('NONE'));
   }, [dispatch]);
 
   const updateScheduleTodo = async (clearScheduleTodoList) => {
