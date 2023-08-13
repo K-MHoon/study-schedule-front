@@ -7,6 +7,22 @@ const TodayScheduleListForm = ({ data, updateScheduleTodo }) => {
   const [checkedList, setCheckedList] = useState({});
   const [successRate, setSuccessRate] = useState({});
 
+  const getScheduleType = (schedueleType) => {
+    if (schedueleType === 'LONG_TERM') {
+      return '기간';
+    } else {
+      return '패턴';
+    }
+  };
+
+  const getScheduleDate = (schedule) => {
+    if (schedule.scheduleType === 'LONG_TERM') {
+      return `${schedule.startDate} ~ ${schedule.endDate}`;
+    } else {
+      return `${schedule.nextScheduleDate}`;
+    }
+  };
+
   const handleTodoList = (scheduleId, todoId) => {
     const tmp = { ...checkedList };
     if (!checkedList[scheduleId]) {
@@ -72,11 +88,10 @@ const TodayScheduleListForm = ({ data, updateScheduleTodo }) => {
             <Accordion.Header>
               <Container>
                 <Row style={{ textAlign: 'center' }}>
-                  <Col sm={3}>{schedule.studyName}</Col>
-                  <Col sm={5}>
-                    {schedule.startDate} ~ {schedule.endDate}
-                  </Col>
-                  <Col sm={3}>{schedule.name}</Col>
+                  <Col sm={2}>{schedule.studyName}</Col>
+                  <Col sm={1}>{getScheduleType(schedule.scheduleType)}</Col>
+                  <Col sm={3}>{getScheduleDate(schedule)}</Col>
+                  <Col sm={5}>{schedule.name}</Col>
                 </Row>
               </Container>
             </Accordion.Header>
