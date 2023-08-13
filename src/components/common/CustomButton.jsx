@@ -25,3 +25,14 @@ export const SearchButton = styled(Button)`
     background-color: #088699;
   }
 `;
+
+export const RadiusButton = styled(Button)`
+  margin: 0;
+  border-radius: 50px;
+  border: 0;
+  background-color: #64d1e2;
+
+  &:hover {
+    background-color: #0a7384;
+  }
+`;

@@ -1,6 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Accordion, Col, Container, Form, Row, Table } from 'react-bootstrap';
-import { SubmitButton } from '../common/CustomButton';
+import {
+  Accordion,
+  Button,
+  Col,
+  Container,
+  Form,
+  Row,
+  Table,
+} from 'react-bootstrap';
+import { RadiusButton, SubmitButton } from '../common/CustomButton';
 
 const TodayScheduleListForm = ({ data, updateScheduleTodo }) => {
   const [todoCount, setTodoCount] = useState({});
@@ -82,6 +90,10 @@ const TodayScheduleListForm = ({ data, updateScheduleTodo }) => {
 
   return (
     <>
+      <div style={{ float: 'right' }}>
+        <RadiusButton>기간</RadiusButton>
+        <RadiusButton style={{ marginLeft: 5 }}>패턴</RadiusButton>
+      </div>
       <Accordion>
         {data.map((schedule) => (
           <Accordion.Item key={schedule.id} eventKey={schedule.id}>
