@@ -10,7 +10,11 @@ import {
 } from 'react-bootstrap';
 import { RadiusButton, SubmitButton } from '../common/CustomButton';
 
-const TodayScheduleListForm = ({ data, updateScheduleTodo }) => {
+const TodayScheduleListForm = ({
+  data,
+  updateScheduleTodo,
+  filterScheduleType,
+}) => {
   const [todoCount, setTodoCount] = useState({});
   const [checkedList, setCheckedList] = useState({});
   const [successRate, setSuccessRate] = useState({});
@@ -91,8 +95,15 @@ const TodayScheduleListForm = ({ data, updateScheduleTodo }) => {
   return (
     <>
       <div style={{ float: 'right' }}>
-        <RadiusButton>기간</RadiusButton>
-        <RadiusButton style={{ marginLeft: 5 }}>패턴</RadiusButton>
+        <RadiusButton onClick={() => filterScheduleType('NONE')}>
+          전체
+        </RadiusButton>
+        <RadiusButton onClick={() => filterScheduleType('LONG_TERM')}>
+          기간
+        </RadiusButton>
+        <RadiusButton onClick={() => filterScheduleType('PATTERN')}>
+          패턴
+        </RadiusButton>
       </div>
       <Accordion>
         {data.map((schedule) => (

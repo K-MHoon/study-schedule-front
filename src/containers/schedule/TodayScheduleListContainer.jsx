@@ -18,6 +18,10 @@ const TodayScheduleListContainer = () => {
     dispatch(todaySchedules('NONE'));
   }, [dispatch]);
 
+  const filterScheduleType = (scheduleType) => {
+    dispatch(todaySchedules(scheduleType));
+  };
+
   const updateScheduleTodo = async (clearScheduleTodoList) => {
     try {
       await updateTodayScheduleTodo(clearScheduleTodoList);
@@ -42,6 +46,7 @@ const TodayScheduleListContainer = () => {
       <TodayScheduleListForm
         data={schedules}
         updateScheduleTodo={updateScheduleTodo}
+        filterScheduleType={filterScheduleType}
       />
     </LoadingComponent>
   );

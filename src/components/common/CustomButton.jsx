@@ -27,7 +27,7 @@ export const SearchButton = styled(Button)`
 `;
 
 export const RadiusButton = styled(Button)`
-  margin: 0;
+  margin: 5px;
   border-radius: 50px;
   border: 0;
   background-color: #64d1e2;
