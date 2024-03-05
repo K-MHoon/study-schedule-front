@@ -2,16 +2,11 @@ import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
 
-export const setCookieToken = (accessToken, refreshToken, expiredTime) => {
-  const expiredDate = new Date(new Date().setTime(expiredTime));
+export const setCookieToken = (name, jwtToken) => {
+  const token = jwtToken.token;
+  const expiredDate = new Date(new Date().setTime(jwtToken.expiredTime));
 
-  cookies.set('access_token', accessToken, {
-    sameSite: 'strict',
-    path: '/',
-    expires: expiredDate,
-  });
-
-  cookies.set('refresh_token', refreshToken, {
+  cookies.set(name, token, {
     sameSite: 'strict',
     path: '/',
     expires: expiredDate,
