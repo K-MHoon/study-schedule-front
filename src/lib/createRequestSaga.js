@@ -1,5 +1,6 @@
 import { call, put } from 'redux-saga/effects';
 import { startLoading, finishLoading } from '../modules/loading';
+import { removeCookieToken } from '../modules/Cookie';
 
 export const createRequestActionTypes = (type) => {
   const SUCCESS = `${type}_SUCCESS`;
@@ -28,8 +29,14 @@ export default function createRequestSaga(type, request) {
         payload: e,
         error: true,
       });
-      alert(e.response.data.message);
-      window.history.back();
+      const message = e.response.data.message;
+      alert(message);
+      if (message === 'REQUIRE_LOGIN') {
+        removeCookieToken();
+        window.location.replace('/auth/login');
+      } else {
+        window.history.back();
+      }
     }
     yield put(finishLoading(type));
   };
